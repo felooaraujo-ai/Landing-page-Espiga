@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Espiga — Sistema web de gestión para PCR Amoblamientos.">
+<title>Espiga | Gestión para PCR Amoblamientos</title>
+<style>
+:root{
+  --cream:#f7f0e5;--paper:#fffaf2;--wood:#8b5e3c;--wood2:#6f452b;--dark:#2d2119;
+  --soft:#eadbc7;--line:#d9c4aa;--accent:#a87549;--white:#fffdf9;
+  --shadow:0 18px 50px rgba(75,48,29,.12);--radius:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--dark);line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+.nav{position:sticky;top:0;z-index:50;background:rgba(247,240,229,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(139,94,60,.15)}
+.nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.04em}.logo-mark{width:38px;height:38px;border-radius:11px;background:var(--wood);color:white;display:grid;place-items:center;font-size:19px;box-shadow:0 7px 18px rgba(111,69,43,.22)}
+.nav-links{display:flex;gap:22px;font-size:.9rem;font-weight:700;color:#654936}.nav-links a:hover{color:var(--wood)}
+.hero{padding:90px 0 82px;overflow:hidden;position:relative}.hero:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;right:-250px;top:-220px;background:rgba(139,94,60,.08)}
+.hero-grid{display:grid;grid-template-columns:1fr .9fr;gap:65px;align-items:center;position:relative}.eyebrow{display:inline-flex;padding:7px 12px;border:1px solid var(--line);border-radius:99px;color:var(--wood2);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,250,242,.65)}
+h1{font-family:Georgia,serif;font-size:clamp(3.3rem,7vw,6.5rem);line-height:.9;margin:24px 0 25px;letter-spacing:-.06em}.hero h1 span{color:var(--wood)}
+.hero p{font-size:1.12rem;color:#665347;max-width:620px}.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}.btn{padding:14px 21px;border-radius:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;transition:.2s}.btn-primary{background:var(--wood);color:white;box-shadow:0 12px 24px rgba(111,69,43,.2)}.btn-primary:hover{transform:translateY(-2px);background:var(--wood2)}.btn-secondary{border:1px solid var(--line);background:var(--paper);color:var(--wood2)}
+.mockup{background:#2f2118;border-radius:24px;padding:12px;box-shadow:var(--shadow);transform:rotate(1.5deg)}.screen{background:var(--paper);border-radius:16px;overflow:hidden;min-height:390px}.screen-top{height:44px;background:#eee0cd;display:flex;align-items:center;padding:0 15px;gap:7px}.dot{width:9px;height:9px;border-radius:50%;background:#b99572}.screen-body{padding:24px}.screen-brand{font-family:Georgia,serif;font-size:1.7rem;color:var(--wood2);font-weight:700}.dash{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.mini{background:#f1e5d5;border-radius:14px;padding:14px}.mini b{display:block;font-size:1.2rem}.mini small{color:#725c4b}.bar{height:13px;background:#dcc4a5;border-radius:20px;margin-top:9px}.bar.long{width:80%}.bar.mid{width:57%}.bar.short{width:38%}.mock-label{text-align:center;color:#d8c4ad;font-size:.75rem;margin-top:10px}
+section{padding:88px 0}.section-head{max-width:730px;margin-bottom:42px}.section-head .num{color:var(--wood);font-weight:900;font-size:.8rem;letter-spacing:.12em}.section-head h2{font-family:Georgia,serif;font-size:clamp(2.3rem,5vw,4rem);line-height:1;margin:9px 0 17px}.section-head p{color:#6c594a;font-size:1.05rem}
+.what{background:var(--paper)}.two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:start}.quote{border-left:4px solid var(--wood);padding:10px 0 10px 22px;font-family:Georgia,serif;font-size:1.65rem;line-height:1.25;color:var(--wood2)}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.pillar{padding:22px;border:1px solid var(--line);border-radius:18px;background:#fbf3e7}.pillar strong{display:block;margin-bottom:5px;color:var(--wood2)}
+.problem{background:var(--dark);color:#fff6ea}.problem .section-head p{color:#d9cabb}.problem .section-head .num{color:#d6ad83}.problem-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.problem-card{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.05);padding:24px;border-radius:20px}.problem-card .icon{font-size:1.7rem}.problem-card h3{margin:12px 0 7px}.problem-card p{color:#d5c5b6;font-size:.92rem}
+.solution{background:#f2e6d6}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:25px;box-shadow:0 8px 25px rgba(85,54,31,.05)}.feature .icon{font-size:1.8rem}.feature h3{margin:12px 0 6px;color:var(--wood2)}.feature p{font-size:.92rem;color:#6b594a}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.role{background:var(--paper);border-radius:22px;padding:29px;border:1px solid var(--line);position:relative;overflow:hidden}.role:after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:#ead9c3;right:-65px;top:-65px}.role-num{font-size:.75rem;font-weight:900;color:var(--wood);letter-spacing:.1em}.role h3{font-family:Georgia,serif;font-size:1.7rem;margin:8px 0}.role ul{padding-left:18px;color:#695748;font-size:.93rem}.role li{margin:5px 0}
+.flow{background:var(--paper)}.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch}.step{background:#f5e9d9;border:1px solid var(--line);border-radius:18px;padding:20px;position:relative}.step:not(:last-child):after{content:"→";position:absolute;right:-16px;top:50%;transform:translateY(-50%);color:var(--wood);font-weight:900;font-size:1.4rem;z-index:2}.step span{font-size:.72rem;font-weight:900;color:var(--wood)}.step h3{font-size:1rem;margin:7px 0}.step p{font-size:.83rem;color:#705e4d}
+.tech{background:#3a291e;color:#fff7ee}.tech .section-head p{color:#d9c8b8}.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.tech-card{padding:24px;border:1px solid rgba(255,255,255,.13);border-radius:20px;background:rgba(255,255,255,.055)}.tech-card small{color:#d2bda8}.tech-card h3{margin:6px 0}.tech-card p{font-size:.87rem;color:#d7c8ba}
+.resources{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.resource{padding:23px;border:1px solid var(--line);border-radius:19px;background:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:18px}.resource b{color:var(--wood2)}.resource p{font-size:.86rem;color:#705d4c}.arrow{font-size:1.5rem;color:var(--wood)}
+.cta-section{padding:90px 0}.cta-box{background:var(--wood);color:white;border-radius:30px;padding:55px;text-align:center;position:relative;overflow:hidden}.cta-box:before{content:"✦";position:absolute;font-size:15rem;opacity:.06;right:-25px;top:-90px}.cta-box h2{font-family:Georgia,serif;font-size:clamp(2.3rem,5vw,4rem);line-height:1;margin-bottom:14px}.cta-box p{max-width:680px;margin:auto;color:#f0dfcf}.cta-box .btn{margin-top:25px;background:#fff8ef;color:var(--wood2)}
+footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.footer-brand{font-family:Georgia,serif;color:white;font-size:2rem}.footer-links{display:flex;gap:15px;flex-wrap:wrap;justify-content:flex-end}.footer-links a{font-size:.86rem}.copyright{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:.78rem;color:#a99788}
+@media(max-width:850px){.nav-links{display:none}.hero-grid,.two-col{grid-template-columns:1fr}.hero{padding-top:60px}.problem-cards{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.roles{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step:not(:last-child):after{content:"↓";right:auto;top:auto;bottom:-21px;left:50%;transform:translateX(-50%)}.tech-grid{grid-template-columns:repeat(2,1fr)}.resources{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.footer-links{justify-content:flex-start}}
+@media(max-width:560px){.problem-cards,.features,.tech-grid{grid-template-columns:1fr}.hero-actions .btn{width:100%}.cta-box{padding:38px 22px}.pillars{grid-template-columns:1fr}}
+
+.doc-modal{position:fixed;inset:0;z-index:1000;background:rgba(36,25,19,.72);backdrop-filter:blur(6px);display:none;padding:18px}.doc-modal.open{display:flex;align-items:center;justify-content:center}.doc-window{width:min(1200px,98vw);height:min(92vh,900px);background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.35);position:relative}.doc-close{position:absolute;right:14px;top:12px;z-index:5;border:0;background:#2d2119;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer}.doc-frame{width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#inicio"><span class="logo-mark">E</span> ESPIGA</a>
+    <div class="nav-links">
+      <a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#funciones">Funciones</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Sistema web · PCR Amoblamientos</span>
+      <h1>Gestión que mantiene todo <span>en su lugar.</span></h1>
+      <p>Espiga es un sistema web de gestión desarrollado para centralizar clientes, pedidos, pagos, proveedores, archivos técnicos y entregas de PCR Amoblamientos.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#proyecto">Conocer el proyecto ↓</a>
+        <a class="btn btn-secondary" href="https://espiga-pcr.up.railway.app" target="_blank" rel="noopener">Ingresar al sistema ↗</a>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="screen">
+        <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="screen-body">
+          <div class="screen-brand">Espiga</div>
+          <p style="color:#776252;margin-top:4px">Panel de gestión</p>
+          <div class="dash">
+            <div class="mini"><small>Clientes</small><b>24</b><div class="bar long"></div></div>
+            <div class="mini"><small>Pedidos</small><b>12</b><div class="bar mid"></div></div>
+            <div class="mini"><small>Alertas</small><b>04</b><div class="bar short"></div></div>
+          </div>
+          <div style="margin-top:22px;padding:16px;border-radius:14px;background:#f1e5d5"><b>Próximas entregas</b><div class="bar long"></div><div class="bar mid"></div><div class="bar short"></div></div>
+        </div>
+      </div>
+      <div class="mock-label">Vista conceptual inspirada en la interfaz del sistema</div>
+    </div>
+  </div>
+</header>
+
+<section class="what" id="proyecto">
+  <div class="container">
+    <div class="section-head"><div class="num">01 — EL PROYECTO</div><h2>¿Qué es Espiga?</h2><p>Una herramienta pensada para que la información del negocio esté organizada, actualizada y disponible desde un mismo lugar.</p></div>
+    <div class="two-col">
+      <div><div class="quote">“Toda la información de PCR Amoblamientos, organizada en un solo lugar.”</div><p style="margin-top:25px;color:#6b594a">El sistema busca centralizar la gestión cotidiana de un taller de muebles a medida: clientes con cuenta corriente, proveedores, pedidos, archivos técnicos, cobranzas y entregas.</p></div>
+      <div class="pillars">
+        <div class="pillar"><strong>Clientes</strong><span>Consulta y gestión de cuentas corrientes.</span></div>
+        <div class="pillar"><strong>Pedidos</strong><span>Seguimiento de estados y documentación.</span></div>
+        <div class="pillar"><strong>Pagos</strong><span>Registro y consulta de saldos.</span></div>
+        <div class="pillar"><strong>Entregas</strong><span>Calendario, alertas y seguimiento.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="problema">
+  <div class="container">
+    <div class="section-head"><div class="num">02 — EL PUNTO DE PARTIDA</div><h2>El problema</h2><p>La gestión de PCR Amoblamientos se realizaba de forma manual y dispersa, dificultando la consulta, el seguimiento y la trazabilidad de la información.</p></div>
+    <div class="problem-cards">
+      <article class="problem-card"><div class="icon">👤</div><h3>Clientes</h3><p>La información y los saldos podían requerir reconstrucción manual.</p></article>
+      <article class="problem-card"><div class="icon">📋</div><h3>Pedidos</h3><p>Era necesario seguir cada pedido y conocer su estado.</p></article>
+      <article class="problem-card"><div class="icon">💰</div><h3>Cobranzas</h3><p>La organización de pagos y pendientes necesitaba mayor centralización.</p></article>
+      <article class="problem-card"><div class="icon">🚚</div><h3>Entregas</h3><p>Había que controlar fechas y anticipar entregas próximas.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="solution" id="funciones">
+  <div class="container">
+    <div class="section-head"><div class="num">03 — LA SOLUCIÓN</div><h2>Todo conectado.</h2><p>Espiga reúne en una misma plataforma las principales tareas de gestión del taller.</p></div>
+    <div class="features">
+      <article class="feature"><div class="icon">👥</div><h3>Clientes y cuentas</h3><p>Alta, consulta y gestión de clientes y sus cuentas corrientes.</p></article>
+      <article class="feature"><div class="icon">📦</div><h3>Pedidos</h3><p>Creación y seguimiento de pedidos según su estado.</p></article>
+      <article class="feature"><div class="icon">💳</div><h3>Pagos</h3><p>Registro de pagos, comprobantes y consulta de saldos.</p></article>
+      <article class="feature"><div class="icon">🏭</div><h3>Proveedores</h3><p>Control de proveedores y seguimiento de deudas.</p></article>
+      <article class="feature"><div class="icon">📐</div><h3>Archivos técnicos</h3><p>Planos, fotografías y listas de corte asociados a cada pedido.</p></article>
+      <article class="feature"><div class="icon">📅</div><h3>Entregas y alertas</h3><p>Calendario y avisos para entregas próximas, además de recordatorios de cobranza.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="roles">
+  <div class="container">
+    <div class="section-head"><div class="num">04 — USUARIOS</div><h2>Diseñado para cada rol.</h2><p>Cada perfil accede a las herramientas necesarias para realizar sus tareas dentro del sistema.</p></div>
+    <div class="roles">
+      <article class="role"><div class="role-num">01</div><h3>Administrador</h3><ul><li>Gestiona usuarios.</li><li>Administra información general.</li><li>Accede a las funciones de gestión.</li><li>Gestiona copias de seguridad.</li></ul></article>
+      <article class="role"><div class="role-num">02</div><h3>Administrativo</h3><ul><li>Gestiona clientes y cuentas corrientes.</li><li>Carga pedidos y archivos técnicos.</li><li>Registra pagos.</li><li>Genera comprobantes y resúmenes.</li></ul></article>
+      <article class="role"><div class="role-num">03</div><h3>Operador</h3><ul><li>Actualiza estados de producción.</li><li>Consulta pedidos y calendario.</li><li>Recibe notificaciones.</li><li>Genera recordatorios de cobranza.</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section class="flow" id="funcionamiento">
+  <div class="container">
+    <div class="section-head"><div class="num">05 — FUNCIONAMIENTO</div><h2>Del cliente a la entrega.</h2><p>Un recorrido simple para entender cómo se organiza la información dentro de Espiga.</p></div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Cliente</h3><p>Se registra o consulta al cliente.</p></div>
+      <div class="step"><span>02</span><h3>Pedido</h3><p>Se crea el pedido y se agregan archivos técnicos.</p></div>
+      <div class="step"><span>03</span><h3>Producción</h3><p>Se actualiza el estado del pedido y materiales.</p></div>
+      <div class="step"><span>04</span><h3>Pago</h3><p>Se registran pagos y se actualiza el saldo.</p></div>
+      <div class="step"><span>05</span><h3>Entrega</h3><p>Se controla la fecha mediante calendario y alertas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="tecnologia">
+  <div class="container">
+    <div class="section-head"><div class="num">06 — TECNOLOGÍA</div><h2>La parte que hace posible Espiga.</h2><p>La solución combina una interfaz web, un backend para la lógica del sistema y una base de datos para organizar la información.</p></div>
+    <div class="tech-grid">
+      <article class="tech-card"><small>FRONTEND</small><h3>HTML · CSS · JavaScript</h3><p>Interfaz web para acceder y trabajar con el sistema.</p></article>
+      <article class="tech-card"><small>BACKEND</small><h3>Node.js + Express</h3><p>Procesa las operaciones y reglas del sistema.</p></article>
+      <article class="tech-card"><small>DATOS</small><h3>MySQL</h3><p>Base de datos relacional normalizada para almacenar la información.</p></article>
+      <article class="tech-card"><small>PUBLICACIÓN</small><h3>Railway</h3><p>Sistema publicado en la nube y accesible desde distintos dispositivos.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="recursos">
+  <div class="container">
+    <div class="section-head"><div class="num">07 — RECURSOS</div><h2>Todo el proyecto, en un mismo lugar.</h2><p>Accesos para presentar el sistema, consultar su documentación y conocer su desarrollo.</p></div>
+    <div class="resources">
+      <a class="resource" href="https://espiga-pcr.up.railway.app" target="_blank" rel="noopener"><div><b>Sistema en funcionamiento</b><p>Acceder a Espiga publicado en Railway.</p></div><span class="arrow">↗</span></a>
+      <a class="resource" href="https://github.com/felooaraujo-ai/Kore" target="_blank" rel="noopener"><div><b>Repositorio GitHub</b><p>Código y archivos del proyecto.</p></div><span class="arrow">↗</span></a>
+      <a class="resource" href="#documentacion" onclick="openDoc(); return false;"><div><b>Documentación</b><p>Requisitos, modelo, diagnóstico, bitácora, Gantt, contrato y más.</p></div><span class="arrow">→</span></a>
+      <a class="resource" href="#manual" onclick="openDoc('s11'); return false;"><div><b>Manual de Usuario</b><p>Instrucciones para utilizar las funciones principales de Espiga.</p></div><span class="arrow">→</span></a>
+      <a class="resource" href="#guia" onclick="openDoc('s11'); return false;"><div><b>Guía de Inicio Rápido</b><p>Primeros pasos para comenzar a utilizar Espiga.</p></div><span class="arrow">→</span></a>
+      <a class="resource" href="#faq" onclick="openDoc('s12'); return false;"><div><b>Preguntas frecuentes</b><p>Respuestas sobre uso, datos, comprobantes y backups.</p></div><span class="arrow">→</span></a>
+      <a class="resource" href="#inicio"><div><b>Landing Page</b><p>Volver a la presentación principal de Espiga.</p></div><span class="arrow">↑</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box"><h2>Conocé Espiga.</h2><p>Una solución de gestión desarrollada para las necesidades de PCR Amoblamientos.</p><a class="btn" href="https://espiga-pcr.up.railway.app" target="_blank" rel="noopener">Ingresar al sistema ↗</a></div>
+  </div>
+</section>
+
+
+<div class="doc-modal" id="docModal" aria-hidden="true">
+  <div class="doc-window">
+    <button class="doc-close" onclick="closeDoc()" aria-label="Cerrar">×</button>
+    <iframe class="doc-frame" id="docFrame" title="Documentación de Espiga"></iframe>
+  </div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footer-grid"><div><div class="footer-brand">ESPIGA</div><p style="margin-top:8px">Sistema de gestión para PCR Amoblamientos.</p></div><div class="footer-links"><a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#funciones">Funciones</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a><a href="#documentacion" onclick="openDoc(); return false;">Documentación</a></div></div>
+    <div class="copyright">PCR Amoblamientos · Villa Bosch · Evaluación de Proyectos · 7mo Informática 2026 · Instituto Leonardo Murialdo · Equipo: Felipe Araujo · Valentina Autelli · Mía Yorio.</div>
+  </div>
+</footer>
+<template id="embeddedDocumentation"><!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Carpeta del Proyecto de Espiga: sistema de gestión web para PCR Amoblamientos. Requisitos, arquitectura, modelo de datos en 3FN, gestión y oferta económica.">
+<title>Documentación del Proyecto: Espiga · PCR Amoblamientos</title>
+<style>
+  :root{
+    --wood-900:#2c1e14;
+    --wood-800:#4a3223;
+    --wood-700:#6e4a2b; /* color de marca de la app */
+    --wood-500:#a97a4b;
+    --wood-300:#d8b98d;
+    --sawdust:#f6efe3;
+    --paper:#fbf8f2;
+    --ink:#2b2320;
+    --ink-soft:#5b4f45;
+    --line:#e2d5bf;
+    --ok:#3f7a4e;
+    --warn:#b3651c;
+    --danger:#a13d33;
+    --serif: "Bitter", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{
+    font-family:var(--serif);
+    color:var(--wood-900);
+    line-height:1.2;
+    margin-top:2.4em;
+  }
+  a{color:var(--wood-700);}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px 100px;}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg,var(--wood-800) 0%, var(--wood-700) 100%);
+    color:var(--sawdust);
+    padding:64px 24px 48px;
+    border-bottom:6px solid var(--wood-500);
+  }
+  .hero-inner{max-width:880px;margin:0 auto;}
+  .hero .kicker{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--wood-300);
+    font-size:1.05rem;
+    margin:0 0 6px;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:2.5rem;
+    margin:0 0 14px;
+    max-width:20ch;
+  }
+  .hero p{max-width:62ch;color:var(--sawdust);opacity:.92;font-size:1.05rem;}
+  .hero .meta{
+    margin-top:22px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 20px;
+    font-size:.92rem;
+    color:var(--wood-300);
+    border-top:1px solid rgba(255,255,255,.18);
+    padding-top:16px;
+  }
+  .hero .meta b{color:#fff;font-weight:600;}
+
+  /* TOC */
+  .toc{
+    background:var(--sawdust);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:20px 26px;
+    margin:-28px auto 40px;
+    max-width:832px;
+    position:relative;
+  }
+  .toc h2{margin:0 0 10px;font-size:1.05rem;color:var(--wood-800);}
+  .toc ol{columns:2;column-gap:32px;padding-left:1.1em;margin:0;font-size:.93rem;}
+  .toc li{break-inside:avoid;margin-bottom:5px;}
+  .toc a{color:var(--ink-soft);text-decoration:none;}
+  .toc a:hover{color:var(--wood-700);text-decoration:underline;}
+  @media(max-width:640px){.toc ol{columns:1;}}
+
+  section{margin-top:56px;padding-top:8px;}
+  section > h2{
+    font-size:1.65rem;
+    border-bottom:2px solid var(--wood-500);
+    padding-bottom:8px;
+  }
+  h3{font-size:1.28rem;margin-top:2em;}
+  h4{font-size:1.05rem;color:var(--wood-800);margin-top:1.6em;}
+  p{max-width:74ch;}
+  .lede{color:var(--ink-soft);font-size:1rem;max-width:74ch;}
+
+  table{
+    border-collapse:collapse;
+    width:100%;
+    margin:18px 0 8px;
+    font-size:.92rem;
+    background:#fff;
+  }
+  caption{caption-side:top;text-align:left;font-family:var(--serif);font-style:italic;color:var(--ink-soft);margin-bottom:6px;}
+  th,td{
+    border:1px solid var(--line);
+    padding:8px 10px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th{background:var(--sawdust);color:var(--wood-900);font-weight:600;}
+  tr:nth-child(even) td{background:#fdfbf6;}
+  td code, p code{background:var(--sawdust);padding:1px 5px;border-radius:3px;font-size:.88em;}
+
+  .tag{
+    display:inline-block;
+    font-size:.72rem;
+    font-weight:700;
+    padding:2px 7px;
+    border-radius:3px;
+    letter-spacing:.02em;
+  }
+  .tag-alta{background:#f6dede;color:var(--danger);}
+  .tag-media{background:#fbe8d2;color:var(--warn);}
+  .tag-baja{background:#e4efe6;color:var(--ok);}
+
+  .note{
+    background:var(--sawdust);
+    border-left:4px solid var(--wood-500);
+    padding:12px 16px;
+    margin:18px 0;
+    font-size:.92rem;
+    color:var(--ink-soft);
+  }
+  .note b{color:var(--wood-800);}
+  .removed{
+    background:#f4efe8;
+    border:1px dashed var(--line);
+    padding:12px 16px;
+    margin:18px 0;
+    font-size:.9rem;
+    color:var(--ink-soft);
+    border-radius:4px;
+  }
+  .todo{
+    border:1px dashed var(--wood-500);
+    background:#fff9ef;
+    padding:10px 14px;
+    margin:14px 0;
+    font-size:.87rem;
+    color:var(--warn);
+  }
+  .todo b{color:var(--wood-800);}
+
+  pre{
+    background:var(--wood-900);
+    color:#f1e6d2;
+    padding:16px 18px;
+    border-radius:6px;
+    overflow-x:auto;
+    font-size:.82rem;
+    line-height:1.5;
+  }
+  code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;}
+
+  .flow{
+    counter-reset:step;
+    list-style:none;
+    padding:0;
+    margin:20px 0;
+  }
+  .flow li{
+    counter-increment:step;
+    position:relative;
+    padding:2px 0 22px 44px;
+    border-left:2px solid var(--wood-300);
+    margin-left:14px;
+  }
+  .flow li:last-child{border-left:2px solid transparent;padding-bottom:0;}
+  .flow li::before{
+    content:counter(step);
+    position:absolute;
+    left:-15px;
+    top:0;
+    width:28px;height:28px;
+    background:var(--wood-700);
+    color:#fff;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.82rem;font-weight:700;
+  }
+  .flow b{color:var(--wood-900);}
+
+  .faq dt{font-family:var(--serif);font-weight:700;color:var(--wood-800);margin-top:20px;font-size:1.02rem;}
+  .faq dd{margin:6px 0 0;color:var(--ink-soft);max-width:72ch;}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0;}
+  .card{border:1px solid var(--line);background:#fff;border-radius:6px;padding:14px 16px;}
+  .card h4{margin:0 0 6px;font-size:.98rem;}
+  .card p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+
+  .backlink{display:inline-block;margin-bottom:18px;color:var(--wood-300);font-size:.85rem;}
+  footer{
+    background:var(--wood-900);
+    color:var(--wood-300);
+    padding:30px 24px;
+    text-align:center;
+    font-size:.85rem;
+    margin-top:70px;
+  }
+  footer b{color:#fff;}
+
+  /* --- extras carpeta completa --- */
+  .arbol-flujo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:center;
+    background:var(--sawdust);border:1px solid var(--line);border-radius:6px;padding:16px;margin:16px 0;
+    font-family:var(--serif);font-size:.95rem;color:var(--wood-800);}
+  .arbol-flujo .box{background:#fff;border:1px solid var(--wood-300);border-radius:5px;padding:8px 14px;font-weight:600;}
+  .arbol-flujo .arrow{color:var(--wood-500);font-weight:700;}
+  .central{background:var(--wood-700);color:#fff;border:none;border-radius:6px;padding:14px 18px;margin:12px 0;font-weight:600;}
+  .okr{border:1px solid var(--line);border-left:4px solid var(--wood-500);background:#fff;border-radius:4px;padding:14px 18px;margin:14px 0;}
+  .okr h4{margin:0 0 8px;color:var(--wood-800);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:16px 0;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:16px 18px;}
+  .card h4{margin:0 0 6px;}
+  .card p{font-size:.9rem;color:var(--ink-soft);margin:0;}
+  .flow{counter-reset:step;list-style:none;padding:0;margin:20px 0;}
+  .flow li{counter-increment:step;position:relative;padding:2px 0 22px 44px;border-left:2px solid var(--wood-300);margin-left:14px;}
+  .flow li:last-child{border-left:2px solid transparent;padding-bottom:0;}
+  .flow li::before{content:counter(step);position:absolute;left:-15px;top:0;width:28px;height:28px;
+    background:var(--wood-700);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;}
+  .flow b{color:var(--wood-900);}
+  .carriles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:20px 0;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .carril{padding:0;}
+  .carril h5{margin:0;padding:10px;background:var(--wood-700);color:#fff;font-size:.82rem;text-align:center;font-family:var(--sans);letter-spacing:.02em;}
+  .carril .paso{border-top:1px solid var(--line);padding:10px 12px;font-size:.85rem;min-height:52px;}
+  .carril:not(:last-child) .paso, .carril:not(:last-child) h5{border-right:1px solid var(--line);}
+  .minuta{border:1px solid var(--line);border-radius:6px;padding:0;margin:16px 0;overflow:hidden;}
+  .minuta .mh{background:var(--wood-800);color:#fff;padding:10px 16px;font-weight:600;font-family:var(--serif);}
+  .minuta .mrow{display:grid;grid-template-columns:180px 1fr;border-top:1px solid var(--line);}
+  .minuta .mk{background:var(--sawdust);padding:9px 14px;font-weight:600;font-size:.86rem;color:var(--wood-800);}
+  .minuta .mv{padding:9px 14px;font-size:.9rem;}
+  .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0;}
+  .member{text-align:center;background:#fff;border:1px solid var(--line);border-radius:6px;padding:18px 12px;}
+  .m-photo{width:70px;height:70px;border-radius:50%;background:var(--wood-300);display:block;margin:0 auto 10px;
+    border:2px solid var(--wood-500);}
+  .member b{display:block;font-size:.95rem;}
+  .member span{font-size:.8rem;color:var(--ink-soft);}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.8rem;color:var(--ink-soft);margin:10px 0;}
+  .legend span{display:inline-flex;align-items:center;gap:5px;}
+  .sw{width:12px;height:12px;border-radius:3px;display:inline-block;}
+  .faq dt{font-weight:700;color:var(--wood-900);margin-top:18px;font-family:var(--serif);}
+  .faq dd{margin:6px 0 0;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">Carpeta del Proyecto · Documentación</p>
+    <h1>Espiga · Sistema de gestión para PCR Amoblamientos</h1>
+    <p>Documentación técnica, operativa y económica del proyecto. Sistema web para gestionar clientes con cuenta corriente automática, proveedores, pedidos, archivos técnicos, cobranzas y entregas de un taller de muebles a medida, publicado en la nube y accesible desde cualquier dispositivo.</p>
+    <div class="meta">
+      <span><b>Cliente:</b> Rodrigo Pasut · PCR Amoblamientos, Villa Bosch</span>
+      <span><b>Materia:</b> Evaluación de Proyectos</span>
+      <span><b>Ciclo:</b> 7mo Informática 2026 · Instituto Leonardo Murialdo</span>
+      <span><b>Equipo:</b> Felipe Araujo · Valentina Autelli · Mía Yorio</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>Contenidos</h2>
+  <ol>
+    <li><a href="#s1">Control de Cambios</a></li>
+    <li><a href="#s2">Diagnóstico: Árbol de Problemas</a></li>
+    <li><a href="#s3">Introducción</a></li>
+    <li><a href="#s4">Descripción General</a></li>
+    <li><a href="#s5">Requisitos Específicos</a></li>
+    <li><a href="#s5-6">Modelo Entidad-Relación (3FN)</a></li>
+    <li><a href="#s5-7">Diagrama de flujo</a></li>
+    <li><a href="#s6">Oferta de Gestión</a></li>
+    <li><a href="#s7">Oferta Económica</a></li>
+    <li><a href="#s8">Estimación Económica</a></li>
+    <li><a href="#s9">Contrato</a></li>
+    <li><a href="#s10">Bitácora del Proyecto</a></li>
+    <li><a href="#s11">Guía de Inicio Rápido</a></li>
+    <li><a href="#s12">Preguntas Frecuentes</a></li>
+  </ol>
+</nav>
+
+<div class="note">
+  <b>Sobre este documento.</b> Sigue la estructura de la <b>Carpeta del Proyecto</b> del módulo de Documentación de la materia. Los apartados propios de proyectos con hardware (interfaz de hardware, visualización 3D, técnico instalador) fueron retirados con su aclaración, porque Espiga es un sistema 100% software. El modelo de datos se documenta normalizado hasta 3FN, igual que exige el módulo.
+</div>
+
+<!-- ===================== 1 ===================== -->
+<section id="s1">
+<h2>1. Control de Cambios</h2>
+<p class="lede">Registro de las modificaciones sobre la documentación y el alcance del proyecto, con fecha, responsable y detalle. Cada validación con Rodrigo que derive en un cambio de requerimiento se anota como una fila nueva.</p>
+<table>
+<thead><tr><th>Versión</th><th>Fecha</th><th>Responsable</th><th>Detalle del cambio</th></tr></thead>
+<tbody>
+<tr><td>0.1</td><td>Pendiente</td><td>Equipo</td><td>Versión inicial a partir del documento de análisis (mockup, roles, diagrama entidad-relación y diagrama de actividades).</td></tr>
+<tr><td>0.2</td><td>Pendiente</td><td>Equipo</td><td>Arquitectura de 3 perfiles (administrador, administrativo, operario) y cobertura completa de RF01 a RF11.</td></tr>
+<tr><td>0.3</td><td>Pendiente</td><td>Equipo</td><td>Se quitaron los usuarios y claves de ejemplo de la pantalla de login, por ser un hueco de seguridad detectado durante el desarrollo.</td></tr>
+<tr><td>0.4</td><td>Pendiente</td><td>Equipo</td><td>Alta de recuperación de contraseña por email (RF09). Queda pausada hasta obtener el email real del administrador.</td></tr>
+<tr><td>0.5</td><td>Pendiente</td><td>Equipo</td><td>Publicación del sistema en Railway y alta de subida real de archivos (RF07) con almacenamiento persistente.</td></tr>
+<tr><td>0.6</td><td>Pendiente</td><td>Equipo</td><td>Cambio de dominio público a <code>espiga-pcr.up.railway.app</code> por uno más prolijo para presentar al cliente.</td></tr>
+<tr><td>0.7</td><td>Pendiente</td><td>Equipo</td><td>Alta de RF12 a RF17: comprobantes al cliente, resumen de cuenta en PDF, consumo de materiales, buscador y filtros, app instalable (PWA) y notificaciones push de alertas.</td></tr>
+<tr><td>0.8</td><td>Pendiente</td><td>Equipo</td><td>Alta de RF18 a RF22: backup automático, presupuesto en PDF, estadísticas, calendario de entregas y recordatorios de cobranza. Modelo de datos normalizado a 3FN.</td></tr>
+<tr><td>0.9</td><td>Pendiente</td><td>Equipo</td><td>Rediseño estético de toda la interfaz manteniendo la identidad madera del taller.</td></tr>
+</tbody>
+</table>
+<div class="todo"><b>A completar por el equipo:</b> cargar las fechas y versiones definitivas a medida que el proyecto avanza. Mantener una fila por cada cambio de alcance validado con el cliente.</div>
+</section>
+
+<!-- ===================== 2 ===================== -->
+<section id="s2">
+<h2>2. Diagnóstico: Árbol de Problemas y Soluciones</h2>
+<p class="lede">Diagnóstico elaborado por el equipo a partir del relevamiento en PCR Amoblamientos. Es la pieza que fundamenta todas las decisiones de diseño: el problema central y sus causas explican por qué el sistema gestiona lo que gestiona, y los medios del árbol de soluciones son el origen directo de los requerimientos funcionales.</p>
+
+<h4>Cómo se lee el árbol</h4>
+<p>El árbol de problemas se lee de abajo hacia arriba: las causas producen el problema central, y el problema central produce los efectos. El árbol de soluciones es su espejo: cada causa se convierte en un medio y cada efecto en un fin medible.</p>
+<div class="arbol-flujo">
+  <span class="box">Causas</span><span class="arrow">→ producen →</span>
+  <span class="box">Problema central</span><span class="arrow">→ produce →</span>
+  <span class="box">Efectos</span>
+</div>
+
+<h3>Problema central</h3>
+<div class="central">PCR Amoblamientos <b>no tiene una forma centralizada ni confiable de saber cuánto le debe cada cliente, cuánto le debe a cada proveedor y en qué estado está cada pedido.</b> La gestión es 100% manual (papel, cuadernos y memoria): la información se dispersa, se pierde y no hay trazabilidad.</div>
+
+<h3>Causas</h3>
+<p>Condiciones que producen el problema central. Cada una se relevó con Rodrigo y se traduce después en un requerimiento concreto.</p>
+<table>
+<thead><tr><th>Causa</th><th>Qué se observó en el relevamiento</th></tr></thead>
+<tbody>
+<tr><td><b>El saldo de cada cliente se calcula a mano</b></td><td>Cobros y entregas parciales se anotan en distintos lugares; el saldo real depende de sumar a mano varios papeles, y se presta a errores.</td></tr>
+<tr><td><b>No hay un registro único de pedidos</b></td><td>Los pedidos viven en la cabeza de Rodrigo y en anotaciones sueltas; no hay una lista con el estado de cada uno.</td></tr>
+<tr><td><b>Las deudas con proveedores no están consolidadas</b></td><td>Las facturas de madereras y herrajerías se acumulan sin un total claro de cuánto se debe a cada proveedor.</td></tr>
+<tr><td><b>No hay aviso de vencimiento de entregas</b></td><td>Un pedido puede pasarse de la fecha comprometida sin que nadie lo note a tiempo.</td></tr>
+<tr><td><b>Los planos y listas de corte se traspapelan</b></td><td>Los archivos técnicos de cada trabajo (planos, listas de corte) están en distintas compus, mails y papeles; cuesta encontrarlos.</td></tr>
+<tr><td><b>No hay registro histórico ni trazabilidad</b></td><td>No se puede reconstruir quién cargó un pago, ni comparar un mes con otro, ni saber qué cliente cobra más peso en el negocio.</td></tr>
+</tbody>
+</table>
+
+<h3>Efectos</h3>
+<p>Consecuencias que el problema produce hoy en el taller. Sus valores actuales forman la línea de base contra la que se mide el proyecto.</p>
+<table>
+<thead><tr><th>Efecto</th><th>Cómo se manifiesta hoy (línea de base)</th></tr></thead>
+<tbody>
+<tr><td><b>Saldos poco confiables</b></td><td>El saldo de un cliente puede tardar minutos en reconstruirse y no siempre coincide con la realidad.</td></tr>
+<tr><td><b>Cobranzas que se pierden</b></td><td>Clientes con saldo pendiente que no se reclaman a tiempo porque nadie tiene la lista a mano.</td></tr>
+<tr><td><b>Entregas que se atrasan sin aviso previo</b></td><td>El taller se entera de un atraso cuando el cliente pregunta, no antes.</td></tr>
+<tr><td><b>Tiempo perdido buscando información</b></td><td>Encontrar un plano, un pago o el estado de un pedido implica revisar papeles y varias compus.</td></tr>
+<tr><td><b>Decisiones sin datos</b></td><td>No se sabe qué cliente pesa más, cuánto se cobró el mes pasado, ni a qué proveedor se le compra más.</td></tr>
+</tbody>
+</table>
+
+<h3>Árbol de soluciones</h3>
+<div class="central" style="background:var(--ok)">Objetivo central: darle a PCR Amoblamientos una <b>gestión centralizada y confiable</b> de clientes, pedidos, pagos, proveedores y entregas, con saldos calculados solos y toda la información en un único lugar accesible desde cualquier dispositivo.</div>
+<p>Cada <b>medio</b> neutraliza una causa identificada más arriba y se convierte después en uno o varios requerimientos.</p>
+<table>
+<thead><tr><th>Medio</th><th>Causa que neutraliza</th></tr></thead>
+<tbody>
+<tr><td><b>Cuenta corriente con saldo automático.</b> El saldo se deriva de los pagos, nunca se guarda a mano.</td><td>El saldo de cada cliente se calcula a mano.</td></tr>
+<tr><td><b>Registro único de pedidos con estado.</b> Todos los pedidos en una lista, con su estado de producción y entrega.</td><td>No hay un registro único de pedidos.</td></tr>
+<tr><td><b>Gestión de proveedores con deuda consolidada.</b> Cada factura recibida suma a un total claro por proveedor.</td><td>Las deudas con proveedores no están consolidadas.</td></tr>
+<tr><td><b>Alertas de entrega + notificación al celular.</b> Aviso automático cuando una fecha se acerca.</td><td>No hay aviso de vencimiento de entregas.</td></tr>
+<tr><td><b>Archivos por pedido con almacenamiento persistente.</b> Planos y listas de corte guardados junto al pedido.</td><td>Los planos y listas de corte se traspapelan.</td></tr>
+<tr><td><b>Base de datos histórica + estadísticas + backup.</b> Cada movimiento queda registrado y respaldado.</td><td>No hay registro histórico ni trazabilidad.</td></tr>
+</tbody>
+</table>
+
+<p>Los <b>fines</b> son el espejo de los efectos: expresan a qué valor debería llegar cada uno con el sistema funcionando.</p>
+<table>
+<thead><tr><th>Fin</th><th>Meta verificable</th><th>Punto de partida</th></tr></thead>
+<tbody>
+<tr><td><b>Saldo confiable e instantáneo</b></td><td>El saldo de cualquier cliente se ve al instante y siempre coincide con los pagos cargados.</td><td>Minutos, sumando papeles</td></tr>
+<tr><td><b>No perder cobranzas</b></td><td>Lista de clientes con saldo siempre disponible, con recordatorio listo para enviar.</td><td>Se pierden por olvido</td></tr>
+<tr><td><b>Detectar atrasos a tiempo</b></td><td>Aviso automático 7 días antes de la fecha de entrega, en el sistema y en el celular.</td><td>Cuando el cliente pregunta</td></tr>
+<tr><td><b>Información en un solo lugar</b></td><td>Cliente, pedido, pago o plano encontrados en segundos desde cualquier dispositivo.</td><td>Papeles y varias compus</td></tr>
+</tbody>
+</table>
+
+<h4>Del árbol al resto del documento</h4>
+<p>Este diagnóstico alimenta la <b>línea de base</b> y los <b>OKRs</b>: los efectos aportan los valores de partida y los fines aportan los Key Results contra los que se evalúa el proyecto. Lo que el árbol identifica pero el sistema no resuelve en esta entrega queda declarado en las Limitaciones del alcance (5.1), y las mejoras diferidas, en la Evolución previsible (4.6).</p>
+
+<div class="okr">
+<h4>Objetivo 1 — Centralizar y hacer confiable la información del taller</h4>
+<ul>
+<li><b>KR 1.1</b> — El saldo de cualquier cliente se calcula y muestra automáticamente, sin sumas manuales.</li>
+<li><b>KR 1.2</b> — El 100% de los pedidos activos tienen su estado y fecha de entrega registrados en el sistema.</li>
+<li><b>KR 1.3</b> — Todo pago queda registrado con el usuario que lo cargó (trazabilidad).</li>
+</ul>
+</div>
+<div class="okr">
+<h4>Objetivo 2 — No perder cobranzas ni entregas</h4>
+<ul>
+<li><b>KR 2.1</b> — El sistema avisa de toda entrega que esté a 7 días o menos de su fecha.</li>
+<li><b>KR 2.2</b> — Existe en todo momento una lista de clientes con saldo pendiente, con el mensaje de cobranza listo para enviar.</li>
+</ul>
+</div>
+<div class="okr">
+<h4>Objetivo 3 — Que el sistema no dependa de un equipo del taller</h4>
+<ul>
+<li><b>KR 3.1</b> — El sistema es accesible desde cualquier dispositivo con internet, sin instalar nada.</li>
+<li><b>KR 3.2</b> — Los datos se respaldan automáticamente todos los días, con retención de los últimos 7 backups.</li>
+</ul>
+</div>
+</section>
+
+<!-- ===================== 3 ===================== -->
+<section id="s3">
+<h2>3. Introducción</h2>
+
+<h3 id="s3-1">3.1. Propósito</h3>
+<p>Dotar a PCR Amoblamientos de una forma <b>centralizada y confiable</b> de gestionar su operación diaria: clientes con cuenta corriente, pedidos, pagos, proveedores, archivos técnicos y entregas. Hoy toda esa gestión es manual y dispersa, lo que genera saldos poco confiables, cobranzas que se pierden y entregas que se atrasan sin aviso.</p>
+<p>Espiga busca resolver tres problemas medibles: la <b>falta de un saldo confiable e inmediato</b> por cliente, la <b>pérdida de cobranzas</b> por no tener la información a mano, y la <b>detección tardía de atrasos</b> en las entregas.</p>
+
+<h3 id="s3-2">3.2. Alcance</h3>
+<p>El sistema <b>incluye</b>: inicio de sesión con 3 perfiles, panel de saldos, gestión de clientes con cuenta corriente automática, gestión de proveedores con deudas, gestión de pedidos con estados y archivos técnicos, registro de consumo de materiales, emisión de comprobantes (Factura A / B / Recibo), resumen de cuenta y presupuesto en PDF, alertas de entrega (en el sistema y por notificación al celular), calendario de entregas, estadísticas del negocio, recordatorios de cobranza, buscador y filtros, gestión de usuarios, backup automático y la posibilidad de instalar el sistema como app en el celular. Todo publicado en la nube.</p>
+<p>El sistema <b>no incluye</b>: factura electrónica ni integración con AFIP (sí emite comprobantes simples), control de stock de materiales más allá del consumo por pedido, envío 100% automático de recordatorios sin intervención, ni una app nativa de tienda (se instala como PWA). El detalle está en las Limitaciones (5.1) y se formaliza en el Contrato (sección 9).</p>
+
+<h3 id="s3-3">3.3. Personal Involucrado</h3>
+<p>Roles del equipo de proyecto, según los Lineamientos 2026 (PM, desarrollo Frontend/Backend, UX/UI, base de datos). Al ser un proyecto 100% software, no incluye el rol de técnico instalador propio de los proyectos con hardware.</p>
+<table>
+<thead><tr><th>Rol</th><th>Responsabilidad principal</th><th>Integrante</th></tr></thead>
+<tbody>
+<tr><td><b>Project Manager (PM)</b></td><td>Planificación temporal (GANTT), control de alcance y relación con el cliente.</td><td>A completar</td></tr>
+<tr><td><b>Backend / BD</b></td><td>Servidor Node.js + Express, base de datos MySQL, API REST, despliegue.</td><td>A completar</td></tr>
+<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz web, mockup y validación de la interfaz con el usuario.</td><td>A completar</td></tr>
+<tr><td><b>Documentación / QA</b></td><td>Documentación técnica y de usuario, pruebas y control de calidad.</td><td>A completar</td></tr>
+<tr><td><b>Cliente</b></td><td>Valida requerimientos, prioriza y firma el contrato.</td><td>Rodrigo Pasut (PCR Amoblamientos)</td></tr>
+</tbody>
+</table>
+<div class="todo"><b>A completar por el equipo:</b> asignar a Felipe, Valentina y Mía el rol principal que cumplió cada uno (aunque en la práctica el trabajo fue compartido de forma flexible, sin roles fijos).</div>
+
+<h3 id="s3-4">3.4. Definiciones, acrónimos y abreviaturas</h3>
+<table>
+<thead><tr><th>Término</th><th>Definición</th></tr></thead>
+<tbody>
+<tr><td>ABM</td><td>Alta, Baja y Modificación: operaciones básicas de gestión de un registro (cliente, proveedor, usuario).</td></tr>
+<tr><td>Cuenta corriente</td><td>Registro de los movimientos (presupuesto y pagos) de un cliente, del que se deriva el saldo.</td></tr>
+<tr><td>Saldo</td><td>Diferencia entre lo presupuestado y lo pagado, calculada por el sistema (nunca guardada a mano).</td></tr>
+<tr><td>API REST</td><td>Interfaz HTTP que expone los datos del backend al frontend, en formato JSON.</td></tr>
+<tr><td>Backend</td><td>Servidor (Node.js + Express) que procesa la lógica y se conecta a la base de datos.</td></tr>
+<tr><td>Frontend</td><td>Interfaz web que consume la API REST y que usan Rodrigo, Ana y Facu.</td></tr>
+<tr><td>Vista (SQL)</td><td>Consulta guardada que calcula datos derivados (como el saldo) en el momento, sin almacenarlos.</td></tr>
+<tr><td>Trigger</td><td>Regla automática en la base de datos; en Espiga, cierra el pedido cuando está entregado y saldado.</td></tr>
+<tr><td>JWT</td><td>Token de sesión que identifica al usuario logueado en cada pedido a la API.</td></tr>
+<tr><td>PWA</td><td>Progressive Web App: web instalable en el celular sin pasar por una tienda de aplicaciones.</td></tr>
+<tr><td>Push (VAPID)</td><td>Notificación que llega al celular aunque la app esté cerrada. VAPID son las claves que la autorizan.</td></tr>
+<tr><td>RF / RNF</td><td>Requerimiento Funcional / Requerimiento No Funcional.</td></tr>
+<tr><td>ISW</td><td>Interfaz de Software: componente de software del sistema y su tecnología.</td></tr>
+<tr><td>3FN</td><td>Tercera Forma Normal: nivel de normalización que evita que un dato quede repetido y se contradiga.</td></tr>
+<tr><td>OKR / KR</td><td>Objective and Key Results / Resultado Clave (métrica de progreso).</td></tr>
+<tr><td>Línea de base</td><td>Medición de la situación inicial (antes del sistema) usada como referencia de comparación.</td></tr>
+</tbody>
+</table>
+
+<h3 id="s3-5">3.5. Referencias</h3>
+<p>Formato APA 7ª edición.</p>
+<ul>
+<li>Pedaci, L. (2026). <i>Evaluación de Proyectos - Módulo 01: El Proyecto y sus generalidades</i>. Instituto Leonardo Murialdo.</li>
+<li>Pedaci, L. (2026). <i>Evaluación de Proyectos - Módulo 02: Fases de un Proyecto</i>. Instituto Leonardo Murialdo.</li>
+<li>Pedaci, L. (2026). <i>Evaluación de Proyectos - Módulo de Documentación</i>. Instituto Leonardo Murialdo.</li>
+<li>Pedaci, L. (2026). <i>Lineamientos y Metodologías de Trabajo - Proyecto Tecnológico Interdisciplinario</i>. Instituto Leonardo Murialdo.</li>
+<li>Universidad Tecnológica Nacional. (2012). <i>Buenas Prácticas para Proyectos Informáticos</i>. edUTecNe. ISBN 978-987-1896-01-1.</li>
+<li>Institute of Electrical and Electronics Engineers. (1998). <i>IEEE Std 830-1998: Recommended Practice for Software Requirements Specifications</i>.</li>
+</ul>
+
+<h3 id="s3-6">3.6. Resumen Ejecutivo</h3>
+<p>Espiga es un sistema de gestión web para PCR Amoblamientos, un taller de muebles a medida ubicado en Villa Bosch. Centraliza clientes con cuenta corriente automática, proveedores con seguimiento de deudas, pedidos con alertas de entrega y archivos técnicos (planos, fotos, listas de corte) por pedido, con tres perfiles de acceso: administrador (Rodrigo), administrativo (Ana) y operario (Facu). Está construido con backend Node.js + Express y base de datos MySQL, y publicado en Railway para usarse desde cualquier dispositivo sin depender de una computadora del taller.</p>
+<p><b>Público objetivo:</b> talleres y pequeños fabricantes a medida que llevan clientes, proveedores y pedidos de forma manual. <b>Resultados esperados:</b> pasar de un saldo que se reconstruye a mano y a veces no coincide, a un saldo confiable e instantáneo; no volver a perder cobranzas por olvido; y detectar los atrasos de entrega 7 días antes en lugar de cuando el cliente pregunta.</p>
+</section>
+
+<!-- ===================== 4 ===================== -->
+<section id="s4">
+<h2>4. Descripción General</h2>
+
+<h3 id="s4-1">4.1. Perspectiva del producto</h3>
+<p>Espiga es un <b>sistema nuevo</b>: hoy el taller no tiene ningún sistema de gestión, todo es manual (papel, cuadernos, memoria). No reemplaza ni mejora un software existente. Se apoya en infraestructura que el taller ya tiene (una PC y celulares con conexión a internet) y se publica en la nube para no depender de ningún equipo encendido en el local.</p>
+<p>Arquitectura en tres capas (persistencia, lógica de negocio y presentación):</p>
+<div class="arbol-flujo">
+  <span class="box">Base de datos MySQL</span><span class="arrow">→ SQL →</span>
+  <span class="box">Backend Node.js + Express</span><span class="arrow">→ API REST →</span>
+  <span class="box">Frontend web (PC + celular)</span>
+</div>
+
+<h3 id="s4-2">4.2. Funcionalidad del producto</h3>
+<p>A nivel general (sin entrar todavía en los requisitos del 5.1), el producto permite:</p>
+<ul>
+<li>Iniciar sesión según el rol de cada persona del taller (administrador, administrativo, operario).</li>
+<li>Ver de un vistazo el saldo de todos los clientes y proveedores en un panel único.</li>
+<li>Registrar clientes y llevar su cuenta corriente, con el saldo calculado automáticamente.</li>
+<li>Registrar proveedores y llevar el seguimiento de las deudas del taller con cada uno.</li>
+<li>Cargar pedidos, adjuntarles planos, fotos y listas de corte, registrar el consumo de materiales y seguir su estado.</li>
+<li>Emitir comprobantes (Factura A / B / Recibo) y generar presupuestos y resúmenes de cuenta en PDF.</li>
+<li>Recibir alertas cuando una entrega se acerca, en el sistema y por notificación al celular.</li>
+<li>Ver los pedidos por fecha de entrega en un calendario, consultar estadísticas del negocio y generar recordatorios de cobranza.</li>
+<li>Buscar y filtrar, gestionar usuarios, respaldar los datos automáticamente e instalar el sistema como app en el celular.</li>
+</ul>
+
+<h3 id="s4-3">4.3. Características de los Usuarios <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.56/57</small></h3>
+<p>Siguiendo el formato de la tabla de usuarios del libro UTN (tipo de usuario, formación y actividades). El sistema define tres perfiles de acceso, alineados con la matriz de permisos implementada en el backend.</p>
+<div class="cards">
+<div class="card"><h4>Administrador — Rodrigo</h4><p>Dueño del taller, 40+ años, comodidad tecnológica media. Acceso total: ve todos los módulos, crea pedidos, gestiona usuarios, revisa backups y estadísticas, y podrá recuperar su clave por email una vez configurada esa función. Uso diario.</p></div>
+<div class="card"><h4>Administrativa — Ana</h4><p>Lleva clientes, proveedores, cobranzas y facturación. Acceso a cuentas corrientes, pagos, comprobantes, alertas, calendario, estadísticas y recordatorios; no crea pedidos ni gestiona usuarios. Uso diario.</p></div>
+<div class="card"><h4>Operario — Facu</h4><p>Trabaja del lado de producción: consulta y actualiza el estado de los pedidos, carga materiales y sube archivos (planos, listas de corte). No accede a saldos, cobranzas ni gestión de usuarios. Uso ocasional durante la jornada.</p></div>
+</div>
+
+<h3 id="s4-4">4.4. Restricciones <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.57</small></h3>
+<h4>4.4.1. Políticas reguladoras</h4>
+<p>Se desarrolla con software libre (Node.js, Express, MySQL). No hay costo de licencia. El único costo externo posible es el alojamiento en la nube (4.4.2). El repositorio se aloja en GitHub (<code>felooaraujo-ai/Kore</code>); si es privado, se incluye al equipo docente como colaborador.</p>
+<h4>4.4.2. Limitaciones de infraestructura</h4>
+<p>El backend necesita estar disponible de forma continua para acceder desde el taller o desde afuera. Se resolvió con Railway, con un volumen persistente (<code>kore-volume</code>, montado en <code>/app/uploads</code>) para que los archivos subidos y los backups no se pierdan entre despliegues.</p>
+<h4>4.4.3. Interfaces con otras aplicaciones</h4>
+<p>El sistema no se integra, en esta entrega, con AFIP, software contable ni pasarelas de pago. Es autónomo. Para las notificaciones push usa el estándar Web Push (con claves VAPID propias, sin depender de un servicio pago).</p>
+<h4>4.4.4. Función de control</h4>
+<p>Autenticación con usuario y contraseña, y control de acceso por rol (administrador / administrativo / operario). La pantalla de login no muestra usuarios ni claves de ejemplo. Cada pago y cada comprobante queda registrado con el usuario que lo cargó (trazabilidad).</p>
+<h4>4.4.5. Requisitos del lenguaje</h4>
+<p>Toda la interfaz está en español, con los términos que usa el taller (cliente, proveedor, pedido, saldo) en lugar de jerga de sistemas.</p>
+<h4>4.4.6. Protocolos señalados</h4>
+<p>Comunicación frontend → backend por HTTP/REST (JSON) con token JWT. Backend → base de datos por SQL sobre MySQL. Notificaciones por Web Push. Recuperación de clave por SMTP (email).</p>
+<h4>4.4.7. Requisitos de fiabilidad</h4>
+<p>El sistema debe estar disponible durante el horario del taller y no perder archivos entre reinicios, gracias al volumen persistente. Un backup automático diario protege los datos, con retención de los últimos 7 respaldos.</p>
+<h4>4.4.8. Consideraciones de seguridad</h4>
+<p>Contraseñas almacenadas con hash (bcrypt), nunca en texto plano; sesiones con token JWT; acceso restringido por rol; sin datos de ejemplo en el login. La base de datos no tiene acceso público (solo el backend le habla por la red interna). La recuperación de clave por email está desarrollada, pausada hasta contar con el email real del administrador.</p>
+
+<h3 id="s4-5">4.5. Suposiciones y dependencias</h3>
+<ul>
+<li>Se asume que el taller cuenta con conexión a internet para acceder al sistema publicado en Railway.</li>
+<li>El proyecto <b>depende</b> de que Rodrigo confirme su email real para activar la recuperación de contraseña (RF09).</li>
+<li>Las notificaciones push en iPhone requieren que el sistema esté instalado como app en la pantalla de inicio (restricción de Apple, no del sistema).</li>
+<li>Se asume que los tres roles (administrador, administrativo, operario) cubren las necesidades del taller sin variantes adicionales.</li>
+</ul>
+
+<h3 id="s4-6">4.6. Evolución previsible del sistema</h3>
+<p>Mejoras identificadas para versiones futuras (surgen de las Limitaciones del 5.1):</p>
+<ul>
+<li><b>v2</b> — Activar la recuperación de contraseña por email, una vez confirmado el email real de Rodrigo.</li>
+<li><b>v2</b> — Envío de recordatorios y alertas de forma totalmente automática (email o WhatsApp), sin intervención; hoy el push al celular ya funciona y los recordatorios se generan listos para enviar.</li>
+<li><b>v2</b> — Ampliar reportes PDF y estadísticas (ya existen presupuesto, resumen de cuenta y un panel de estadísticas base).</li>
+<li><b>v3</b> — Control de stock de materiales, más allá del registro de consumo por pedido.</li>
+<li><b>v3</b> — Facturación electrónica con integración a AFIP, si el taller lo requiere.</li>
+</ul>
+</section>
+
+<!-- ===================== 5 ===================== -->
+<section id="s5">
+<h2>5. Requisitos Específicos</h2>
+<div class="removed"><b>Apartados retirados del modelo de referencia:</b> las «Interfaces de hardware» y la «Visualización 3D del producto» no aplican: Espiga es un sistema 100% software, sin ningún componente físico que diseñar o fabricar. El «Técnico instalador» tampoco existe como rol.</div>
+
+<h3 id="s5-1">5.1. Requerimientos funcionales <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.59/60</small></h3>
+<p>Acciones concretas que el sistema debe poder realizar. Cada requerimiento indica su prioridad y su origen (el síntoma o la necesidad del que surge).</p>
+<table>
+<thead><tr><th>ID</th><th>Requerimiento</th><th>Prioridad</th><th>Origen</th></tr></thead>
+<tbody>
+<tr><td>RF01</td><td><b>Inicio de sesión con 3 roles.</b> Login sin usuarios ni claves de ejemplo visibles, con acceso diferenciado por rol.</td><td><span class="tag tag-alta">Alta</span></td><td>Cada rol ve solo lo suyo</td></tr>
+<tr><td>RF02</td><td><b>Panel de saldos.</b> Vista única con el estado de las cuentas corrientes de clientes y proveedores.</td><td><span class="tag tag-alta">Alta</span></td><td>"No sé cuánto me deben en total"</td></tr>
+<tr><td>RF03</td><td><b>ABM de clientes con cuenta corriente automática.</b> El saldo se recalcula solo con cada pago.</td><td><span class="tag tag-alta">Alta</span></td><td>El saldo se calcula a mano</td></tr>
+<tr><td>RF04</td><td><b>ABM de proveedores con gestión de deudas.</b> Seguimiento de lo que el taller debe a cada uno.</td><td><span class="tag tag-alta">Alta</span></td><td>Deudas no consolidadas</td></tr>
+<tr><td>RF05</td><td><b>Gestión de pedidos.</b> Alta y seguimiento de pedidos, con su estado de producción y entrega.</td><td><span class="tag tag-alta">Alta</span></td><td>No hay registro único de pedidos</td></tr>
+<tr><td>RF06</td><td><b>Alertas de entrega.</b> Aviso cuando la fecha comprometida de un pedido se acerca o se vence.</td><td><span class="tag tag-alta">Alta</span></td><td>Atrasos sin aviso previo</td></tr>
+<tr><td>RF07</td><td><b>Carga y almacenamiento de archivos por pedido.</b> Planos, fotos y listas de corte guardados de forma persistente.</td><td><span class="tag tag-alta">Alta</span></td><td>Los planos se traspapelan</td></tr>
+<tr><td>RF08</td><td><b>Gestión de usuarios.</b> Alta, edición y asignación de rol para cada persona del taller.</td><td><span class="tag tag-media">Media</span></td><td>Control de acceso por rol</td></tr>
+<tr><td>RF09</td><td><b>Recuperación de contraseña por email.</b> Envío de un link para poner una clave nueva. Desarrollado, pausado hasta el email real del administrador.</td><td><span class="tag tag-media">Media</span></td><td>"¿Y si me olvido la clave?"</td></tr>
+<tr><td>RF10</td><td><b>Sección de ayuda «¿Cómo funciona?».</b> Guía dentro del propio sistema para los tres roles.</td><td><span class="tag tag-baja">Baja</span></td><td>Onboarding sin capacitación</td></tr>
+<tr><td>RF11</td><td><b>Publicación online del sistema.</b> Acceso desde cualquier dispositivo, sin depender de una compu del taller.</td><td><span class="tag tag-alta">Alta</span></td><td>No depender de un equipo local</td></tr>
+<tr><td>RF12</td><td><b>Emisión de comprobantes al cliente.</b> Factura A, Factura B o Recibo por un pedido, con número, fecha y monto.</td><td><span class="tag tag-media">Media</span></td><td>Comprobante al cobrar</td></tr>
+<tr><td>RF13</td><td><b>Resumen de cuenta en PDF.</b> Detalle de pedidos, pagos y saldo de un cliente, exportable.</td><td><span class="tag tag-media">Media</span></td><td>Rendir cuenta al cliente</td></tr>
+<tr><td>RF14</td><td><b>Registro de consumo de materiales.</b> Materiales usados por pedido (descripción y cantidad).</td><td><span class="tag tag-media">Media</span></td><td>Saber qué se usó en cada trabajo</td></tr>
+<tr><td>RF15</td><td><b>Buscador y filtros.</b> Búsqueda por texto y filtro por período (Hoy / Esta semana / Todos) en Clientes y Pedidos.</td><td><span class="tag tag-media">Media</span></td><td>Encontrar rápido</td></tr>
+<tr><td>RF16</td><td><b>App instalable en el celular.</b> Se agrega a la pantalla de inicio (Android/iPhone) y abre a pantalla completa.</td><td><span class="tag tag-media">Media</span></td><td>Acceso rápido en la calle</td></tr>
+<tr><td>RF17</td><td><b>Notificaciones push de alertas.</b> Aviso automático al celular cuando un pedido está a 7 días o menos de su entrega.</td><td><span class="tag tag-media">Media</span></td><td>Enterarse sin entrar al sistema</td></tr>
+<tr><td>RF18</td><td><b>Backup automático de datos.</b> Copia diaria de todos los datos, descarga manual y retención de los últimos 7.</td><td><span class="tag tag-media">Media</span></td><td>No perder datos</td></tr>
+<tr><td>RF19</td><td><b>Presupuesto en PDF para el cliente.</b> Presupuesto formal por pedido (validez, seña sugerida, condiciones) para enviar antes de confirmar.</td><td><span class="tag tag-media">Media</span></td><td>Cerrar trabajos nuevos</td></tr>
+<tr><td>RF20</td><td><b>Estadísticas del negocio.</b> Mejores clientes, cobrado por mes y proveedores con más compras, en vivo.</td><td><span class="tag tag-baja">Baja</span></td><td>Decidir con datos</td></tr>
+<tr><td>RF21</td><td><b>Vista calendario de entregas.</b> Pedidos por fecha en un calendario mensual, con color por urgencia y filtros.</td><td><span class="tag tag-media">Media</span></td><td>Planificar la producción</td></tr>
+<tr><td>RF22</td><td><b>Recordatorios a clientes con saldo.</b> Lista de deudores con un mensaje listo para copiar o abrir en WhatsApp.</td><td><span class="tag tag-media">Media</span></td><td>No perder cobranzas</td></tr>
+</tbody>
+</table>
+
+<h4>Requerimientos no funcionales (RNF)</h4>
+<table>
+<thead><tr><th>ID</th><th>Requerimiento</th><th>Categoría</th></tr></thead>
+<tbody>
+<tr><td>RNF01</td><td>Contraseñas almacenadas con hash (bcrypt), nunca en texto plano.</td><td>Seguridad</td></tr>
+<tr><td>RNF02</td><td>La pantalla de login no muestra usuarios ni claves de ejemplo.</td><td>Seguridad</td></tr>
+<tr><td>RNF03</td><td>Accesible desde PC y celular por navegador, sin instalar nada; opcionalmente instalable como app (RF16).</td><td>Usabilidad</td></tr>
+<tr><td>RNF04</td><td>Interfaz completa en español, con el vocabulario que ya usa el taller.</td><td>Usabilidad</td></tr>
+<tr><td>RNF05</td><td>Los archivos subidos y los backups se conservan entre reinicios del servicio (volumen persistente).</td><td>Fiabilidad</td></tr>
+<tr><td>RNF06</td><td>Comunicación frontend-backend por API REST sobre HTTP, autenticada con JWT.</td><td>Protocolos</td></tr>
+<tr><td>RNF07</td><td>Los saldos nunca se almacenan: se calculan en el momento con vistas SQL, para que no puedan desincronizarse.</td><td>Integridad de datos</td></tr>
+</tbody>
+</table>
+
+<h4>Limitaciones del alcance</h4>
+<p>Definen qué <b>no</b> hace el sistema en esta entrega. No son debilidades: son un contrato de honestidad con el usuario. Cada limitación puede convertirse en una versión futura (4.6).</p>
+<table>
+<thead><tr><th>ID</th><th>Qué NO hace en esta entrega</th><th>Por qué</th><th>¿Versión futura?</th></tr></thead>
+<tbody>
+<tr><td>LIM01</td><td>No emite factura electrónica ni se integra con AFIP (sí emite comprobantes simples, RF12).</td><td>La factura electrónica requiere homologación con AFIP, fuera del alcance académico.</td><td>Sí. v3.</td></tr>
+<tr><td>LIM02</td><td>No lleva stock de materiales (cantidades disponibles, reposición); registra el consumo por pedido (RF14).</td><td>El stock es un módulo aparte; no fue el problema central relevado.</td><td>Sí. v3.</td></tr>
+<tr><td>LIM03</td><td>No hay app móvil nativa de tienda; se instala como PWA desde el navegador (RF16).</td><td>Una app nativa duplica el desarrollo y requiere cuentas de tienda pagas.</td><td>A evaluar.</td></tr>
+<tr><td>LIM04</td><td>La recuperación de contraseña por email no está activa (falta el email real del administrador).</td><td>Depende de un dato del cliente aún no provisto.</td><td>Sí. En cuanto se confirme.</td></tr>
+<tr><td>LIM05</td><td>Los recordatorios y alertas se envían de forma asistida (mensaje listo); todavía no 100% automáticos.</td><td>El envío automático a WhatsApp requiere una API de terceros paga.</td><td>Sí. v2.</td></tr>
+</tbody>
+</table>
+
+<h3 id="s5-2">5.2. Interfaces de usuario <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.58</small></h3>
+<p>El único punto de contacto de Rodrigo, Ana y Facu con el sistema es el <b>frontend web</b>, diseñado con criterio de usabilidad para un usuario de comodidad tecnológica media. En escritorio tiene una barra lateral de navegación (Panel de saldos, Clientes, Proveedores, Pedidos, Calendario, Alertas, Estadísticas, Recordatorios, Usuarios, Backups, ¿Cómo funciona?) y en celular una barra inferior simplificada (Inicio, Clientes, Prov., Pedidos, Alertas). Clientes y Pedidos tienen buscador y filtro por período. El login pide usuario y clave, sin datos de ejemplo, e incluye «¿Olvidaste tu clave?». El sistema se puede instalar como app (RF16) y activar notificaciones push (RF17). La estética sigue una identidad "madera" coherente con un taller de muebles.</p>
+<h4>5.2.1. Diseño de interfaz</h4>
+<p>Antes de conectar la lógica, el equipo trabajó sobre un mockup navegable y lo fue validando; el feedback se registra como hito en el control de cambios y en el Registro de Cambios de Interfaz (10.3).</p>
+<div class="todo"><b>Entregable del equipo:</b> insertar las capturas de la interfaz real (login, panel de saldos, ficha de cliente, calendario) con el hipervínculo al sistema en producción (<code>espiga-pcr.up.railway.app</code>).</div>
+
+<h3 id="s5-4">5.3. Interfaces de software <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.59</small></h3>
+<p>Componentes de software del sistema y cómo se comunican. No es lo mismo que los RNF (rendimiento y protocolos) ni que los RF (funcionalidades).</p>
+<table>
+<thead><tr><th>ID</th><th>Componente</th><th>Tecnología / Stack</th><th>Rol en el sistema</th></tr></thead>
+<tbody>
+<tr><td>ISW01</td><td><b>Frontend</b></td><td>HTML, CSS y JavaScript, conectado a la API real.</td><td>Interfaz que usan Rodrigo, Ana y Facu según su rol.</td></tr>
+<tr><td>ISW02</td><td><b>Backend / API REST</b></td><td>Node.js + Express. Auth: JWT.</td><td>Lógica de negocio: cuenta corriente, alertas, permisos por rol.</td></tr>
+<tr><td>ISW03</td><td><b>Base de datos</b></td><td>MySQL, con vistas y triggers.</td><td>Persistencia central. Los saldos se derivan con vistas. Modelo en 5.6.</td></tr>
+<tr><td>ISW04</td><td><b>Almacenamiento de archivos</b></td><td>Volumen persistente de Railway (<code>kore-volume</code>, <code>/app/uploads</code>).</td><td>Guarda planos, fotos, listas de corte y los backups.</td></tr>
+<tr><td>ISW05</td><td><b>Hosting / despliegue</b></td><td>Railway, con despliegue automático desde GitHub.</td><td>Publica backend y frontend en <code>espiga-pcr.up.railway.app</code>.</td></tr>
+<tr><td>ISW06</td><td><b>Recuperación de contraseña</b></td><td>Email (Nodemailer/SMTP), desarrollado y pausado.</td><td>Implementa RF09, a la espera del email real del administrador.</td></tr>
+<tr><td>ISW07</td><td><b>Notificaciones push</b></td><td>Web Push API + claves VAPID + Service Worker.</td><td>Implementa RF17: avisa al celular sin depender de un tercero pago.</td></tr>
+<tr><td>ISW08</td><td><b>Generador de PDF</b></td><td>PDFKit (Node.js), del lado del servidor.</td><td>Implementa RF13 y RF19: resumen de cuenta y presupuesto.</td></tr>
+<tr><td>ISW09</td><td><b>Backup automático</b></td><td>Tarea programada en el backend; vuelca los datos a un archivo SQL en el volumen.</td><td>Implementa RF18: copia diaria, retención de 7, descarga por el administrador.</td></tr>
+</tbody>
+</table>
+
+<h3 id="s5-5">5.4. Interfaces de comunicación <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.59</small></h3>
+<table>
+<thead><tr><th>Interfaz</th><th>Protocolo / Formato</th><th>Detalle</th></tr></thead>
+<tbody>
+<tr><td><b>Frontend → Backend</b></td><td>HTTP / REST (JSON)</td><td>Endpoints autenticados con JWT para clientes, proveedores, pedidos, pagos, alertas y usuarios.</td></tr>
+<tr><td><b>Backend → Base de datos</b></td><td>SQL (MySQL)</td><td>Consultas y actualizaciones sobre el esquema relacional (5.6). Puerto 3306, red interna.</td></tr>
+<tr><td><b>Backend → Almacenamiento</b></td><td>Sistema de archivos (volumen)</td><td>Lectura y escritura de los archivos subidos y de los backups, por pedido.</td></tr>
+<tr><td><b>Backend → Navegador (push)</b></td><td>Web Push (VAPID)</td><td>Envío de las notificaciones de alerta de entrega al Service Worker del celular.</td></tr>
+<tr><td><b>Recuperación → Usuario</b></td><td>SMTP (email)</td><td>Envío del link para poner una clave nueva. Pendiente de activar (LIM04).</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- ===================== 5.6 ===================== -->
+<section id="s5-6">
+<h2>5.6. Modelo Entidad-Relación de la base de datos</h2>
+<p class="lede">Modelo de datos relacional que sostiene la persistencia del sistema (componente ISW03). Representa qué guarda Espiga y cómo se relacionan las entidades: los <b>clientes</b> y sus <b>pedidos</b>, los <b>pagos</b> de cada pedido (de los que se deriva el saldo), los <b>materiales</b> y <b>adjuntos</b> por pedido, las <b>facturas</b> emitidas al cliente y las <b>recibidas</b> de proveedores, los <b>usuarios</b> del sistema y las <b>suscripciones push</b> de cada dispositivo.</p>
+
+<p>El modelo está <b>normalizado hasta la tercera forma normal (3FN)</b>. La normalización no es un trámite formal: es lo que evita que el mismo dato quede escrito en varios lugares y que esos lugares se contradigan con el tiempo. El apartado que sigue documenta qué se revisó y qué se corrigió.</p>
+
+<h3>Normalización hasta la tercera forma normal</h3>
+<p>Se partió de un modelo preliminar y se lo revisó forma por forma. En cada paso se buscó una dependencia funcional mal ubicada: un atributo que en realidad no depende de la clave de su tabla.</p>
+<table>
+<thead><tr><th>Forma</th><th>Qué exige</th><th>Qué se encontró</th><th>Cómo se resolvió</th></tr></thead>
+<tbody>
+<tr><td><b>1FN</b></td><td>Cada celda guarda un único valor atómico y no hay grupos repetidos.</td><td>El campo <code>cliente.contacto</code> mezclaba en una sola celda teléfono y email (por ejemplo "11-5566-2233 / marta@mail.com"). El resto ya era atómico.</td><td>Conceptualmente se separa en <code>telefono</code> y <code>email</code>, los dos datos que la cobranza necesita por separado (el teléfono para WhatsApp, el email para el resumen).</td></tr>
+<tr><td><b>2FN</b></td><td>1FN y además ningún atributo no clave depende solo de una parte de la clave.</td><td>Todas las tablas usan clave primaria simple (<code>id</code>), así que la 2FN se cumple por construcción. La verificación real es sobre la <b>clave candidata natural</b>: en <code>factura_cliente</code> esa clave es <code>numero</code>, y el <code>tipo</code> de comprobante no dependía del pedido sino del propio comprobante.</td><td>Se confirmó que <code>tipo</code>, <code>fecha</code> y <code>monto</code> dependen de la factura y no del pedido, y se mantuvieron en <code>factura_cliente</code> con <code>numero</code> como clave única.</td></tr>
+<tr><td><b>3FN</b></td><td>2FN y además ningún atributo no clave depende de otro atributo no clave (sin dependencias transitivas).</td><td>Dos casos. El <b>saldo</b> de un pedido dependía de la suma de sus pagos, no del pedido en sí: guardarlo como columna lo haría quedar desactualizado en cuanto se cargara un pago. Y el <b>rol</b>, si se guardara como permisos sueltos en <code>usuario</code>, dependería del rol y no del usuario.</td><td>El saldo <b>no se guarda</b>: se calcula con la vista <code>v_saldo_pedido</code>. El rol quedó como un ENUM cerrado en <code>usuario</code>, y los permisos se resuelven en el backend (no hay tabla de permisos que mantener).</td></tr>
+</tbody>
+</table>
+
+<h4>Dónde conviene no normalizar de más</h4>
+<p>No todo texto repetido es una violación de 3FN. <code>pedido.estado</code> (presupuestado, en_produccion, entregado, cerrado, no_concretado), <code>factura_cliente.tipo</code> (Factura A / B / Recibo) y <code>pago.medio</code> son dominios cerrados de pocos valores de los que no depende ningún otro atributo: se resuelven con un tipo <code>ENUM</code> y no necesitan tabla propia. Convertir cada enumeración en un catálogo agregaría <i>joins</i> sin ganar integridad.</p>
+<p>En sentido contrario, <b>ningún saldo se almacena</b>: ni el del pedido, ni el del cliente, ni la deuda del proveedor. Los tres son datos <b>derivables</b> de los pagos y las facturas. Un valor derivable no viola la 3FN, pero duplica información y se puede desincronizar, así que se resuelven con vistas (<code>v_saldo_pedido</code>, <code>v_saldo_cliente</code>, <code>v_deuda_proveedor</code>). Es la razón del RNF07.</p>
+
+<h3>Tablas de hechos y tablas de dimensiones</h3>
+<p><b>Hecho</b> y <b>dimensión</b> son términos del modelado dimensional. Espiga no es un modelo en estrella: es transaccional y está en 3FN. Lo que se identifica es el <b>rol que cumple cada tabla</b>, que es lo que hace legibles las consultas de reporte (las estadísticas de RF20 y el panel de saldos de RF02). Un <b>hecho</b> registra algo que pasó, tiene fecha y crece todo el tiempo; una <b>dimensión</b> describe el contexto, cambia poco y sirve para filtrar y agrupar.</p>
+<table>
+<thead><tr><th>Hecho</th><th>Grano (qué representa una fila)</th><th>Medida</th><th>Volumen</th></tr></thead>
+<tbody>
+<tr><td><b>PAGO</b></td><td>Un pago de un cliente sobre un pedido, en una fecha.</td><td><code>monto</code>, sumable. Es la base del saldo.</td><td>Alto. Crece con cada cobro.</td></tr>
+<tr><td><b>FACTURA_CLIENTE</b></td><td>Un comprobante emitido por un pedido.</td><td><code>monto</code>, sumable.</td><td>Medio.</td></tr>
+<tr><td><b>FACTURA_PROVEEDOR</b></td><td>Una factura recibida de un proveedor.</td><td><code>monto</code> y <code>pagado</code>; la deuda es su resta.</td><td>Medio.</td></tr>
+<tr><td><b>MATERIAL</b></td><td>Un material consumido en un pedido.</td><td>Ninguna numérica sumable (cantidad como texto).</td><td>Medio.</td></tr>
+</tbody>
+</table>
+<p>PAGO es el hecho principal, el que sostiene el saldo (RF03) y el cobrado por mes (RF20). Las tablas restantes son <b>dimensiones</b>, ordenadas por el eje de análisis que aportan:</p>
+<div class="cards">
+<div class="card"><h4>Quién</h4><p><b>CLIENTE</b> y <b>USUARIO</b>: de quién es el pedido y quién cargó el pago.</p></div>
+<div class="card"><h4>Qué trabajo</h4><p><b>PEDIDO</b>, con <b>ADJUNTO</b> como detalle de sus archivos.</p></div>
+<div class="card"><h4>A quién se le compra</h4><p><b>PROVEEDOR</b>: origen de las facturas recibidas.</p></div>
+<div class="card"><h4>A qué dispositivo</h4><p><b>PUSH_SUSCRIPCION</b>: dónde recibe las notificaciones cada usuario.</p></div>
+</div>
+<p><b>Cuándo:</b> no hay tabla de tiempo. El tiempo vive en las columnas <code>fecha</code> de cada hecho. Un modelo en estrella agregaría una dimensión <code>tiempo</code> con año, mes y día de semana; acá el agrupamiento por mes de las estadísticas se resuelve con <code>DATE_FORMAT</code> en la consulta.</p>
+<div class="note"><b>Se ve en las estadísticas (RF20).</b> El "cobrado por mes" es el hecho PAGO agregado por la dimensión tiempo; los "mejores clientes" son PAGO agregado por la dimensión CLIENTE. Identificar los roles es lo que hace que esas consultas se lean solas.</div>
+
+<h3>Entidades</h3>
+<p>Diez tablas: cuatro que actúan como dimensiones de contexto y tres hechos, más las tablas de apoyo (adjunto, material, push).</p>
+<div class="cards">
+<div class="card"><h4>USUARIO</h4><p>Personas con acceso (Rodrigo, Ana, Facu y quien se sume). El rol es un ENUM propio, no una tabla. Incluye email y datos de recuperación de clave.</p></div>
+<div class="card"><h4>CLIENTE</h4><p>Clientes del taller, con su contacto. Eje de la cuenta corriente.</p></div>
+<div class="card"><h4>PROVEEDOR</h4><p>Madereras y demás proveedores. Eje de las deudas.</p></div>
+<div class="card"><h4>PEDIDO</h4><p>Un pedido de un cliente, con presupuesto, estado y fecha de entrega comprometida.</p></div>
+<div class="card"><h4>PAGO <span class="tag tag-alta">hecho</span></h4><p>Cada pago de un cliente sobre un pedido. De la resta contra el presupuesto sale el saldo. Es la tabla de mayor volumen.</p></div>
+<div class="card"><h4>MATERIAL</h4><p>Consumo de materiales registrado en un pedido: descripción y cantidad.</p></div>
+<div class="card"><h4>ADJUNTO</h4><p>Plano, foto o lista de corte de un pedido, guardado en el volumen persistente.</p></div>
+<div class="card"><h4>FACTURA_CLIENTE <span class="tag tag-alta">hecho</span></h4><p>Comprobante que el taller emite (Factura A / B / Recibo) por un pedido.</p></div>
+<div class="card"><h4>FACTURA_PROVEEDOR <span class="tag tag-alta">hecho</span></h4><p>Comprobante recibido de un proveedor, con lo pagado; la deuda es su resta.</p></div>
+<div class="card"><h4>PUSH_SUSCRIPCION</h4><p>Dispositivo de un usuario suscripto a notificaciones push.</p></div>
+</div>
+
+<h3>Relaciones</h3>
+<table>
+<thead><tr><th>Entidad</th><th>Card.</th><th>Entidad</th><th>Significado</th></tr></thead>
+<tbody>
+<tr><td>CLIENTE</td><td>1 : N</td><td>PEDIDO</td><td>Un cliente hace muchos pedidos.</td></tr>
+<tr><td>PEDIDO</td><td>1 : N</td><td>PAGO</td><td>Un pedido recibe muchos pagos parciales.</td></tr>
+<tr><td>PEDIDO</td><td>1 : N</td><td>MATERIAL</td><td>Un pedido consume varios materiales.</td></tr>
+<tr><td>PEDIDO</td><td>1 : N</td><td>ADJUNTO</td><td>Un pedido tiene varios archivos adjuntos.</td></tr>
+<tr><td>PEDIDO</td><td>1 : N</td><td>FACTURA_CLIENTE</td><td>Un pedido puede tener uno o más comprobantes emitidos.</td></tr>
+<tr><td>PROVEEDOR</td><td>1 : N</td><td>FACTURA_PROVEEDOR</td><td>Un proveedor tiene muchas facturas recibidas.</td></tr>
+<tr><td>USUARIO</td><td>1 : N</td><td>PAGO</td><td>Cada pago queda registrado con el usuario que lo cargó.</td></tr>
+<tr><td>USUARIO</td><td>1 : N</td><td>FACTURA_CLIENTE</td><td>Cada comprobante queda registrado con quien lo emitió.</td></tr>
+<tr><td>USUARIO</td><td>1 : N</td><td>PUSH_SUSCRIPCION</td><td>Un usuario puede tener notificaciones activas en varios dispositivos.</td></tr>
+</tbody>
+</table>
+
+<h3>Esquema relacional (MySQL, tal como está implementado)</h3>
+<p>Definición de tablas (DDL) que materializa el modelo. Sirve como diccionario de datos. Las restricciones <code>UNIQUE</code> son las claves candidatas naturales usadas para verificar la 2FN. Los saldos aparecen como <b>vistas</b> al final, no como columnas.</p>
+<pre><code>-- ══════════ TABLAS PRINCIPALES ══════════
+
+CREATE TABLE usuario (
+  id            INT AUTO_INCREMENT PRIMARY KEY,
+  nombre        VARCHAR(120) NOT NULL,
+  email         VARCHAR(150),
+  usuario_login VARCHAR(60)  NOT NULL UNIQUE,   -- clave candidata natural
+  rol           ENUM('administrador','administrativo','operario') NOT NULL,
+  hash_clave    VARCHAR(255) NOT NULL,          -- bcrypt, nunca texto plano (RNF01)
+  activo        TINYINT(1) NOT NULL DEFAULT 1,
+  reset_token   VARCHAR(64),                    -- recuperacion de clave (RF09)
+  reset_expira  DATETIME
+);
+
+CREATE TABLE cliente (
+  id        INT AUTO_INCREMENT PRIMARY KEY,
+  nombre    VARCHAR(150) NOT NULL,
+  contacto  VARCHAR(150),                       -- telefono y/o email
+  activo    TINYINT(1) NOT NULL DEFAULT 1
+);
+
+CREATE TABLE proveedor (
+  id      INT AUTO_INCREMENT PRIMARY KEY,
+  nombre  VARCHAR(150) NOT NULL,
+  rubro   VARCHAR(100),
+  activo  TINYINT(1) NOT NULL DEFAULT 1
+);
+
+CREATE TABLE pedido (
+  id            INT AUTO_INCREMENT PRIMARY KEY,
+  cliente_id    INT NOT NULL REFERENCES cliente(id),
+  descripcion   VARCHAR(255) NOT NULL,
+  presupuesto   DECIMAL(12,2) NOT NULL DEFAULT 0,
+  fecha_entrega DATE,
+  estado        ENUM('presupuestado','en_produccion','entregado','cerrado','no_concretado')
+                NOT NULL DEFAULT 'presupuestado'
+);
+
+-- Hecho principal: cada pago. El saldo se deriva de aca, no se guarda (3FN + RNF07)
+CREATE TABLE pago (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  pedido_id   INT NOT NULL REFERENCES pedido(id),
+  usuario_id  INT NOT NULL REFERENCES usuario(id),  -- trazabilidad (4.4.4)
+  fecha       DATE NOT NULL,
+  monto       DECIMAL(12,2) NOT NULL,
+  medio       VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE material (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  pedido_id   INT NOT NULL REFERENCES pedido(id),
+  descripcion VARCHAR(150) NOT NULL,
+  cantidad    VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE adjunto (
+  id             INT AUTO_INCREMENT PRIMARY KEY,
+  pedido_id      INT NOT NULL REFERENCES pedido(id),
+  nombre_archivo VARCHAR(200) NOT NULL,
+  tipo           VARCHAR(60) NOT NULL,
+  ruta           VARCHAR(255) NOT NULL           -- ubicacion en el volumen persistente
+);
+
+-- Comprobante emitido. numero es la clave candidata natural (unica)
+CREATE TABLE factura_cliente (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  pedido_id   INT NOT NULL REFERENCES pedido(id),
+  usuario_id  INT NOT NULL REFERENCES usuario(id),
+  numero      VARCHAR(40) NOT NULL UNIQUE,
+  fecha       DATE NOT NULL,
+  monto       DECIMAL(12,2) NOT NULL,
+  tipo        ENUM('Factura A','Factura B','Recibo') NOT NULL
+);
+
+-- Factura recibida. La deuda se deriva de (monto - pagado), no se guarda
+CREATE TABLE factura_proveedor (
+  id            INT AUTO_INCREMENT PRIMARY KEY,
+  proveedor_id  INT NOT NULL REFERENCES proveedor(id),
+  usuario_id    INT NOT NULL REFERENCES usuario(id),
+  numero        VARCHAR(40) NOT NULL,
+  monto         DECIMAL(12,2) NOT NULL,
+  fecha         DATE NOT NULL,
+  pagado        DECIMAL(12,2) NOT NULL DEFAULT 0
+);
+
+-- Suscripcion push por dispositivo (RF17). endpoint es unico
+CREATE TABLE push_suscripcion (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  usuario_id  INT NOT NULL REFERENCES usuario(id),
+  endpoint    VARCHAR(500) NOT NULL UNIQUE,
+  p256dh      VARCHAR(255) NOT NULL,
+  auth        VARCHAR(255) NOT NULL
+);
+
+-- ══════════ VISTAS (datos derivados, no almacenados) ══════════
+
+-- Saldo de cada pedido = presupuesto - suma de pagos
+CREATE VIEW v_saldo_pedido AS
+SELECT p.id AS pedido_id, p.cliente_id, p.presupuesto,
+       COALESCE(SUM(pg.monto),0) AS total_pagado,
+       p.presupuesto - COALESCE(SUM(pg.monto),0) AS saldo
+FROM pedido p LEFT JOIN pago pg ON pg.pedido_id = p.id
+GROUP BY p.id, p.cliente_id, p.presupuesto;
+
+-- Deuda con cada proveedor = suma (monto - pagado) de sus facturas
+CREATE VIEW v_deuda_proveedor AS
+SELECT pr.id AS proveedor_id, pr.nombre,
+       COALESCE(SUM(fp.monto - fp.pagado),0) AS deuda
+FROM proveedor pr LEFT JOIN factura_proveedor fp ON fp.proveedor_id = pr.id
+GROUP BY pr.id, pr.nombre;
+
+-- Alertas de entrega (RF06): pedidos en produccion a 7 dias o menos
+CREATE VIEW v_alertas_entrega AS
+SELECT p.id AS pedido_id, p.descripcion, p.fecha_entrega, c.nombre AS cliente,
+       DATEDIFF(p.fecha_entrega, CURDATE()) AS dias_restantes
+FROM pedido p JOIN cliente c ON c.id = p.cliente_id
+WHERE p.estado = 'en_produccion'
+  AND DATEDIFF(p.fecha_entrega, CURDATE()) &lt;= 7;
+</code></pre>
+
+<h4>Lo que la normalización deja resuelto</h4>
+<p><b>El saldo (RF03) nunca se desincroniza.</b> No es una columna que haya que actualizar con cada pago: es la vista <code>v_saldo_pedido</code>, que siempre refleja los pagos reales. Cargar un pago alcanza para que el saldo cambie en todas las pantallas.</p>
+<p><b>El cierre del pedido es automático.</b> Un <i>trigger</i> pasa el pedido a "cerrado" cuando está entregado y su saldo llegó a cero, sin que nadie tenga que hacerlo a mano — es la regla del diagrama de actividades del análisis, materializada en la base.</p>
+<p><b>Un control que las claves foráneas no cubren.</b> El número de una <code>factura_cliente</code> debe ser único a nivel de todo el taller: eso lo garantiza la restricción <code>UNIQUE</code> sobre <code>numero</code>, no una clave foránea.</p>
+</section>
+
+<!-- ===================== 5.7 ===================== -->
+<section id="s5-7">
+<h2>5.7. Diagrama de flujo del sistema</h2>
+<p class="lede">Mientras el modelo entidad-relación (5.6) describe <b>qué guarda</b> el sistema, el diagrama de flujo describe <b>qué hace</b>: el recorrido de un pedido desde que se carga hasta que se cobra y se cierra, con las decisiones que el sistema evalúa. Está organizado por <b>carriles</b> (una columna por responsable), para leer también en qué capa ocurre cada paso.</p>
+
+<div class="carriles">
+  <div class="carril">
+    <h5>ADMINISTRATIVO / ADMIN · Interfaz</h5>
+    <div class="paso"><b>1.</b> Ana o Rodrigo cargan un pedido para un cliente (o lo dan de alta si es nuevo), con presupuesto y fecha de entrega. (RF03, RF05)</div>
+    <div class="paso"><b>2.</b> Se adjuntan planos, fotos y la lista de corte; se registra el consumo de materiales. (RF07, RF14)</div>
+    <div class="paso"><b>6.</b> Al cobrar, Ana carga el pago del pedido. (RF03)</div>
+    <div class="paso"><b>9.</b> Si corresponde, emite el comprobante (Factura A/B/Recibo) o el resumen en PDF. (RF12, RF13)</div>
+  </div>
+  <div class="carril">
+    <h5>BACKEND · Servidor</h5>
+    <div class="paso"><b>3.</b> El backend valida y guarda cada dato en MySQL, registrando el usuario que lo cargó. (ISW02, RNF06)</div>
+    <div class="paso"><b>5.</b> Una tarea diaria revisa las entregas: si un pedido en producción está a ≤7 días, arma la alerta. (RF17, ISW07)</div>
+    <div class="paso"><b>7.</b> El saldo se recalcula solo con la vista <code>v_saldo_pedido</code>. Si el pedido está entregado y el saldo llegó a 0, el trigger lo cierra. (RF03)</div>
+    <div class="paso"><b>10.</b> Cada noche genera el backup de los datos y conserva los últimos 7. (RF18, ISW09)</div>
+  </div>
+  <div class="carril">
+    <h5>OPERARIO / USUARIO · Producción y celular</h5>
+    <div class="paso"><b>4.</b> Facu actualiza el estado del pedido a medida que avanza la producción. (RF05)</div>
+    <div class="paso"><b>5b.</b> La alerta llega al celular como notificación push, aunque el sistema esté cerrado. (RF17)</div>
+    <div class="paso"><b>8.</b> Rodrigo o Ana ven el pedido en el panel, el calendario y las alertas, y priorizan. (RF02, RF06, RF21)</div>
+    <div class="paso"><b>11.</b> Si el cliente tiene saldo, Espiga arma el recordatorio listo para enviar por WhatsApp. (RF22)</div>
+  </div>
+</div>
+<p class="lede" style="margin-top:16px"><b>Figura 1.</b> Diagrama de flujo del sistema Espiga, con carriles por responsable. El ciclo de un pedido atraviesa las tres capas: la interfaz carga y consulta, el backend valida, calcula y avisa, y la producción actualiza el estado.</p>
+<div class="note"><b>Qué decide el sistema y qué decide la persona.</b> El sistema <b>calcula, guarda, avisa y respalda</b> de forma automática (saldos, alertas, cierre de pedidos, backups). Pero <b>el envío del recordatorio de cobranza lo confirma una persona</b>: Espiga arma el mensaje, Ana da el clic de enviar. El envío 100% automático está declarado como limitación (LIM05) y diferido a la v2 (4.6).</div>
+</section>
+
+<!-- ===================== 6 ===================== -->
+<section id="s6">
+<h2>6. Oferta de Gestión</h2>
+
+<h3 id="s6-1">6.1. GANTT</h3>
+<p class="lede">Cronograma de tareas, responsables, duración estimada y horas de esfuerzo, organizado por las cinco fases del proyecto. El GANTT se lleva en una planilla de cálculo y se actualiza a medida que avanza el proyecto.</p>
+<table>
+<thead><tr><th>Fase</th><th>Semanas</th><th>Tareas principales</th><th>Entregable</th></tr></thead>
+<tbody>
+<tr><td><b>1 · Ingeniería de Requerimientos</b></td><td>S1–S5</td><td>Relevamiento del problema, entrevista con Rodrigo, definición de alcance y redacción de la ERS.</td><td>Línea de base aprobada + ERS.</td></tr>
+<tr><td><b>2 · Arquitectura y Diseño de Datos</b></td><td>S6–S11</td><td>Modelo entidad-relación, normalización 3FN, diseño de interfaz y setup del entorno (GitHub, stack).</td><td>Plan de diseño + repositorio.</td></tr>
+<tr><td><b>3 · Construcción Core</b></td><td>S12–S20</td><td>Base de datos, backend, módulos de clientes, proveedores, pedidos, archivos y panel.</td><td>Prototipo funcional (alpha).</td></tr>
+<tr><td><b>4 · Aseguramiento de Calidad</b></td><td>S21–S24</td><td>Pruebas, integración, debugging y optimización.</td><td>Software certificado (beta).</td></tr>
+<tr><td><b>5 · Despliegue y Cierre</b></td><td>S25–S28</td><td>Publicación en Railway, mejoras finales (backup, PDF, estadísticas, calendario), documentación y defensa.</td><td>Proyecto entregado y defendido.</td></tr>
+</tbody>
+</table>
+<div class="note"><b>Planilla de cronograma.</b> El detalle completo (tareas, responsables, fechas reales, % de cumplimiento y estado) se lleva en la planilla de cálculo del equipo, entregada junto a esta documentación como <code>Gantt_Espiga.xlsx</code>, con barras por semana y hitos por fase.</div>
+<div class="todo"><b>Entregable del equipo:</b> reemplazar por el link a la planilla propia (Google Sheets o el Excel entregado), con las fechas y responsables reales.</div>
+
+<h3 id="s6-2">6.2. Infraestructura administrativa <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.62</small></h3>
+<p>Organización interna del equipo y herramientas de trabajo. Siguiendo el esquema del libro UTN, el equipo se organiza en un grupo de dirección/gestión y un grupo de desarrollo, adaptado a la escala del proyecto de 7mo.</p>
+<table>
+<thead><tr><th>Grupo</th><th>Rol</th><th>Función</th></tr></thead>
+<tbody>
+<tr><td rowspan="2"><b>Dirección y Gestión</b></td><td>Director / PM</td><td>Cuestiones globales, coordinación, obtención de recursos y relación con el cliente.</td></tr>
+<tr><td>Líder de proyecto</td><td>Asignación de tareas, planificación temporal y económica.</td></tr>
+<tr><td rowspan="2"><b>Desarrollo</b></td><td>Backend / BD</td><td>Servidor, base de datos, API, despliegue en la nube.</td></tr>
+<tr><td>Frontend / UX-UI / Doc</td><td>Interfaz, mockup, validación con el usuario y documentación.</td></tr>
+</tbody>
+</table>
+
+<h4>El equipo</h4>
+<div class="team">
+  <div class="member"><span class="m-photo"></span><b>Felipe Araujo</b><span>Backend / BD / Despliegue</span></div>
+  <div class="member"><span class="m-photo"></span><b>Valentina Autelli</b><span>Frontend / UX-UI</span></div>
+  <div class="member"><span class="m-photo"></span><b>Mía Yorio</b><span>Documentación / QA</span></div>
+</div>
+<div class="todo"><b>Entregable del equipo:</b> reemplazar cada <code>&lt;span class="m-photo"&gt;</code> por una foto de perfil de estilo profesional (fondo neutro, encuadre de busto, misma proporción). Confirmar el rol principal de cada integrante — en la práctica el trabajo fue compartido de forma flexible.</div>
+
+<table style="margin-top:20px">
+<thead><tr><th>Área</th><th>Herramienta</th></tr></thead>
+<tbody>
+<tr><td>Gestión de tareas</td><td>Planilla de cálculo: GANTT, asignación y estimación de costos.</td></tr>
+<tr><td>Documentación</td><td>Este documento; código y README en GitHub.</td></tr>
+<tr><td>Comunicación</td><td>Grupo de mensajería del equipo + reuniones de validación con el cliente.</td></tr>
+<tr><td>Repositorio</td><td>GitHub (<code>felooaraujo-ai/Kore</code>); equipo docente como colaborador si es privado.</td></tr>
+<tr><td>Despliegue</td><td>Railway, dominio <code>espiga-pcr.up.railway.app</code>, con volumen persistente.</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- ===================== 7 ===================== -->
+<section id="s7">
+<h2>7. Oferta Económica</h2>
+<p class="lede">Cotización de los servicios e insumos necesarios para el funcionamiento del sistema. Al ser un proyecto 100% software, no hay insumos electrónicos ni de fabricación: los únicos costos recurrentes son de infraestructura en la nube.</p>
+
+<h3>7.1. Infraestructura y hosting</h3>
+<table>
+<thead><tr><th>Ítem</th><th>Detalle</th><th>Costo</th></tr></thead>
+<tbody>
+<tr><td>Hosting del backend + frontend</td><td>Railway (plan usado para el despliegue de producción).</td><td>A cotizar</td></tr>
+<tr><td>Base de datos MySQL</td><td>Servicio de base de datos en Railway.</td><td>A cotizar</td></tr>
+<tr><td>Almacenamiento persistente</td><td>Volumen de Railway para archivos y backups.</td><td>A cotizar</td></tr>
+<tr><td>Dominio propio (opcional)</td><td>Reemplazar el subdominio gratuito por uno propio del taller.</td><td>A cotizar</td></tr>
+<tr><td>Servicio de envío de emails (opcional)</td><td>Necesario para activar la recuperación de contraseña (RF09).</td><td>A cotizar</td></tr>
+</tbody>
+</table>
+<div class="note">El estudio ya cuenta con PC, celulares e internet, por lo que no se cotiza el equipamiento del cliente. El software es todo de código abierto, sin costo de licencia.</div>
+</section>
+
+<!-- ===================== 8 ===================== -->
+<section id="s8">
+<h2>8. Estimación Económica</h2>
+<p class="lede">Presupuesto total del proyecto. Suma el costo de infraestructura (sección 7) más el esfuerzo en <b>horas hombre</b>, diferenciado por categoría profesional y su costo por hora (transparencia en el esfuerzo, según los Lineamientos 2026).</p>
+
+<h3>8.1. Horas hombre por categoría</h3>
+<p>Estimación de esfuerzo por fase y por categoría. Las horas son una estimación del equipo para las 28 semanas del cronograma; el costo por hora se completa con el valor de referencia acordado.</p>
+<table>
+<thead><tr><th>Categoría</th><th>Tareas</th><th>Horas estim.</th><th>$/hora</th><th>Subtotal</th></tr></thead>
+<tbody>
+<tr><td><b>Análisis y diseño</b></td><td>Relevamiento, ERS, modelo de datos, normalización.</td><td>60 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>Backend / Base de datos</b></td><td>API, lógica de negocio, vistas, triggers, despliegue.</td><td>120 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz, conexión a la API, diseño y rediseño estético.</td><td>110 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>QA / Pruebas</b></td><td>Pruebas, debugging, verificación en producción.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>Documentación</b></td><td>Manual de usuario, técnico, esta carpeta de proyecto.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>Gestión (PM)</b></td><td>Coordinación, relación con el cliente, planificación.</td><td>30 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td colspan="2" style="text-align:right"><b>Total horas</b></td><td><b>400 h</b></td><td></td><td><b>A completar</b></td></tr>
+</tbody>
+</table>
+
+<h3>8.2. Presupuesto total</h3>
+<table>
+<thead><tr><th>Rubro</th><th>Detalle</th><th>Monto</th></tr></thead>
+<tbody>
+<tr><td><b>Infraestructura / hosting</b></td><td>Railway + almacenamiento persistente (sección 7).</td><td>A completar</td></tr>
+<tr><td><b>Horas hombre</b></td><td>400 h estimadas, por categoría y costo/hora (8.1).</td><td>A completar</td></tr>
+<tr><td><b>Total estimado</b></td><td>Suma de los rubros anteriores.</td><td>A completar</td></tr>
+</tbody>
+</table>
+<div class="todo"><b>Entregable del equipo:</b> cargar el costo por hora de referencia y los montos de hosting reales, y reflejar el total en la planilla de estimación.</div>
+</section>
+
+<!-- ===================== 9 ===================== -->
+<section id="s9">
+<h2>9. Contrato</h2>
+<p class="lede">Documento que explicita el acuerdo entre el equipo desarrollador y el cliente (Rodrigo Pasut, PCR Amoblamientos). Se firma en la reunión de validación, habiendo leído las limitaciones (5.1).</p>
+
+<h4>9.1. Objetivo del proyecto</h4>
+<p>Desarrollar, implementar y poner en marcha Espiga, un sistema de gestión web que centraliza clientes con cuenta corriente, proveedores, pedidos, archivos técnicos, cobranzas y entregas, con acceso diferenciado por rol, para eliminar la gestión manual y dispersa del taller.</p>
+<h4>9.2. Partes involucradas</h4>
+<p>Equipo desarrollador (integrantes y roles según 3.3) y cliente: Rodrigo Pasut, titular de PCR Amoblamientos (Villa Bosch).</p>
+<h4>9.3. Alcance</h4>
+<p>Se entrega lo definido en 3.2 y 5: login con 3 roles, panel de saldos, clientes, proveedores, pedidos, archivos, consumo de materiales, comprobantes y presupuestos en PDF, alertas de entrega (con notificación al celular), calendario, estadísticas, recordatorios de cobranza, backup automático, gestión de usuarios y app instalable, todo publicado en Railway. Queda fuera lo listado en las Limitaciones (LIM01 a LIM05).</p>
+<h4>9.4. Plazos</h4>
+<p>Fechas clave del cronograma (6.1): las 5 fases distribuidas en 28 semanas, con entrega y defensa final en noviembre de 2026. A completar con las fechas del GANTT.</p>
+<h4>9.5. Responsabilidades</h4>
+<p>El equipo: desarrollo, despliegue, puesta en marcha y documentación. El cliente: validar requerimientos y prototipo, y proveer su email real para activar la recuperación de contraseña.</p>
+<h4>9.6. Criterios de aceptación</h4>
+<p>Se apoyan en los OKRs: saldo de clientes y proveedores calculado automáticamente, alertas de entrega generadas para todo pedido a ≤7 días, archivos conservados entre reinicios, backup diario funcionando, y el sistema accesible desde cualquier dispositivo.</p>
+<h4>9.7. Condiciones de modificación</h4>
+<p>Todo cambio de alcance solicitado durante el desarrollo se registra en el control de cambios (sección 1) y se evalúa su impacto en el GANTT y en la oferta económica antes de aceptarse.</p>
+<h4>9.8. Firmas</h4>
+<p>Firma del equipo desarrollador y de Rodrigo Pasut (simbólica, en la validación del prototipo).</p>
+</section>
+
+<!-- ===================== 10 ===================== -->
+<section id="s10">
+<h2>10. Bitácora del Proyecto</h2>
+<p class="lede">Documento de trabajo del equipo. Registra la investigación de campo (entrevistas y minutas) y el seguimiento de la iteración (cambios de interfaz y avances técnicos por fase). No describe el sistema sino el proceso, y se actualiza a medida que el proyecto avanza.</p>
+
+<h3 id="s10-1">10.1. Registro de Entrevistas</h3>
+<table>
+<thead><tr><th>Fecha</th><th>Con quién</th><th>Objetivo</th><th>Modalidad</th></tr></thead>
+<tbody>
+<tr><td>A completar</td><td><b>Rodrigo Pasut</b> · titular del taller</td><td><b>Entrevista 1.</b> Identificación del problema real y relevamiento de la línea de base (cómo se lleva hoy el saldo, los pedidos y las deudas).</td><td>Presencial</td></tr>
+<tr><td>A completar</td><td><b>Rodrigo Pasut</b></td><td><b>Entrevista 2.</b> Detalle de los tres roles del taller (quién hace qué) y del circuito de un pedido, del presupuesto al cobro.</td><td>Presencial</td></tr>
+<tr><td>A completar</td><td><b>Rodrigo Pasut</b></td><td><b>Validación del prototipo.</b> Feedback sobre el mockup antes de conectar la lógica real.</td><td>Presencial / Virtual</td></tr>
+</tbody>
+</table>
+<div class="todo"><b>A completar por el equipo:</b> cargar la fecha real de cada instancia y sumar una fila por cada entrevista adicional.</div>
+
+<h3 id="s10-2">10.2. Minutas de Reunión</h3>
+<p>Acta breve de cada reunión, siempre con los mismos seis campos, para que cualquier participante pueda reconstruir qué se decidió y quién quedó a cargo de qué.</p>
+
+<div class="minuta">
+  <div class="mh">Minuta 01 · Validación del prototipo con el cliente</div>
+  <div class="mrow"><div class="mk">Fecha y duración</div><div class="mv">A completar. Duración estimada: 45 minutos.</div></div>
+  <div class="mrow"><div class="mk">Participantes</div><div class="mv">Rodrigo Pasut (cliente) y el equipo de proyecto.</div></div>
+  <div class="mrow"><div class="mk">Objetivo</div><div class="mv">Validar el mockup navegable con Rodrigo antes de conectar la lógica real (5.2.1).</div></div>
+  <div class="mrow"><div class="mk">Temas tratados</div><div class="mv">Recorrido de las pantallas (panel de saldos, clientes, pedidos, alertas); lectura de la tabla de Limitaciones (5.1); prueba en el celular.</div></div>
+  <div class="mrow"><div class="mk">Decisiones y acuerdos</div><div class="mv">No mostrar usuarios ni claves de ejemplo en el login; sumar la sección «¿Cómo funciona?»; confirmar los permisos de cada rol. Las limitaciones se aceptan como están declaradas.</div></div>
+  <div class="mrow"><div class="mk">Próximos pasos</div><div class="mv">El equipo aplica los cambios y los asienta en el Registro de Cambios de Interfaz (10.3). El PM abre la fila en el Control de Cambios (sección 1).</div></div>
+</div>
+<div class="todo"><b>A completar por el equipo:</b> sumar una minuta por cada reunión, respetando los seis campos.</div>
+
+<h3 id="s10-3">10.3. Registro de Cambios de Interfaz</h3>
+<p>Modificaciones aplicadas a la interfaz después de validarla con Rodrigo. Es la trazabilidad de la iteración con el usuario.</p>
+<table>
+<thead><tr><th>Componente modificado</th><th>Qué se modificó</th><th>Por qué (justificación UX / usuario)</th></tr></thead>
+<tbody>
+<tr><td><b>Pantalla de login</b></td><td>Se quitaron los usuarios y claves de ejemplo que se mostraban al pie.</td><td>Era un hueco de seguridad: cualquiera que abriera la página veía credenciales válidas (RNF02).</td></tr>
+<tr><td><b>Navegación en celular</b></td><td>Barra inferior simplificada (Inicio, Clientes, Prov., Pedidos, Alertas) distinta del menú de escritorio.</td><td>En pantalla chica, la barra lateral completa no entra; se prioriza lo que se usa en la calle.</td></tr>
+<tr><td><b>Estética general</b></td><td>Rediseño con identidad "madera" (login, barra, menú, tarjetas), marcando el ítem activo del menú.</td><td>Un taller de muebles se identifica más con una estética cálida de madera que con un panel gris genérico.</td></tr>
+</tbody>
+</table>
+
+<h3 id="s10-4">10.4. Bitácora de Avances Técnicos</h3>
+<p>Hitos técnicos cerrados, en orden, siguiendo las fases del cronograma (6.1).</p>
+<table>
+<thead><tr><th>Fase</th><th>Hitos registrados</th><th>Fecha de cierre</th></tr></thead>
+<tbody>
+<tr><td>1–2</td><td>Documento de análisis: mockup, roles, diagrama entidad-relación y de actividades. Modelo de datos normalizado a 3FN.</td><td>A completar</td></tr>
+<tr><td>3</td><td>Base de datos y backend construidos paso a paso, cubriendo RF01 a RF11. Conexión del mockup a la API real.</td><td>A completar</td></tr>
+<tr><td>5</td><td>Publicación en Railway (repo <code>felooaraujo-ai/Kore</code>), subida real de archivos con volumen persistente y dominio propio.</td><td>A completar</td></tr>
+<tr><td>5</td><td>Recuperación de clave por email (pausada), comprobantes y PDF, consumo de materiales, buscador y filtros (RF12–RF15).</td><td>A completar</td></tr>
+<tr><td>5</td><td>App instalable (PWA) y notificaciones push probadas en un iPhone real (RF16, RF17).</td><td>A completar</td></tr>
+<tr><td>5</td><td>Backup automático, presupuesto en PDF, estadísticas, calendario y recordatorios de cobranza (RF18–RF22). Rediseño estético.</td><td>A completar</td></tr>
+</tbody>
+</table>
+<div class="note"><b>Criterio de cierre.</b> Un hito se da por cerrado cuando su entregable está verificado en producción, no cuando se termina de trabajar en él.</div>
+</section>
+
+<!-- ===================== 11 ===================== -->
+<section id="s11">
+<h2>11. Guía de Inicio Rápido</h2>
+<p class="lede">Puesta en marcha para Rodrigo, Ana y Facu. Sin jerga técnica: no hace falta saber qué es una API ni una base de datos para usar el sistema.</p>
+<div class="note"><b>Antes de empezar.</b> Solo hacen falta dos cosas: un navegador en la PC o el celular, y el usuario y la contraseña que entrega el administrador. No se instala nada (aunque opcionalmente se puede agregar como app en el celular).</div>
+<ol class="flow">
+<li><b>Entrar al sistema.</b> Abrir <code>espiga-pcr.up.railway.app</code> e ingresar con usuario y clave. La pantalla no muestra datos de ejemplo, por seguridad. (RF01)</li>
+<li><b>Revisar el panel de saldos.</b> De un vistazo, cuánto deben los clientes y cuánto se debe a proveedores. (RF02)</li>
+<li><b>Cargar o consultar un cliente</b> y su cuenta corriente; el saldo se calcula solo con cada pago. (RF03)</li>
+<li><b>Cargar o consultar un proveedor</b> y su deuda vigente. (RF04)</li>
+<li><b>Crear un pedido</b> y adjuntarle planos, fotos o la lista de corte; registrar materiales. (RF05, RF07, RF14)</li>
+<li><b>Registrar un pago</b> al cobrar; emitir el comprobante o el resumen/presupuesto en PDF si hace falta. (RF03, RF12, RF13, RF19)</li>
+<li><b>Revisar alertas y calendario</b> para priorizar los pedidos próximos a vencer. (RF06, RF21)</li>
+<li><b>Generar recordatorios</b> a los clientes que deben, con el mensaje listo para WhatsApp. (RF22)</li>
+<li><b>Gestionar usuarios y revisar backups</b> — solo el administrador. (RF08, RF18)</li>
+<li><b>Instalar la app en el celular</b> (opcional) y activar las notificaciones de entrega desde «Mi cuenta». (RF16, RF17)</li>
+</ol>
+<div class="todo"><b>Entregable del equipo:</b> acompañar cada paso con la captura real del sistema, tomadas todas con el mismo ancho de ventana para que la guía se lea pareja.</div>
+</section>
+
+<!-- ===================== 12 ===================== -->
+<section id="s12">
+<h2>12. Preguntas Frecuentes</h2>
+<p class="lede">Las preguntas que el cliente y los usuarios del taller hacen con más frecuencia, con la respuesta y la referencia al requerimiento o la limitación que la respalda.</p>
+<dl class="faq">
+<dt>¿Hay que instalar algo para usar Espiga?</dt>
+<dd>No. Se usa desde el navegador, en la PC o en el celular, entrando a <code>espiga-pcr.up.railway.app</code>. No depende de ninguna computadora del taller (RF11). Opcionalmente se puede instalar como app en el celular (RF16).</dd>
+
+<dt>¿El sistema calcula el saldo de los clientes solo?</dt>
+<dd>Sí. Cada pago que se carga actualiza automáticamente el saldo; no hace falta sumar a mano (RF03). El saldo nunca se guarda como un número fijo: se calcula en el momento a partir de los pagos, para que no pueda quedar desactualizado (RNF07).</dd>
+
+<dt>¿Rodrigo, Ana y Facu ven lo mismo al entrar?</dt>
+<dd>No. Cada uno tiene un rol distinto (administrador, administrativo, operario) y ve solo lo que necesita para su tarea (RF01). Además, cada pago queda registrado con el usuario que lo cargó (4.4.4).</dd>
+
+<dt>¿Qué pasa si me olvido la clave?</dt>
+<dd>La recuperación por email está desarrollada pero pausada, a la espera del email real del administrador (RF09, LIM04). Mientras tanto, el administrador puede resetear la clave de cualquiera desde la sección Usuarios.</dd>
+
+<dt>¿Dónde quedan guardados los planos y las listas de corte?</dt>
+<dd>En un almacenamiento persistente vinculado al pedido. No se pierden si el sistema se reinicia o se actualiza (RF07, RNF05).</dd>
+
+<dt>¿El sistema emite factura o se conecta con AFIP?</dt>
+<dd>Emite comprobantes simples por pedido (Factura A, Factura B o Recibo), pero no factura electrónica ni se integra con AFIP en esta entrega (RF12, LIM01). También genera presupuestos y resúmenes de cuenta en PDF (RF13, RF19).</dd>
+
+<dt>¿Se puede usar desde el celular?</dt>
+<dd>Sí. Además de la interfaz simplificada, el sistema se puede instalar como un ícono en la pantalla de inicio (Android e iPhone) y, una vez instalado, avisa solo al celular cuando un pedido está por vencerse (RF16, RF17). En iPhone, las notificaciones requieren tenerlo instalado como app (es una restricción de Apple).</dd>
+
+<dt>¿Se pierden los datos si algo falla?</dt>
+<dd>No. El sistema genera un backup automático de todos los datos todos los días y conserva los últimos siete, que el administrador puede descargar cuando quiera (RF18).</dd>
+
+<dt>¿Cómo sé qué clientes me deben?</dt>
+<dd>La sección Recordatorios lista los clientes con saldo pendiente, ordenados, con el total por cobrar y un mensaje ya redactado listo para copiar o abrir en WhatsApp (RF22).</dd>
+
+<dt>¿El sistema guarda datos sensibles?</dt>
+<dd>Guarda datos comerciales del taller (clientes, pedidos, pagos), no datos personales sensibles. Las contraseñas se almacenan con hash y nunca en texto plano, y la base de datos no tiene acceso público: solo el backend le habla (4.4.8).</dd>
+</dl>
+<div class="note"><b>Cómo se mantiene.</b> Cada pregunta nueva que surge en una reunión con el cliente se suma acá y se anota en la minuta correspondiente (10.2). Si la respuesta obliga a cambiar el alcance, se registra en el Control de Cambios (sección 1).</div>
+</section>
+
+<footer style="margin-top:60px;padding-top:24px;border-top:2px solid var(--wood-500);color:var(--ink-soft);font-size:.9rem">
+<b>Espiga</b> · Documentación del Proyecto · PCR Amoblamientos, Villa Bosch.<br>
+Evaluación de Proyectos · 7mo Informática 2026 · Instituto Leonardo Murialdo.<br>
+Equipo: Felipe Araujo · Valentina Autelli · Mía Yorio.
+</footer>
+
+</div>
+</body>
+</html>
+</template>
+
+<script>
+const embeddedDocumentation = document.getElementById('embeddedDocumentation').innerHTML;
+function openDoc(anchor){
+  const modal=document.getElementById('docModal');
+  const frame=document.getElementById('docFrame');
+  if(anchor){
+    frame.onload=()=>{
+      try{ frame.contentWindow.location.hash=anchor; }catch(e){}
+    };
+  } else {
+    frame.onload=null;
+  }
+  frame.srcdoc=embeddedDocumentation;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeDoc(){
+  const modal=document.getElementById('docModal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+  document.getElementById('docFrame').srcdoc='';
+}
+document.getElementById('docModal').addEventListener('click',e=>{if(e.target.id==='docModal')closeDoc()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDoc()});
+</script>
+</body>
+</html>
