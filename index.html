@@ -774,7 +774,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <tr><td>RF06</td><td><b>Alertas de entrega.</b> Aviso cuando la fecha comprometida de un pedido se acerca o se vence.</td><td><span class="tag tag-alta">Alta</span></td><td>Atrasos sin aviso previo</td></tr>
 <tr><td>RF07</td><td><b>Carga y almacenamiento de archivos por pedido.</b> Planos, fotos y listas de corte guardados de forma persistente.</td><td><span class="tag tag-alta">Alta</span></td><td>Los planos se traspapelan</td></tr>
 <tr><td>RF08</td><td><b>Gestión de usuarios.</b> Alta, edición y asignación de rol para cada persona del taller.</td><td><span class="tag tag-media">Media</span></td><td>Control de acceso por rol</td></tr>
-<tr><td>RF09</td><td><b>Recuperación de contraseña por email.</b> Envío de un link para poner una clave nueva. Desarrollado, pausado hasta el email real del administrador.</td><td><span class="tag tag-media">Media</span></td><td>"¿Y si me olvido la clave?"</td></tr>
+<tr><td>RF09</td><td><b>Recuperación de contraseña por email.</b> Envío de un link para poner una clave nueva. Activa mediante la API de Brevo (envío por HTTPS).</td><td><span class="tag tag-media">Media</span></td><td>"¿Y si me olvido la clave?"</td></tr>
 <tr><td>RF10</td><td><b>Sección de ayuda «¿Cómo funciona?».</b> Guía dentro del propio sistema para los tres roles.</td><td><span class="tag tag-baja">Baja</span></td><td>Onboarding sin capacitación</td></tr>
 <tr><td>RF11</td><td><b>Publicación online del sistema.</b> Acceso desde cualquier dispositivo, sin depender de una compu del taller.</td><td><span class="tag tag-alta">Alta</span></td><td>No depender de un equipo local</td></tr>
 <tr><td>RF12</td><td><b>Emisión de comprobantes al cliente.</b> Factura A, Factura B o Recibo por un pedido, con número, fecha y monto.</td><td><span class="tag tag-media">Media</span></td><td>Comprobante al cobrar</td></tr>
@@ -788,6 +788,17 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <tr><td>RF20</td><td><b>Estadísticas del negocio.</b> Mejores clientes, cobrado por mes y proveedores con más compras, en vivo.</td><td><span class="tag tag-baja">Baja</span></td><td>Decidir con datos</td></tr>
 <tr><td>RF21</td><td><b>Vista calendario de entregas.</b> Pedidos por fecha en un calendario mensual, con color por urgencia y filtros.</td><td><span class="tag tag-media">Media</span></td><td>Planificar la producción</td></tr>
 <tr><td>RF22</td><td><b>Recordatorios a clientes con saldo.</b> Lista de deudores con un mensaje listo para copiar o abrir en WhatsApp.</td><td><span class="tag tag-media">Media</span></td><td>No perder cobranzas</td></tr>
+<tr><td>RF23</td><td><b>Seguimiento del pedido para el cliente.</b> Link público sin login (código único) con estado, entrega estimada y pago.</td><td><span class="tag tag-media">Media</span></td><td>"¿Cómo va lo mío?"</td></tr>
+<tr><td>RF24</td><td><b>Presupuesto por ítems.</b> Renglones con cantidad y precio; el total se calcula solo.</td><td><span class="tag tag-media">Media</span></td><td>Presupuestar con detalle</td></tr>
+<tr><td>RF25</td><td><b>Código QR en el presupuesto.</b> El PDF incluye un QR al seguimiento del cliente.</td><td><span class="tag tag-baja">Baja</span></td><td>Enlace rápido</td></tr>
+<tr><td>RF26</td><td><b>Exportación a Excel.</b> Clientes, pedidos y pagos en .xlsx.</td><td><span class="tag tag-media">Media</span></td><td>Llevar a la planilla</td></tr>
+<tr><td>RF27</td><td><b>Historial de estados del pedido.</b> Línea de tiempo con fecha y responsable.</td><td><span class="tag tag-baja">Baja</span></td><td>Trazabilidad</td></tr>
+<tr><td>RF28</td><td><b>Aviso push al cliente.</b> Notificación cuando el pedido cambia de estado.</td><td><span class="tag tag-baja">Baja</span></td><td>Cliente informado</td></tr>
+<tr><td>RF29</td><td><b>Stock de insumos.</b> Inventario con alerta de bajo stock; el consumo descuenta.</td><td><span class="tag tag-media">Media</span></td><td>Saber qué reponer</td></tr>
+<tr><td>RF30</td><td><b>Tablero Kanban de producción.</b> Se arrastran los pedidos entre etapas.</td><td><span class="tag tag-media">Media</span></td><td>Ver el flujo</td></tr>
+<tr><td>RF31</td><td><b>Galería de fotos del mueble.</b> Visibles también en el seguimiento.</td><td><span class="tag tag-baja">Baja</span></td><td>Mostrar el avance</td></tr>
+<tr><td>RF32</td><td><b>Dashboard con gráficos.</b> Cobrado por mes, pedidos por estado y mejores clientes.</td><td><span class="tag tag-baja">Baja</span></td><td>Decidir con datos</td></tr>
+<tr><td>RF33</td><td><b>Flujo de caja, backup por mail y modo oscuro.</b> Entradas vs. salidas, copia por email y tema oscuro.</td><td><span class="tag tag-baja">Baja</span></td><td>Control y comodidad</td></tr>
 </tbody>
 </table>
 
@@ -811,10 +822,10 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <thead><tr><th>ID</th><th>Qué NO hace en esta entrega</th><th>Por qué</th><th>¿Versión futura?</th></tr></thead>
 <tbody>
 <tr><td>LIM01</td><td>No emite factura electrónica ni se integra con AFIP (sí emite comprobantes simples, RF12).</td><td>La factura electrónica requiere homologación con AFIP, fuera del alcance académico.</td><td>Sí. v3.</td></tr>
-<tr><td>LIM02</td><td>No lleva stock de materiales (cantidades disponibles, reposición); registra el consumo por pedido (RF14).</td><td>El stock es un módulo aparte; no fue el problema central relevado.</td><td>Sí. v3.</td></tr>
+<tr><td>LIM02</td><td><s>No lleva stock de materiales.</s> <b>Implementado (RF29):</b> stock de insumos con alerta de bajo stock y descuento por consumo.</td><td>Se sumó como módulo propio en la Fase 5.</td><td>Hecho (v2).</td></tr>
 <tr><td>LIM03</td><td>No hay app móvil nativa de tienda; se instala como PWA desde el navegador (RF16).</td><td>Una app nativa duplica el desarrollo y requiere cuentas de tienda pagas.</td><td>A evaluar.</td></tr>
-<tr><td>LIM04</td><td>La recuperación de contraseña por email no está activa (falta el email real del administrador).</td><td>Depende de un dato del cliente aún no provisto.</td><td>Sí. En cuanto se confirme.</td></tr>
-<tr><td>LIM05</td><td>Los recordatorios y alertas se envían de forma asistida (mensaje listo); todavía no 100% automáticos.</td><td>El envío automático a WhatsApp requiere una API de terceros paga.</td><td>Sí. v2.</td></tr>
+<tr><td>LIM04</td><td><s>La recuperación de contraseña por email no está activa.</s> <b>Activa (RF09)</b> mediante la API de Brevo.</td><td>Railway bloquea el SMTP saliente; se resolvió con la API HTTP de Brevo.</td><td>Hecho (v2).</td></tr>
+<tr><td>LIM05</td><td>Los recordatorios de cobranza se envían de forma asistida (mensaje listo para WhatsApp); el backup y la recuperación de clave sí salen por email automático.</td><td>El envío automático a WhatsApp requiere una API de terceros paga.</td><td>Sí. v3.</td></tr>
 </tbody>
 </table>
 
@@ -898,7 +909,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <div class="note"><b>Se ve en las estadísticas (RF20).</b> El "cobrado por mes" es el hecho PAGO agregado por la dimensión tiempo; los "mejores clientes" son PAGO agregado por la dimensión CLIENTE. Identificar los roles es lo que hace que esas consultas se lean solas.</div>
 
 <h3>Entidades</h3>
-<p>Diez tablas: cuatro que actúan como dimensiones de contexto y tres hechos, más las tablas de apoyo (adjunto, material, push).</p>
+<p>El núcleo del modelo tiene diez tablas. La <b>versión 1.0</b> sumó seis tablas más (mismo criterio 3FN): <b>dieciséis en total</b>. Las nuevas se detallan a continuación y en el esquema relacional.</p>
 <div class="cards">
 <div class="card"><h4>USUARIO</h4><p>Personas con acceso (Rodrigo, Ana, Facu y quien se sume). El rol es un ENUM propio, no una tabla. Incluye email y datos de recuperación de clave.</p></div>
 <div class="card"><h4>CLIENTE</h4><p>Clientes del taller, con su contacto. Eje de la cuenta corriente.</p></div>
@@ -910,6 +921,12 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <div class="card"><h4>FACTURA_CLIENTE <span class="tag tag-alta">hecho</span></h4><p>Comprobante que el taller emite (Factura A / B / Recibo) por un pedido.</p></div>
 <div class="card"><h4>FACTURA_PROVEEDOR <span class="tag tag-alta">hecho</span></h4><p>Comprobante recibido de un proveedor, con lo pagado; la deuda es su resta.</p></div>
 <div class="card"><h4>PUSH_SUSCRIPCION</h4><p>Dispositivo de un usuario suscripto a notificaciones push.</p></div>
+<div class="card"><h4>PEDIDO_ITEM <span class="tag tag-media">v1.0</span></h4><p>Renglones del presupuesto (descripción, cantidad, precio). El total del pedido sale de su suma.</p></div>
+<div class="card"><h4>PEDIDO_FOTO <span class="tag tag-media">v1.0</span></h4><p>Fotos del mueble; se ven en el seguimiento del cliente.</p></div>
+<div class="card"><h4>PEDIDO_ESTADO_HISTORIAL <span class="tag tag-media">v1.0</span></h4><p>Cada cambio de estado del pedido, con fecha y responsable.</p></div>
+<div class="card"><h4>INSUMO <span class="tag tag-media">v1.0</span></h4><p>Material del depósito con stock actual y mínimo.</p></div>
+<div class="card"><h4>INSUMO_MOVIMIENTO <span class="tag tag-media">v1.0</span></h4><p>Entradas y salidas de stock de un insumo.</p></div>
+<div class="card"><h4>PUSH_SEGUIMIENTO <span class="tag tag-media">v1.0</span></h4><p>Suscripción push del cliente a un pedido, desde su link.</p></div>
 </div>
 
 <h3>Relaciones</h3>
@@ -925,6 +942,10 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <tr><td>USUARIO</td><td>1 : N</td><td>PAGO</td><td>Cada pago queda registrado con el usuario que lo cargó.</td></tr>
 <tr><td>USUARIO</td><td>1 : N</td><td>FACTURA_CLIENTE</td><td>Cada comprobante queda registrado con quien lo emitió.</td></tr>
 <tr><td>USUARIO</td><td>1 : N</td><td>PUSH_SUSCRIPCION</td><td>Un usuario puede tener notificaciones activas en varios dispositivos.</td></tr>
+<tr><td>PEDIDO</td><td>1 : N</td><td>PEDIDO_ITEM</td><td>Un pedido se detalla en varios renglones. <span class="tag tag-media">v1.0</span></td></tr>
+<tr><td>PEDIDO</td><td>1 : N</td><td>PEDIDO_FOTO</td><td>Un pedido tiene varias fotos. <span class="tag tag-media">v1.0</span></td></tr>
+<tr><td>PEDIDO</td><td>1 : N</td><td>PEDIDO_ESTADO_HISTORIAL</td><td>Un pedido acumula sus cambios de estado. <span class="tag tag-media">v1.0</span></td></tr>
+<tr><td>INSUMO</td><td>1 : N</td><td>INSUMO_MOVIMIENTO</td><td>Un insumo acumula entradas y salidas. <span class="tag tag-media">v1.0</span></td></tr>
 </tbody>
 </table>
 
@@ -1022,6 +1043,41 @@ CREATE TABLE push_suscripcion (
   endpoint    VARCHAR(500) NOT NULL UNIQUE,
   p256dh      VARCHAR(255) NOT NULL,
   auth        VARCHAR(255) NOT NULL
+);
+
+-- ══════════ TABLAS AGREGADAS EN LA VERSION 1.0 ══════════
+ALTER TABLE cliente  ADD COLUMN telefono VARCHAR(40);
+ALTER TABLE pedido   ADD COLUMN token_seguimiento CHAR(20) UNIQUE;
+ALTER TABLE material ADD COLUMN insumo_id INT REFERENCES insumo(id);
+
+CREATE TABLE pedido_item (
+  id INT AUTO_INCREMENT PRIMARY KEY, pedido_id INT NOT NULL REFERENCES pedido(id),
+  descripcion VARCHAR(200) NOT NULL, cantidad DECIMAL(10,2) NOT NULL DEFAULT 1,
+  precio_unitario DECIMAL(12,2) NOT NULL DEFAULT 0
+);
+CREATE TABLE pedido_foto (
+  id INT AUTO_INCREMENT PRIMARY KEY, pedido_id INT NOT NULL REFERENCES pedido(id),
+  ruta VARCHAR(255) NOT NULL, creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE pedido_estado_historial (
+  id INT AUTO_INCREMENT PRIMARY KEY, pedido_id INT NOT NULL REFERENCES pedido(id),
+  estado ENUM('presupuestado','en_produccion','entregado','cerrado','no_concretado') NOT NULL,
+  usuario_id INT REFERENCES usuario(id), creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE insumo (
+  id INT AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(150) NOT NULL,
+  unidad VARCHAR(30) NOT NULL DEFAULT 'unidad',
+  stock_actual DECIMAL(12,2) NOT NULL DEFAULT 0, stock_minimo DECIMAL(12,2) NOT NULL DEFAULT 0,
+  activo TINYINT(1) NOT NULL DEFAULT 1
+);
+CREATE TABLE insumo_movimiento (
+  id INT AUTO_INCREMENT PRIMARY KEY, insumo_id INT NOT NULL REFERENCES insumo(id),
+  cantidad DECIMAL(12,2) NOT NULL, motivo VARCHAR(150),
+  usuario_id INT REFERENCES usuario(id), creado_en DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE push_seguimiento (
+  id INT AUTO_INCREMENT PRIMARY KEY, pedido_id INT NOT NULL REFERENCES pedido(id),
+  endpoint VARCHAR(500) NOT NULL UNIQUE, p256dh VARCHAR(255) NOT NULL, auth VARCHAR(255) NOT NULL
 );
 
 -- ══════════ VISTAS (datos derivados, no almacenados) ══════════
@@ -1168,13 +1224,13 @@ WHERE p.estado = 'en_produccion'
 <table>
 <thead><tr><th>Categoría</th><th>Tareas</th><th>Horas estim.</th><th>$/hora</th><th>Subtotal</th></tr></thead>
 <tbody>
-<tr><td><b>Análisis y diseño</b></td><td>Relevamiento, ERS, modelo de datos, normalización.</td><td>60 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>Backend / Base de datos</b></td><td>API, lógica de negocio, vistas, triggers, despliegue.</td><td>120 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz, conexión a la API, diseño y rediseño estético.</td><td>110 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>Análisis y diseño</b></td><td>Relevamiento, ERS, modelo de datos, normalización.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>Backend / Base de datos</b></td><td>API, lógica, vistas, triggers, seguimiento, stock, ítems, push, mails, PDF/QR, seguridad.</td><td>176 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz, API, rediseño, PWA, modo oscuro, Kanban, dashboard, galería.</td><td>168 h</td><td>A completar</td><td>Pendiente</td></tr>
 <tr><td><b>QA / Pruebas</b></td><td>Pruebas, debugging, verificación en producción.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
 <tr><td><b>Documentación</b></td><td>Manual de usuario, técnico, esta carpeta de proyecto.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>Gestión (PM)</b></td><td>Coordinación, relación con el cliente, planificación.</td><td>30 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td colspan="2" style="text-align:right"><b>Total horas</b></td><td><b>400 h</b></td><td></td><td><b>A completar</b></td></tr>
+<tr><td><b>Gestión (PM)</b></td><td>Coordinación, relación con el cliente, planificación.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
+<tr><td colspan="2" style="text-align:right"><b>Total horas</b></td><td><b>508 h</b></td><td></td><td><b>A completar</b></td></tr>
 </tbody>
 </table>
 
@@ -1305,7 +1361,16 @@ WHERE p.estado = 'en_produccion'
 <dd>No. Cada uno tiene un rol distinto (administrador, administrativo, operario) y ve solo lo que necesita para su tarea (RF01). Además, cada pago queda registrado con el usuario que lo cargó (4.4.4).</dd>
 
 <dt>¿Qué pasa si me olvido la clave?</dt>
-<dd>La recuperación por email está desarrollada pero pausada, a la espera del email real del administrador (RF09, LIM04). Mientras tanto, el administrador puede resetear la clave de cualquiera desde la sección Usuarios.</dd>
+<dd>En el login tocás «¿Olvidaste tu clave?» y te llega un link por email para crear una nueva. La recuperación está <b>activa</b> mediante la API de Brevo (RF09). El administrador también puede resetear claves desde Usuarios.</dd>
+
+<dt>¿El cliente puede ver cómo va su pedido?</dt>
+<dd>Sí. Cada pedido tiene un <b>link de seguimiento</b> público (sin usuario ni clave) donde el cliente ve el estado, la entrega estimada, las fotos y su pago. Puede activar avisos para que le llegue una notificación cuando avanza (RF23, RF28, RF31).</dd>
+
+<dt>¿Cómo controlo el stock de materiales?</dt>
+<dd>En la sección <b>Insumos</b>: cargás cada material con su stock y mínimo, registrás entradas y salidas, y cuando consumís un insumo en un pedido se descuenta solo. Te avisa cuando algo está por agotarse (RF29).</dd>
+
+<dt>¿Qué archivos puedo adjuntar a un pedido?</dt>
+<dd>PDF, JPG o PNG (hasta 25 MB). Para el avance del mueble se usa la galería de fotos del pedido (RF07, RF31).</dd>
 
 <dt>¿Dónde quedan guardados los planos y las listas de corte?</dt>
 <dd>En un almacenamiento persistente vinculado al pedido. No se pierden si el sistema se reinicia o se actualiza (RF07, RNF05).</dd>
