@@ -1329,19 +1329,34 @@ WHERE p.estado = 'en_produccion'
 <!-- ===================== 11 ===================== -->
 <section id="s11">
 <h2>11. Guía de Inicio Rápido</h2>
-<p class="lede">Puesta en marcha para Rodrigo, Ana y Facu. Sin jerga técnica: no hace falta saber qué es una API ni una base de datos para usar el sistema.</p>
-<div class="note"><b>Antes de empezar.</b> Solo hacen falta dos cosas: un navegador en la PC o el celular, y el usuario y la contraseña que entrega el administrador. No se instala nada (aunque opcionalmente se puede agregar como app en el celular).</div>
+<p class="lede">Puesta en marcha para Rodrigo y su equipo. Sin jerga técnica: no hace falta saber qué es una API ni una base de datos para usar el sistema.</p>
+<div class="note"><b>Antes de empezar.</b> Solo hacen falta dos cosas: un navegador en la PC o el celular, y el usuario y la contraseña que entrega el administrador. No se instala nada (aunque opcionalmente se puede agregar como app en el celular). La app de la PC y la del celular son la misma: todo lo que se actualiza aparece solo en los dos.</div>
+
+<h3>Primeros pasos</h3>
 <ol class="flow">
-<li><b>Entrar al sistema.</b> Abrir <code>espiga-pcr.up.railway.app</code> e ingresar con usuario y clave. La pantalla no muestra datos de ejemplo, por seguridad. (RF01)</li>
-<li><b>Revisar el panel de saldos.</b> De un vistazo, cuánto deben los clientes y cuánto se debe a proveedores. (RF02)</li>
-<li><b>Cargar o consultar un cliente</b> y su cuenta corriente; el saldo se calcula solo con cada pago. (RF03)</li>
-<li><b>Cargar o consultar un proveedor</b> y su deuda vigente. (RF04)</li>
-<li><b>Crear un pedido</b> y adjuntarle planos, fotos o la lista de corte; registrar materiales. (RF05, RF07, RF14)</li>
-<li><b>Registrar un pago</b> al cobrar; emitir el comprobante o el resumen/presupuesto en PDF si hace falta. (RF03, RF12, RF13, RF19)</li>
-<li><b>Revisar alertas y calendario</b> para priorizar los pedidos próximos a vencer. (RF06, RF21)</li>
-<li><b>Generar recordatorios</b> a los clientes que deben, con el mensaje listo para WhatsApp. (RF22)</li>
-<li><b>Gestionar usuarios y revisar backups</b> — solo el administrador. (RF08, RF18)</li>
-<li><b>Instalar la app en el celular</b> (opcional) y activar las notificaciones de entrega desde «Mi cuenta». (RF16, RF17)</li>
+<li><b>Entrar al sistema.</b> Abrir <code>espiga-pcr.up.railway.app</code> e ingresar con usuario y clave. Después de 5 intentos fallidos el ingreso se bloquea unos minutos, por seguridad. (RF01)</li>
+<li><b>Puesta en marcha (solo una vez).</b> El administrador entra a <b>Usuarios → Preparar para el cliente</b> y escribe <code>BORRAR EJEMPLOS</code>. Se quitan los clientes, proveedores, pedidos y usuarios de muestra que trae el sistema de fábrica; lo cargado desde la app no se toca y antes se envía un backup por mail. Después, cambiar la clave del administrador desde <b>Mi cuenta</b>.</li>
+<li><b>Cargar al equipo.</b> En <b>Usuarios → Nuevo usuario</b>, crear a cada persona con su rol (administrativo u operario). La clave debe tener 6 o más caracteres, con letras y números. (RF08)</li>
+</ol>
+
+<h3>Uso diario</h3>
+<ol class="flow">
+<li><b>Revisar el panel.</b> Muestra cuánto te deben los clientes, el flujo de caja de los últimos 6 meses, los clientes con saldo, el saldo con cada proveedor (por separado, sin mezclarlos en un total) y las próximas entregas. (RF02, RF33)</li>
+<li><b>Crear un cliente con su pedido.</b> Nombre (obligatorio, marcado con <b>*</b>), teléfono, email, descripción y presupuesto. Los montos se escriben solo con números y se formatean solos ($ 310.000). (RF03, RF05)</li>
+<li><b>Cargar el flete.</b> El flete va <b>aparte del presupuesto</b>: se puede cargar al crear el pedido o el día de la entrega desde la ficha del pedido (<i>Cargar flete</i>). Se suma a lo que paga el cliente como línea separada: Presupuesto + Flete = Total a cobrar.</li>
+<li><b>Fijar la entrega.</b> Elegir <b>Días hábiles</b> y escribir cuántos (los que necesite el proyecto, por ejemplo 45) o <b>Fecha exacta</b>. Con días hábiles el sistema calcula la fecha salteando fines de semana y feriados nacionales, y la muestra en el momento. Se puede cambiar después con <i>Editar entrega</i>.</li>
+<li><b>Detallar el presupuesto por ítems</b> (opcional): en la ficha del pedido se agregan renglones con cantidad y precio y el total se calcula solo. El presupuesto en PDF incluye los ítems, el flete y un código QR al seguimiento. (RF19, RF24, RF25)</li>
+<li><b>Registrar un pago</b> al cobrar (efectivo, transferencia o cheque). El saldo se recalcula solo. Se puede emitir el comprobante (Factura A, B o Recibo) y el resumen de cuenta en PDF. (RF03, RF12, RF13)</li>
+<li><b>Compartir el seguimiento con el cliente.</b> En la ficha del pedido, <i>Copiar link de seguimiento</i> y mandarlo por WhatsApp. El cliente ve, sin usuario ni clave, el estado, la entrega estimada, las fotos y su saldo, y puede activar avisos cuando avanza. (RF23, RF28)</li>
+<li><b>Seguir la producción.</b> En <b>Producción</b>, las tarjetas de los pedidos se arrastran entre columnas (Presupuestado → En producción → Entregado). Cada cambio queda en el historial del pedido con fecha y usuario. Al marcar entregado un pedido sin saldo, se cierra solo. (RF27, RF30)</li>
+<li><b>Fotos, planos y materiales.</b> Subir fotos del mueble a la galería (el cliente también las ve), adjuntar planos o listas de corte (solo PDF, JPG o PNG) y registrar el material usado. Si el material se elige del stock, se descuenta solo de Insumos. (RF07, RF14, RF29, RF31)</li>
+<li><b>Manejar proveedores.</b> Cada proveedor muestra su propio saldo: <b>Le debés</b> o <b>A favor</b>. Dentro de cada proveedor se pueden crear varias <b>cuentas</b> (por ejemplo, una en blanco y otra en negro) con <i>Nueva cuenta</i>; cada una tiene su saldo y sus movimientos: <i>+ Compra / le debés</i> y <i>− Registrar pago</i>. (RF04)</li>
+<li><b>Controlar el stock.</b> En <b>Insumos</b> se carga cada material con su stock y mínimo, y se registran entradas y salidas. Avisa cuando algo está por agotarse. (RF29)</li>
+<li><b>Revisar alertas y calendario.</b> El calendario muestra todos los pedidos por fecha de entrega. Desde 7 días antes y el mismo día de la entrega, el sistema avisa (también al celular, si están activadas las notificaciones). (RF06, RF21)</li>
+<li><b>Recordatorios de cobro.</b> Lista de clientes con saldo y un mensaje ya redactado para copiar o abrir en WhatsApp. (RF22)</li>
+<li><b>Estadísticas y exportar.</b> Gráficos de cobros por mes, mejores clientes y proveedores con más compras. Clientes, pedidos y pagos se pueden descargar en Excel. (RF26, RF32)</li>
+<li><b>Backups.</b> El sistema hace una copia diaria (guarda las últimas 7) y una semanal por mail; el administrador puede descargarla o enviarla en el momento desde <b>Usuarios → Copias de seguridad</b>. (RF18, RF33)</li>
+<li><b>Celular y modo oscuro.</b> Agregar Espiga a la pantalla de inicio y activar las notificaciones de entrega desde <b>Mi cuenta</b>. El botón de la luna cambia a modo oscuro. (RF16, RF17, RF33)</li>
 </ol>
 <div class="todo"><b>Entregable del equipo:</b> acompañar cada paso con la captura real del sistema, tomadas todas con el mismo ancho de ventana para que la guía se lea pareja.</div>
 </section>
@@ -1386,6 +1401,18 @@ WHERE p.estado = 'en_produccion'
 
 <dt>¿Cómo sé qué clientes me deben?</dt>
 <dd>La sección Recordatorios lista los clientes con saldo pendiente, ordenados, con el total por cobrar y un mensaje ya redactado listo para copiar o abrir en WhatsApp (RF22).</dd>
+
+<dt>¿Puedo separar la cuenta en blanco y en negro de un mismo proveedor?</dt>
+<dd>Sí. Dentro de cada proveedor se crean las cuentas que hagan falta con <i>Nueva cuenta</i>. Cada cuenta tiene su propio saldo (<b>Le debés</b> o <b>A favor</b>) y sus movimientos, y se ven discriminadas al abrir el proveedor. Los saldos de distintos proveedores no se mezclan en un total.</dd>
+
+<dt>¿El flete se suma al presupuesto?</dt>
+<dd>No se mezcla: queda como línea aparte. Se puede cargar el día de la entrega y se suma a lo que paga el cliente (Presupuesto + Flete = Total a cobrar). Aparece en la ficha, en el presupuesto en PDF y en el link de seguimiento.</dd>
+
+<dt>¿Puedo poner la entrega en días hábiles?</dt>
+<dd>Sí. Al crear o editar un pedido elegís <b>Días hábiles</b> y escribís la cantidad que necesite el proyecto. El sistema calcula la fecha salteando sábados, domingos y feriados nacionales, y avisa desde 7 días antes y el mismo día de la entrega.</dd>
+
+<dt>¿Cómo se sacan los datos de ejemplo para empezar a usarlo en serio?</dt>
+<dd>El administrador va a <b>Usuarios → Preparar para el cliente</b> y confirma escribiendo <code>BORRAR EJEMPLOS</code>. Se borran solo los datos de muestra de fábrica; lo cargado desde la app se conserva y antes se manda un backup por mail. Después conviene cambiar la clave del administrador.</dd>
 
 <dt>¿El sistema guarda datos sensibles?</dt>
 <dd>Guarda datos comerciales del taller (clientes, pedidos, pagos), no datos personales sensibles. Las contraseñas se almacenan con hash y nunca en texto plano, y la base de datos no tiene acceso público: solo el backend le habla (4.4.8).</dd>
