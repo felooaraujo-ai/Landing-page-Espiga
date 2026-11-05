@@ -43,6 +43,26 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 
 /* Logo corporativo: emblema de tres tablas + logotipo extendido */
 .logo{gap:12px}.logo .logo-word{font-family:"Inter",system-ui,sans-serif;font-weight:800;letter-spacing:.24em;font-size:1.02rem;color:#2D2119}.footer-brand{display:flex;align-items:center;gap:14px;font-family:"Inter",system-ui,sans-serif;font-weight:800;letter-spacing:.24em;font-size:1.5rem;color:#FBF8F3}
+
+/* ---- Voz del cliente (video) ---- */
+.voz{background:var(--cream)}.voz-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:center}
+.voz-head{margin-bottom:0}.voz-list{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.voz-list li{padding-left:22px;position:relative;color:#5a4232;font-weight:600}.voz-list li:before{content:"";position:absolute;left:0;top:.55em;width:10px;height:3px;background:#C07A24}
+.voz-video video{width:100%;aspect-ratio:16/9;display:block;border-radius:18px;background:#1a130e;box-shadow:var(--shadow);border:1px solid var(--line)}
+.voz-cap{margin:10px 2px 0;font-size:.85rem;color:#7a5d48;font-weight:600}
+/* ---- Sistema en uso (capturas) ---- */
+.sistema{background:var(--paper)}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.shot{margin:0;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(85,54,31,.08)}
+.shot img{display:block;width:100%;height:auto}
+.shot-wide{grid-column:span 2}.shot-wide2{grid-column:span 3}
+.shot-phone{grid-row:span 2;background:transparent;border:0;box-shadow:none;max-width:290px;justify-self:center}
+.shot-phone img{border:10px solid #2D2119;border-radius:34px;box-shadow:var(--shadow)}
+.shot-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#f2e6d6;border-bottom:1px solid var(--line)}
+.shot-bar i{width:9px;height:9px;border-radius:50%;background:#d6bfa3}.shot-bar span{margin-left:8px;font-size:.75rem;color:#7a5d48;font-weight:600}
+.shot figcaption{padding:12px 16px 14px;font-size:.9rem;color:#5a4232;line-height:1.45}.shot-phone figcaption{padding:12px 4px 0;text-align:center}
+.shot figcaption b{color:#2D2119}
+@media(max-width:850px){.voz-grid{grid-template-columns:1fr;gap:26px}.shots{grid-template-columns:1fr}.shot-wide,.shot-wide2{grid-column:auto}.shot-phone{grid-row:auto}}
 </style>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2722%27 fill=%27%232D2119%27/%3E%3Cg transform=%27translate(60 60) scale(0.72) translate(-60 -60)%27%3E%3Cpolygon points=%2743,26 107,26 99,44 35,44%27 fill=%27%23FBF8F3%27/%3E%3Cpolygon points=%2732,51 76,51 68,69 24,69%27 fill=%27%23E0A458%27/%3E%3Cpolygon points=%2721,76 85,76 77,94 13,94%27 fill=%27%23FBF8F3%27/%3E%3C/g%3E%3C/svg%3E">
 </head>
@@ -51,7 +71,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
   <div class="container nav-inner">
     <a class="logo" href="#inicio" aria-label="Espiga, ir al inicio"><svg class="logo-emb" viewBox="0 0 120 120" width="36" height="36" aria-hidden="true"><polygon points="43,26 107,26 99,44 35,44" fill="#2D2119"/><polygon points="32,51 76,51 68,69 24,69" fill="#C07A24"/><polygon points="21,76 85,76 77,94 13,94" fill="#2D2119"/></svg><span class="logo-word">ESPIGA</span></a>
     <div class="nav-links">
-      <a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#funciones">Funciones</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a>
+      <a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#entrevista">Entrevista</a><a href="#funciones">Funciones</a><a href="#sistema">Sistema</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a>
     </div>
   </div>
 </nav>
@@ -113,9 +133,26 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
   </div>
 </section>
 
+
+<section class="voz" id="entrevista">
+  <div class="container voz-grid">
+    <div class="section-head voz-head"><div class="num">03 — LA VOZ DEL CLIENTE</div><h2>Conociendo a nuestro cliente.</h2>
+      <p>Antes de diseñar, fuimos al taller a escuchar cómo trabajan, qué necesitan y qué les complica el día a día. De esa entrevista salieron los requerimientos de Espiga.</p>
+      <ul class="voz-list"><li>Relevamiento en PCR Amoblamientos, Villa Bosch.</li><li>Roles del taller y circuito de un pedido.</li><li>Problemas reales que el sistema tenía que resolver.</li></ul>
+    </div>
+    <div class="voz-video">
+      <video controls playsinline preload="metadata" poster="assets/entrevista-portada.jpg">
+        <source src="assets/entrevista.mp4" type="video/mp4">
+        Tu navegador no puede reproducir el video. <a href="assets/entrevista.mp4">Descargalo acá</a>.
+      </video>
+      <p class="voz-cap">Entrevista en el taller · 3:19 · con subtítulos</p>
+    </div>
+  </div>
+</section>
+
 <section class="solution" id="funciones">
   <div class="container">
-    <div class="section-head"><div class="num">03 — LA SOLUCIÓN</div><h2>Todo conectado.</h2><p>Espiga reúne en una misma plataforma las principales tareas de gestión del taller.</p></div>
+    <div class="section-head"><div class="num">04 — LA SOLUCIÓN</div><h2>Todo conectado.</h2><p>Espiga reúne en una misma plataforma las principales tareas de gestión del taller.</p></div>
     <div class="features">
       <article class="feature"><div class="icon">👥</div><h3>Clientes y cuentas</h3><p>Alta, consulta y gestión de clientes y sus cuentas corrientes.</p></article>
       <article class="feature"><div class="icon">📦</div><h3>Pedidos</h3><p>Creación y seguimiento de pedidos según su estado.</p></article>
@@ -132,9 +169,23 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
   </div>
 </section>
 
+
+<section class="sistema" id="sistema">
+  <div class="container">
+    <div class="section-head"><div class="num">05 — EL SISTEMA EN USO</div><h2>Así se ve Espiga.</h2><p>Pantallas reales del sistema publicado, cargadas con los datos de ejemplo que trae para probarlo. Funciona igual en la computadora y en el celular.</p></div>
+    <div class="shots">
+      <figure class="shot shot-wide"><div class="shot-bar"><i></i><i></i><i></i><span>espiga-pcr.up.railway.app</span></div><img src="assets/app-panel.jpg" alt="Panel de saldos de Espiga: lo que deben los clientes y el flujo de caja de los últimos 6 meses" loading="lazy"><figcaption><b>Panel de saldos.</b> Lo que te deben los clientes, el flujo de caja y el saldo con cada proveedor, en vivo.</figcaption></figure>
+      <figure class="shot shot-phone"><img src="assets/app-celu.jpg" alt="Espiga en el celular: panel con barra de navegación inferior" loading="lazy"><figcaption><b>En el celular.</b> Se instala como app y avisa las entregas.</figcaption></figure>
+      <figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>Pedido #1</span></div><img src="assets/app-pedido.jpg" alt="Ficha de un pedido con presupuesto, flete, total a cobrar, saldo y entrega pactada" loading="lazy"><figcaption><b>Ficha del pedido.</b> Presupuesto, flete aparte, saldo, entrega y link de seguimiento para el cliente.</figcaption></figure>
+      <figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>Proveedores</span></div><img src="assets/app-proveedor.jpg" alt="Proveedor con su cuenta, compras y pagos" loading="lazy"><figcaption><b>Proveedores por cuenta.</b> Cada proveedor con sus cuentas, compras, pagos y saldo propio.</figcaption></figure>
+      <figure class="shot shot-wide2"><div class="shot-bar"><i></i><i></i><i></i><span>Producción</span></div><img src="assets/app-produccion.jpg" alt="Tablero de producción con los pedidos por etapa" loading="lazy"><figcaption><b>Producción.</b> Tablero por etapas: se arrastra cada pedido y el cliente recibe el aviso.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section id="roles">
   <div class="container">
-    <div class="section-head"><div class="num">04 — USUARIOS</div><h2>Diseñado para cada rol.</h2><p>Cada perfil accede a las herramientas necesarias para realizar sus tareas dentro del sistema.</p></div>
+    <div class="section-head"><div class="num">06 — USUARIOS</div><h2>Diseñado para cada rol.</h2><p>Cada perfil accede a las herramientas necesarias para realizar sus tareas dentro del sistema.</p></div>
     <div class="roles">
       <article class="role"><div class="role-num">01</div><h3>Administrador</h3><ul><li>Gestiona usuarios.</li><li>Administra información general.</li><li>Accede a las funciones de gestión.</li><li>Gestiona copias de seguridad.</li></ul></article>
       <article class="role"><div class="role-num">02</div><h3>Administrativo</h3><ul><li>Gestiona clientes y cuentas corrientes.</li><li>Carga pedidos y archivos técnicos.</li><li>Registra pagos.</li><li>Genera comprobantes y resúmenes.</li></ul></article>
@@ -145,7 +196,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 
 <section class="flow" id="funcionamiento">
   <div class="container">
-    <div class="section-head"><div class="num">05 — FUNCIONAMIENTO</div><h2>Del cliente a la entrega.</h2><p>Un recorrido simple para entender cómo se organiza la información dentro de Espiga.</p></div>
+    <div class="section-head"><div class="num">07 — FUNCIONAMIENTO</div><h2>Del cliente a la entrega.</h2><p>Un recorrido simple para entender cómo se organiza la información dentro de Espiga.</p></div>
     <div class="steps">
       <div class="step"><span>01</span><h3>Cliente</h3><p>Se registra o consulta al cliente.</p></div>
       <div class="step"><span>02</span><h3>Pedido</h3><p>Se crea el pedido y se agregan archivos técnicos.</p></div>
@@ -158,7 +209,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 
 <section class="tech" id="tecnologia">
   <div class="container">
-    <div class="section-head"><div class="num">06 — TECNOLOGÍA</div><h2>La parte que hace posible Espiga.</h2><p>La solución combina una interfaz web, un backend para la lógica del sistema y una base de datos para organizar la información.</p></div>
+    <div class="section-head"><div class="num">08 — TECNOLOGÍA</div><h2>La parte que hace posible Espiga.</h2><p>La solución combina una interfaz web, un backend para la lógica del sistema y una base de datos para organizar la información.</p></div>
     <div class="tech-grid">
       <article class="tech-card"><small>FRONTEND</small><h3>HTML · CSS · JavaScript</h3><p>Interfaz web para acceder y trabajar con el sistema.</p></article>
       <article class="tech-card"><small>BACKEND</small><h3>Node.js + Express</h3><p>Procesa las operaciones y reglas del sistema.</p></article>
@@ -170,7 +221,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 
 <section id="recursos">
   <div class="container">
-    <div class="section-head"><div class="num">07 — RECURSOS</div><h2>Todo el proyecto, en un mismo lugar.</h2><p>Accesos para presentar el sistema, consultar su documentación y conocer su desarrollo.</p></div>
+    <div class="section-head"><div class="num">09 — RECURSOS</div><h2>Todo el proyecto, en un mismo lugar.</h2><p>Accesos para presentar el sistema, consultar su documentación y conocer su desarrollo.</p></div>
     <div class="resources">
       <a class="resource" href="https://espiga-pcr.up.railway.app" target="_blank" rel="noopener"><div><b>Sistema en funcionamiento</b><p>Acceder a Espiga publicado en Railway.</p></div><span class="arrow">↗</span></a>
       <a class="resource" href="https://github.com/felooaraujo-ai/Kore" target="_blank" rel="noopener"><div><b>Repositorio GitHub</b><p>Código y archivos del proyecto.</p></div><span class="arrow">↗</span></a>
@@ -198,7 +249,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 </div>
 <footer>
   <div class="container">
-    <div class="footer-grid"><div><div class="footer-brand"><svg viewBox="0 0 120 120" width="40" height="40" aria-hidden="true"><polygon points="43,26 107,26 99,44 35,44" fill="#FBF8F3"/><polygon points="32,51 76,51 68,69 24,69" fill="#E0A458"/><polygon points="21,76 85,76 77,94 13,94" fill="#FBF8F3"/></svg><span>ESPIGA</span></div><p style="margin-top:8px">Sistema de gestión para PCR Amoblamientos.</p></div><div class="footer-links"><a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#funciones">Funciones</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a><a href="#documentacion" onclick="openDoc(); return false;">Documentación</a></div></div>
+    <div class="footer-grid"><div><div class="footer-brand"><svg viewBox="0 0 120 120" width="40" height="40" aria-hidden="true"><polygon points="43,26 107,26 99,44 35,44" fill="#FBF8F3"/><polygon points="32,51 76,51 68,69 24,69" fill="#E0A458"/><polygon points="21,76 85,76 77,94 13,94" fill="#FBF8F3"/></svg><span>ESPIGA</span></div><p style="margin-top:8px">Sistema de gestión para PCR Amoblamientos.</p></div><div class="footer-links"><a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#entrevista">Entrevista</a><a href="#funciones">Funciones</a><a href="#sistema">Sistema</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a><a href="#documentacion" onclick="openDoc(); return false;">Documentación</a></div></div>
     <div class="copyright">PCR Amoblamientos · Villa Bosch · Evaluación de Proyectos · 7mo Informática 2026 · Instituto Leonardo Murialdo · Equipo: Felipe Araujo · Valentina Autelli · Mía Yorio.</div>
   </div>
 </footer>
