@@ -1350,7 +1350,7 @@ WHERE p.estado = 'en_produccion'
 <li><b>Compartir el seguimiento con el cliente.</b> En la ficha del pedido, <i>Copiar link de seguimiento</i> y mandarlo por WhatsApp. El cliente ve, sin usuario ni clave, el estado, la entrega estimada, las fotos y su saldo, y puede activar avisos cuando avanza. (RF23, RF28)</li>
 <li><b>Seguir la producción.</b> En <b>Producción</b>, las tarjetas de los pedidos se arrastran entre columnas (Presupuestado → En producción → Entregado). Cada cambio queda en el historial del pedido con fecha y usuario. Al marcar entregado un pedido sin saldo, se cierra solo. (RF27, RF30)</li>
 <li><b>Fotos, planos y materiales.</b> Subir fotos del mueble a la galería (el cliente también las ve), adjuntar planos o listas de corte (solo PDF, JPG o PNG) y registrar el material usado. Si el material se elige del stock, se descuenta solo de Insumos. (RF07, RF14, RF29, RF31)</li>
-<li><b>Manejar proveedores.</b> Cada proveedor muestra su propio saldo: <b>Le debés</b> o <b>A favor</b>. Dentro de cada proveedor se pueden crear varias <b>cuentas</b> (por ejemplo, una en blanco y otra en negro) con <i>Nueva cuenta</i>; cada una tiene su saldo y sus movimientos: <i>+ Compra / le debés</i> y <i>− Registrar pago</i>. (RF04)</li>
+<li><b>Manejar proveedores.</b> Cada proveedor muestra su propio saldo: <b>Le debés</b> o <b>A favor</b>. Dentro de cada proveedor se pueden crear varias <b>cuentas</b> (por ejemplo, para separar compras por tipo de material o forma de pago) con <i>Nueva cuenta</i>; cada una tiene su saldo y sus movimientos: <i>+ Compra / le debés</i> y <i>− Registrar pago</i>. (RF04)</li>
 <li><b>Controlar el stock.</b> En <b>Insumos</b> se carga cada material con su stock y mínimo, y se registran entradas y salidas. Avisa cuando algo está por agotarse. (RF29)</li>
 <li><b>Revisar alertas y calendario.</b> El calendario muestra todos los pedidos por fecha de entrega. Desde 7 días antes y el mismo día de la entrega, el sistema avisa (también al celular, si están activadas las notificaciones). (RF06, RF21)</li>
 <li><b>Recordatorios de cobro.</b> Lista de clientes con saldo y un mensaje ya redactado para copiar o abrir en WhatsApp. (RF22)</li>
@@ -1402,7 +1402,7 @@ WHERE p.estado = 'en_produccion'
 <dt>¿Cómo sé qué clientes me deben?</dt>
 <dd>La sección Recordatorios lista los clientes con saldo pendiente, ordenados, con el total por cobrar y un mensaje ya redactado listo para copiar o abrir en WhatsApp (RF22).</dd>
 
-<dt>¿Puedo separar la cuenta en blanco y en negro de un mismo proveedor?</dt>
+<dt>¿Puedo separar las cuentas de un mismo proveedor?</dt>
 <dd>Sí. Dentro de cada proveedor se crean las cuentas que hagan falta con <i>Nueva cuenta</i>. Cada cuenta tiene su propio saldo (<b>Le debés</b> o <b>A favor</b>) y sus movimientos, y se ven discriminadas al abrir el proveedor. Los saldos de distintos proveedores no se mezclan en un total.</dd>
 
 <dt>¿El flete se suma al presupuesto?</dt>
