@@ -40,12 +40,16 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 @media(max-width:560px){.problem-cards,.features,.tech-grid{grid-template-columns:1fr}.hero-actions .btn{width:100%}.cta-box{padding:38px 22px}.pillars{grid-template-columns:1fr}}
 
 .doc-modal{position:fixed;inset:0;z-index:1000;background:rgba(36,25,19,.72);backdrop-filter:blur(6px);display:none;padding:18px}.doc-modal.open{display:flex;align-items:center;justify-content:center}.doc-window{width:min(1200px,98vw);height:min(92vh,900px);background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.35);position:relative}.doc-close{position:absolute;right:14px;top:12px;z-index:5;border:0;background:#2d2119;color:#fff;width:42px;height:42px;border-radius:50%;font-size:24px;cursor:pointer}.doc-frame{width:100%;height:100%;border:0}
+
+/* Logo corporativo: emblema de tres tablas + logotipo extendido */
+.logo{gap:12px}.logo .logo-word{font-family:"Inter",system-ui,sans-serif;font-weight:800;letter-spacing:.24em;font-size:1.02rem;color:#2D2119}.footer-brand{display:flex;align-items:center;gap:14px;font-family:"Inter",system-ui,sans-serif;font-weight:800;letter-spacing:.24em;font-size:1.5rem;color:#FBF8F3}
 </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2722%27 fill=%27%232D2119%27/%3E%3Cg transform=%27translate(60 60) scale(0.72) translate(-60 -60)%27%3E%3Cpolygon points=%2743,26 107,26 99,44 35,44%27 fill=%27%23FBF8F3%27/%3E%3Cpolygon points=%2732,51 76,51 68,69 24,69%27 fill=%27%23E0A458%27/%3E%3Cpolygon points=%2721,76 85,76 77,94 13,94%27 fill=%27%23FBF8F3%27/%3E%3C/g%3E%3C/svg%3E">
 </head>
 <body>
 <nav class="nav">
   <div class="container nav-inner">
-    <a class="logo" href="#inicio"><span class="logo-mark">E</span> ESPIGA</a>
+    <a class="logo" href="#inicio" aria-label="Espiga, ir al inicio"><svg class="logo-emb" viewBox="0 0 120 120" width="36" height="36" aria-hidden="true"><polygon points="43,26 107,26 99,44 35,44" fill="#2D2119"/><polygon points="32,51 76,51 68,69 24,69" fill="#C07A24"/><polygon points="21,76 85,76 77,94 13,94" fill="#2D2119"/></svg><span class="logo-word">ESPIGA</span></a>
     <div class="nav-links">
       <a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#funciones">Funciones</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a>
     </div>
@@ -115,10 +119,10 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
     <div class="features">
       <article class="feature"><div class="icon">👥</div><h3>Clientes y cuentas</h3><p>Alta, consulta y gestión de clientes y sus cuentas corrientes.</p></article>
       <article class="feature"><div class="icon">📦</div><h3>Pedidos</h3><p>Creación y seguimiento de pedidos según su estado.</p></article>
-      <article class="feature"><div class="icon">💳</div><h3>Pagos</h3><p>Registro de pagos, comprobantes y consulta de saldos.</p></article>
-      <article class="feature"><div class="icon">🏭</div><h3>Proveedores</h3><p>Control de proveedores y seguimiento de deudas.</p></article>
+      <article class="feature"><div class="icon">💳</div><h3>Pagos</h3><p>Registro de pagos, flete aparte del presupuesto, comprobantes y consulta de saldos.</p></article>
+      <article class="feature"><div class="icon">🏭</div><h3>Proveedores</h3><p>Cada proveedor con sus cuentas y su saldo propio: lo que le debés o lo que queda a favor.</p></article>
       <article class="feature"><div class="icon">📐</div><h3>Archivos técnicos</h3><p>Planos, fotografías y listas de corte asociados a cada pedido.</p></article>
-      <article class="feature"><div class="icon">📅</div><h3>Entregas y alertas</h3><p>Calendario y avisos para entregas próximas, además de recordatorios de cobranza.</p></article>
+      <article class="feature"><div class="icon">📅</div><h3>Entregas y alertas</h3><p>Entregas en días hábiles (saltea fines de semana y feriados), calendario y avisos para entregas próximas, además de recordatorios de cobranza.</p></article>
       <article class="feature"><div class="icon">🔗</div><h3>Seguimiento del cliente</h3><p>Link público por pedido: el cliente ve el estado, la entrega y las fotos, sin usuario ni clave.</p></article>
       <article class="feature"><div class="icon">🗂️</div><h3>Producción (Kanban)</h3><p>Tablero por etapas: se arrastra cada pedido y su estado se actualiza al instante.</p></article>
       <article class="feature"><div class="icon">🧰</div><h3>Stock de insumos</h3><p>Inventario con aviso de bajo stock; el consumo por pedido lo descuenta solo.</p></article>
@@ -134,7 +138,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
     <div class="roles">
       <article class="role"><div class="role-num">01</div><h3>Administrador</h3><ul><li>Gestiona usuarios.</li><li>Administra información general.</li><li>Accede a las funciones de gestión.</li><li>Gestiona copias de seguridad.</li></ul></article>
       <article class="role"><div class="role-num">02</div><h3>Administrativo</h3><ul><li>Gestiona clientes y cuentas corrientes.</li><li>Carga pedidos y archivos técnicos.</li><li>Registra pagos.</li><li>Genera comprobantes y resúmenes.</li></ul></article>
-      <article class="role"><div class="role-num">03</div><h3>Operador</h3><ul><li>Actualiza estados de producción (tablero Kanban).</li><li>Registra materiales y movimientos de stock.</li><li>Consulta pedidos y calendario.</li><li>Recibe notificaciones de entrega.</li></ul></article>
+      <article class="role"><div class="role-num">03</div><h3>Operario</h3><ul><li>Actualiza estados de producción (tablero Kanban).</li><li>Registra materiales y movimientos de stock.</li><li>Consulta pedidos y calendario.</li><li>Recibe notificaciones de entrega.</li></ul></article>
     </div>
   </div>
 </section>
@@ -194,7 +198,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 </div>
 <footer>
   <div class="container">
-    <div class="footer-grid"><div><div class="footer-brand">ESPIGA</div><p style="margin-top:8px">Sistema de gestión para PCR Amoblamientos.</p></div><div class="footer-links"><a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#funciones">Funciones</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a><a href="#documentacion" onclick="openDoc(); return false;">Documentación</a></div></div>
+    <div class="footer-grid"><div><div class="footer-brand"><svg viewBox="0 0 120 120" width="40" height="40" aria-hidden="true"><polygon points="43,26 107,26 99,44 35,44" fill="#FBF8F3"/><polygon points="32,51 76,51 68,69 24,69" fill="#E0A458"/><polygon points="21,76 85,76 77,94 13,94" fill="#FBF8F3"/></svg><span>ESPIGA</span></div><p style="margin-top:8px">Sistema de gestión para PCR Amoblamientos.</p></div><div class="footer-links"><a href="#proyecto">Proyecto</a><a href="#problema">Problema</a><a href="#funciones">Funciones</a><a href="#roles">Usuarios</a><a href="#tecnologia">Tecnología</a><a href="#documentacion" onclick="openDoc(); return false;">Documentación</a></div></div>
     <div class="copyright">PCR Amoblamientos · Villa Bosch · Evaluación de Proyectos · 7mo Informática 2026 · Instituto Leonardo Murialdo · Equipo: Felipe Araujo · Valentina Autelli · Mía Yorio.</div>
   </div>
 </footer>
