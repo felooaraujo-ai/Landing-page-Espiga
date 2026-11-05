@@ -459,11 +459,71 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
   .faq dt{font-weight:700;color:var(--wood-900);margin-top:18px;font-family:var(--serif);}
   .faq dd{margin:6px 0 0;color:var(--ink-soft);}
 </style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* ===== Estilo corporativo Espiga (igual que los PDF de uso) ===== */
+:root{--nogal:#2D2119;--madera:#6F452B;--roble:#8B5E3C;--ambar:#C07A24;--ambar-l:#E0A458;--arena:#EADBC7;--crema:#FBF8F3;--linea:#E3D6C4;
+  --serif:Inter,"Helvetica Neue",Arial,sans-serif;--sans:Inter,"Helvetica Neue",Arial,sans-serif;--wood-900:#2D2119;--wood-800:#2D2119;--wood-700:#6F452B;--wood-500:#C07A24;--wood-300:#EADBC7;--line:#E3D6C4;--sawdust:#FBF8F3;--ink:#2D2119;--ink-soft:#5A3B25;}
+body{background:#FFFFFF;color:var(--nogal);font-family:var(--sans);font-size:15px;}
+h1,h2,h3,h4,h5{font-family:var(--sans);color:var(--nogal);letter-spacing:-.01em;}
+.hero{background:var(--nogal);border-bottom:4px solid var(--ambar);padding:44px 24px 36px;}
+.hero .brand{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+.hero .brand span{font-weight:800;letter-spacing:.22em;font-size:1.1rem;color:#FBF8F3;}
+.hero .kicker{font-family:var(--sans);font-style:normal;text-transform:uppercase;letter-spacing:.2em;font-size:.74rem;font-weight:700;color:var(--ambar-l);}
+.hero h1{font-weight:800;font-size:2.3rem;letter-spacing:-.02em;}
+.hero .meta{color:var(--arena);}
+.toc{background:#FFFFFF;border:1px solid var(--linea);border-radius:3px;margin:-22px auto 34px;}
+.toc h2{font-size:.74rem;text-transform:uppercase;letter-spacing:.2em;color:var(--roble);}
+section > h2{font-size:1.55rem;font-weight:800;border-bottom:none;border-top:2px solid var(--nogal);padding:12px 0 0;}
+h3{font-size:1.18rem;font-weight:800;color:var(--nogal);}
+h4{font-size:1rem;font-weight:700;color:var(--madera);}
+.lede{color:#4A3020;}
+th{background:var(--nogal);color:#FBF8F3;font-weight:600;border-color:var(--nogal);}
+th,td{border-color:var(--linea);}
+tr:nth-child(even) td{background:var(--crema);}
+.tag{border-radius:2px;letter-spacing:.04em;}
+.tag-alta{background:#F3DED0;color:#7A3B12;}.tag-media{background:#F6E9D5;color:#7A4A10;}.tag-baja{background:#E6EFE6;color:#2F5D3A;}
+.note{background:#FBF4E8;border:1px solid var(--arena);border-left:1px solid var(--arena);border-radius:3px;color:#4A3020;}
+.note b{color:var(--nogal);}
+pre{background:var(--nogal);border-radius:3px;}
+.card,.member,.okr,.minuta,.removed{border-radius:3px;border-color:var(--linea);}
+.okr{border-left:1px solid var(--linea);border-top:3px solid var(--ambar);}
+.minuta .mh{background:var(--nogal);font-family:var(--sans);}
+.minuta .mk{background:var(--crema);color:var(--madera);}
+.carril h5{background:var(--nogal);}
+.central{background:var(--nogal);border-radius:3px;}
+.arbol-flujo{font-family:var(--sans);background:var(--crema);border-radius:3px;}
+.flow li::before{background:var(--nogal);}
+.flow li{border-left-color:var(--arena);}
+.faq dt{font-family:var(--sans);color:var(--nogal);}
+.m-photo{background:var(--arena);border-color:var(--ambar);}
+footer{background:var(--nogal);color:var(--arena);}
+/* ===== Impresión / PDF: texto de corrido, sin hojas medio vacías ===== */
+@page{size:A4;margin:16mm 15mm 18mm;
+  @bottom-left{content:"Espiga · Documentación del proyecto";font-family:Inter,sans-serif;font-size:8pt;color:#6F452B;}
+  @bottom-right{content:"Página " counter(page) " de " counter(pages);font-family:Inter,sans-serif;font-size:8pt;color:#6F452B;}}
+@media print{
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:12.5px;}
+  .wrap{max-width:none;padding:0 0 20px;}
+  .hero{padding:30px 26px 24px;}
+  .toc{margin:16px 0 18px;}
+  section{margin-top:26px;break-before:auto;}
+  h2,h3,h4{break-after:avoid;}
+  h1,h2,h3,h4{margin-top:1.2em;}
+  table{break-inside:auto;} thead{display:table-header-group;} tr,td,th{break-inside:avoid;}
+  .card,.member,.note,.okr,.minuta .mrow,.faq dt{break-inside:avoid;}
+  pre{white-space:pre-wrap;font-size:.74rem;break-inside:auto;}
+  .todo{display:none !important;}
+  footer{margin-top:24px;}
+}
+</style>
 </head>
 <body>
 
 <header class="hero">
   <div class="hero-inner">
+    <div class="brand"><svg viewBox="0 0 120 120" width="38" height="38" aria-hidden="true"><polygon points="43,26 107,26 99,44 35,44" fill="#FBF8F3"/><polygon points="32,51 76,51 68,69 24,69" fill="#E0A458"/><polygon points="21,76 85,76 77,94 13,94" fill="#FBF8F3"/></svg><span>ESPIGA</span></div>
     <p class="kicker">Carpeta del Proyecto · Documentación</p>
     <h1>Espiga · Sistema de gestión para PCR Amoblamientos</h1>
     <p>Documentación técnica, operativa y económica del proyecto. Sistema web para gestionar clientes con cuenta corriente automática, proveedores, pedidos, archivos técnicos, cobranzas y entregas de un taller de muebles a medida, publicado en la nube y accesible desde cualquier dispositivo.</p>
@@ -509,18 +569,21 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <table>
 <thead><tr><th>Versión</th><th>Fecha</th><th>Responsable</th><th>Detalle del cambio</th></tr></thead>
 <tbody>
-<tr><td>0.1</td><td>Pendiente</td><td>Equipo</td><td>Versión inicial a partir del documento de análisis (mockup, roles, diagrama entidad-relación y diagrama de actividades).</td></tr>
-<tr><td>0.2</td><td>Pendiente</td><td>Equipo</td><td>Arquitectura de 3 perfiles (administrador, administrativo, operario) y cobertura completa de RF01 a RF11.</td></tr>
-<tr><td>0.3</td><td>Pendiente</td><td>Equipo</td><td>Se quitaron los usuarios y claves de ejemplo de la pantalla de login, por ser un hueco de seguridad detectado durante el desarrollo.</td></tr>
-<tr><td>0.4</td><td>Pendiente</td><td>Equipo</td><td>Alta de recuperación de contraseña por email (RF09). Queda pausada hasta obtener el email real del administrador.</td></tr>
-<tr><td>0.5</td><td>Pendiente</td><td>Equipo</td><td>Publicación del sistema en Railway y alta de subida real de archivos (RF07) con almacenamiento persistente.</td></tr>
-<tr><td>0.6</td><td>Pendiente</td><td>Equipo</td><td>Cambio de dominio público a <code>espiga-pcr.up.railway.app</code> por uno más prolijo para presentar al cliente.</td></tr>
-<tr><td>0.7</td><td>Pendiente</td><td>Equipo</td><td>Alta de RF12 a RF17: comprobantes al cliente, resumen de cuenta en PDF, consumo de materiales, buscador y filtros, app instalable (PWA) y notificaciones push de alertas.</td></tr>
-<tr><td>0.8</td><td>Pendiente</td><td>Equipo</td><td>Alta de RF18 a RF22: backup automático, presupuesto en PDF, estadísticas, calendario de entregas y recordatorios de cobranza. Modelo de datos normalizado a 3FN.</td></tr>
-<tr><td>0.9</td><td>Pendiente</td><td>Equipo</td><td>Rediseño estético de toda la interfaz manteniendo la identidad madera del taller.</td></tr>
+<tr><td>0.1</td><td>10/05/2026</td><td>Valentina Autelli · Mía Yorio</td><td>Versión inicial a partir del documento de análisis (mockup, roles, diagrama entidad-relación y diagrama de actividades).</td></tr>
+<tr><td>0.2</td><td>28/08/2026</td><td>Felipe Araujo</td><td>Arquitectura de 3 perfiles (administrador, administrativo, operario) y cobertura completa de RF01 a RF11.</td></tr>
+<tr><td>0.3</td><td>04/09/2026</td><td>Felipe Araujo</td><td>Se quitaron los usuarios y claves de ejemplo de la pantalla de login, por ser un hueco de seguridad detectado durante el desarrollo.</td></tr>
+<tr><td>0.4</td><td>04/09/2026</td><td>Felipe Araujo</td><td>Alta de recuperación de contraseña por email (RF09). Queda pausada hasta obtener el email real del administrador.</td></tr>
+<tr><td>0.5</td><td>07/09/2026</td><td>Felipe Araujo</td><td>Publicación del sistema en Railway y alta de subida real de archivos (RF07) con almacenamiento persistente.</td></tr>
+<tr><td>0.6</td><td>11/09/2026</td><td>Felipe Araujo</td><td>Cambio de dominio público a <code>espiga-pcr.up.railway.app</code> por uno más prolijo para presentar al cliente.</td></tr>
+<tr><td>0.7</td><td>18/09/2026</td><td>Felipe Araujo</td><td>Alta de RF12 a RF17: comprobantes al cliente, resumen de cuenta en PDF, consumo de materiales, buscador y filtros, app instalable (PWA) y notificaciones push de alertas.</td></tr>
+<tr><td>0.8</td><td>25/09/2026</td><td>Felipe Araujo</td><td>Alta de RF18 a RF22: backup automático, presupuesto en PDF, estadísticas, calendario de entregas y recordatorios de cobranza. Modelo de datos normalizado a 3FN.</td></tr>
+<tr><td>0.9</td><td>02/10/2026</td><td>Felipe Araujo</td><td>Rediseño estético de toda la interfaz manteniendo la identidad madera del taller.</td></tr>
+<tr><td>1.0</td><td>02/10/2026</td><td>Felipe Araujo</td><td>Alta de RF23 a RF33: seguimiento del pedido para el cliente, presupuesto por ítems con QR, Excel, historial de estados, aviso push al cliente, stock de insumos, tablero Kanban, galería de fotos, dashboard, flujo de caja, backup por mail y modo oscuro. Se activa la recuperación de clave por email (RF09). Modelo de datos: 16 tablas.</td></tr>
+<tr><td>1.1</td><td>05/10/2026</td><td>Felipe Araujo</td><td>Alta de RF34 a RF37, pedidos por el cliente: varias cuentas por proveedor con saldo propio, flete aparte del presupuesto, entrega en días hábiles con feriados y saldos de proveedores por separado en el panel. Modelo de datos: 18 tablas.</td></tr>
+<tr><td>1.2</td><td>21/10/2026</td><td>Felipe Araujo</td><td>Alta de RF38: puesta en marcha con datos reales (se quitan los datos de ejemplo, con backup previo). Se actualizan la Guía de inicio rápido y las Preguntas frecuentes.</td></tr>
+<tr><td>1.3</td><td>05/11/2026</td><td>Felipe Araujo</td><td>Documentación al día y publicada en PDF; identidad corporativa y pieza visual para la Expo; responsables, fechas y costos cargados.</td></tr>
 </tbody>
 </table>
-<div class="todo"><b>A completar por el equipo:</b> cargar las fechas y versiones definitivas a medida que el proyecto avanza. Mantener una fila por cada cambio de alcance validado con el cliente.</div>
 </section>
 
 <!-- ===================== 2 ===================== -->
@@ -567,7 +630,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 </table>
 
 <h3>Árbol de soluciones</h3>
-<div class="central" style="background:var(--ok)">Objetivo central: darle a PCR Amoblamientos una <b>gestión centralizada y confiable</b> de clientes, pedidos, pagos, proveedores y entregas, con saldos calculados solos y toda la información en un único lugar accesible desde cualquier dispositivo.</div>
+<div class="central" style="background:#6F452B">Objetivo central: darle a PCR Amoblamientos una <b>gestión centralizada y confiable</b> de clientes, pedidos, pagos, proveedores y entregas, con saldos calculados solos y toda la información en un único lugar accesible desde cualquier dispositivo.</div>
 <p>Cada <b>medio</b> neutraliza una causa identificada más arriba y se convierte después en uno o varios requerimientos.</p>
 <table>
 <thead><tr><th>Medio</th><th>Causa que neutraliza</th></tr></thead>
@@ -636,15 +699,13 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <table>
 <thead><tr><th>Rol</th><th>Responsabilidad principal</th><th>Integrante</th></tr></thead>
 <tbody>
-<tr><td><b>Project Manager (PM)</b></td><td>Planificación temporal (GANTT), control de alcance y relación con el cliente.</td><td>A completar</td></tr>
-<tr><td><b>Backend / BD</b></td><td>Servidor Node.js + Express, base de datos MySQL, API REST, despliegue.</td><td>A completar</td></tr>
-<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz web, mockup y validación de la interfaz con el usuario.</td><td>A completar</td></tr>
-<tr><td><b>Documentación / QA</b></td><td>Documentación técnica y de usuario, pruebas y control de calidad.</td><td>A completar</td></tr>
+<tr><td><b>Project Manager (PM)</b></td><td>Planificación temporal (GANTT), control de alcance y relación con el cliente.</td><td>Valentina Autelli</td></tr>
+<tr><td><b>Backend / BD</b></td><td>Servidor Node.js + Express, base de datos MySQL, API REST, despliegue.</td><td>Felipe Araujo</td></tr>
+<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz web, mockup y validación de la interfaz con el usuario.</td><td>Felipe Araujo</td></tr>
+<tr><td><b>Documentación / QA</b></td><td>Documentación técnica y de usuario, pruebas y control de calidad.</td><td>Mía Yorio</td></tr>
 <tr><td><b>Cliente</b></td><td>Valida requerimientos, prioriza y firma el contrato.</td><td>Rodrigo Pasut (PCR Amoblamientos)</td></tr>
 </tbody>
 </table>
-<div class="todo"><b>A completar por el equipo:</b> asignar a Felipe, Valentina y Mía el rol principal que cumplió cada uno (aunque en la práctica el trabajo fue compartido de forma flexible, sin roles fijos).</div>
-
 <h3 id="s3-4">3.4. Definiciones, acrónimos y abreviaturas</h3>
 <table>
 <thead><tr><th>Término</th><th>Definición</th></tr></thead>
@@ -799,6 +860,11 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <tr><td>RF31</td><td><b>Galería de fotos del mueble.</b> Visibles también en el seguimiento.</td><td><span class="tag tag-baja">Baja</span></td><td>Mostrar el avance</td></tr>
 <tr><td>RF32</td><td><b>Dashboard con gráficos.</b> Cobrado por mes, pedidos por estado y mejores clientes.</td><td><span class="tag tag-baja">Baja</span></td><td>Decidir con datos</td></tr>
 <tr><td>RF33</td><td><b>Flujo de caja, backup por mail y modo oscuro.</b> Entradas vs. salidas, copia por email y tema oscuro.</td><td><span class="tag tag-baja">Baja</span></td><td>Control y comodidad</td></tr>
+<tr><td>RF34</td><td><b>Cuentas por proveedor.</b> Varias cuentas por proveedor, cada una con su saldo (le debés / a favor) y sus movimientos de compras y pagos.</td><td><span class="tag tag-media">Media</span></td><td>Separar compras del mismo proveedor</td></tr>
+<tr><td>RF35</td><td><b>Flete aparte del presupuesto.</b> Se carga el día de la entrega y se suma al total a cobrar como línea separada.</td><td><span class="tag tag-media">Media</span></td><td>Cobrar el flete sin mezclarlo</td></tr>
+<tr><td>RF36</td><td><b>Entrega en días hábiles.</b> Calcula la fecha salteando fines de semana y feriados nacionales; avisa desde 7 días antes y el mismo día.</td><td><span class="tag tag-media">Media</span></td><td>Plazos de 45 a 65 días hábiles</td></tr>
+<tr><td>RF37</td><td><b>Saldos de proveedores por separado.</b> El panel muestra cada proveedor con su saldo, sin sumarlos en un total.</td><td><span class="tag tag-baja">Baja</span></td><td>No mezclar cuentas</td></tr>
+<tr><td>RF38</td><td><b>Puesta en marcha.</b> El administrador quita los datos de ejemplo de fábrica, con un backup previo, sin tocar lo cargado desde la app.</td><td><span class="tag tag-baja">Baja</span></td><td>Arrancar con datos reales</td></tr>
 </tbody>
 </table>
 
@@ -895,6 +961,7 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <tr><td><b>PAGO</b></td><td>Un pago de un cliente sobre un pedido, en una fecha.</td><td><code>monto</code>, sumable. Es la base del saldo.</td><td>Alto. Crece con cada cobro.</td></tr>
 <tr><td><b>FACTURA_CLIENTE</b></td><td>Un comprobante emitido por un pedido.</td><td><code>monto</code>, sumable.</td><td>Medio.</td></tr>
 <tr><td><b>FACTURA_PROVEEDOR</b></td><td>Una factura recibida de un proveedor.</td><td><code>monto</code> y <code>pagado</code>; la deuda es su resta.</td><td>Medio.</td></tr>
+<tr><td><b>PROVEEDOR_MOVIMIENTO</b></td><td>Una compra o un pago en una cuenta de proveedor.</td><td><code>monto</code>, sumable con signo según el tipo. Es la base del saldo con proveedores.</td><td>Medio. Crece con cada compra y pago.</td></tr>
 <tr><td><b>MATERIAL</b></td><td>Un material consumido en un pedido.</td><td>Ninguna numérica sumable (cantidad como texto).</td><td>Medio.</td></tr>
 </tbody>
 </table>
@@ -902,19 +969,19 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <div class="cards">
 <div class="card"><h4>Quién</h4><p><b>CLIENTE</b> y <b>USUARIO</b>: de quién es el pedido y quién cargó el pago.</p></div>
 <div class="card"><h4>Qué trabajo</h4><p><b>PEDIDO</b>, con <b>ADJUNTO</b> como detalle de sus archivos.</p></div>
-<div class="card"><h4>A quién se le compra</h4><p><b>PROVEEDOR</b>: origen de las facturas recibidas.</p></div>
+<div class="card"><h4>A quién se le compra</h4><p><b>PROVEEDOR</b> y <b>PROVEEDOR_CUENTA</b>: origen de las compras y cuenta en la que se registran.</p></div>
 <div class="card"><h4>A qué dispositivo</h4><p><b>PUSH_SUSCRIPCION</b>: dónde recibe las notificaciones cada usuario.</p></div>
 </div>
 <p><b>Cuándo:</b> no hay tabla de tiempo. El tiempo vive en las columnas <code>fecha</code> de cada hecho. Un modelo en estrella agregaría una dimensión <code>tiempo</code> con año, mes y día de semana; acá el agrupamiento por mes de las estadísticas se resuelve con <code>DATE_FORMAT</code> en la consulta.</p>
 <div class="note"><b>Se ve en las estadísticas (RF20).</b> El "cobrado por mes" es el hecho PAGO agregado por la dimensión tiempo; los "mejores clientes" son PAGO agregado por la dimensión CLIENTE. Identificar los roles es lo que hace que esas consultas se lean solas.</div>
 
 <h3>Entidades</h3>
-<p>El núcleo del modelo tiene diez tablas. La <b>versión 1.0</b> sumó seis tablas más (mismo criterio 3FN): <b>dieciséis en total</b>. Las nuevas se detallan a continuación y en el esquema relacional.</p>
+<p>El núcleo del modelo tiene diez tablas. La <b>versión 1.0</b> sumó seis tablas y la <b>1.1</b> dos más (mismo criterio 3FN): <b>dieciocho en total</b>. Las nuevas se detallan a continuación y en el esquema relacional.</p>
 <div class="cards">
 <div class="card"><h4>USUARIO</h4><p>Personas con acceso (Rodrigo, Ana, Facu y quien se sume). El rol es un ENUM propio, no una tabla. Incluye email y datos de recuperación de clave.</p></div>
 <div class="card"><h4>CLIENTE</h4><p>Clientes del taller, con su contacto. Eje de la cuenta corriente.</p></div>
 <div class="card"><h4>PROVEEDOR</h4><p>Madereras y demás proveedores. Eje de las deudas.</p></div>
-<div class="card"><h4>PEDIDO</h4><p>Un pedido de un cliente, con presupuesto, estado y fecha de entrega comprometida.</p></div>
+<div class="card"><h4>PEDIDO</h4><p>Un pedido de un cliente, con presupuesto, flete aparte, estado y fecha de entrega (exacta o en días hábiles).</p></div>
 <div class="card"><h4>PAGO <span class="tag tag-alta">hecho</span></h4><p>Cada pago de un cliente sobre un pedido. De la resta contra el presupuesto sale el saldo. Es la tabla de mayor volumen.</p></div>
 <div class="card"><h4>MATERIAL</h4><p>Consumo de materiales registrado en un pedido: descripción y cantidad.</p></div>
 <div class="card"><h4>ADJUNTO</h4><p>Plano, foto o lista de corte de un pedido, guardado en el volumen persistente.</p></div>
@@ -927,6 +994,8 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <div class="card"><h4>INSUMO <span class="tag tag-media">v1.0</span></h4><p>Material del depósito con stock actual y mínimo.</p></div>
 <div class="card"><h4>INSUMO_MOVIMIENTO <span class="tag tag-media">v1.0</span></h4><p>Entradas y salidas de stock de un insumo.</p></div>
 <div class="card"><h4>PUSH_SEGUIMIENTO <span class="tag tag-media">v1.0</span></h4><p>Suscripción push del cliente a un pedido, desde su link.</p></div>
+<div class="card"><h4>PROVEEDOR_CUENTA <span class="tag tag-media">v1.1</span></h4><p>Cada cuenta de un proveedor. Todo proveedor arranca con una cuenta «General».</p></div>
+<div class="card"><h4>PROVEEDOR_MOVIMIENTO <span class="tag tag-alta">hecho</span> <span class="tag tag-media">v1.1</span></h4><p>Compras y pagos de una cuenta. Su suma con signo da el saldo: le debés o a favor.</p></div>
 </div>
 
 <h3>Relaciones</h3>
@@ -946,6 +1015,8 @@ footer{background:#241913;color:#d8c8b9;padding:45px 0}.footer-grid{display:grid
 <tr><td>PEDIDO</td><td>1 : N</td><td>PEDIDO_FOTO</td><td>Un pedido tiene varias fotos. <span class="tag tag-media">v1.0</span></td></tr>
 <tr><td>PEDIDO</td><td>1 : N</td><td>PEDIDO_ESTADO_HISTORIAL</td><td>Un pedido acumula sus cambios de estado. <span class="tag tag-media">v1.0</span></td></tr>
 <tr><td>INSUMO</td><td>1 : N</td><td>INSUMO_MOVIMIENTO</td><td>Un insumo acumula entradas y salidas. <span class="tag tag-media">v1.0</span></td></tr>
+<tr><td>PROVEEDOR</td><td>1 : N</td><td>PROVEEDOR_CUENTA</td><td>Un proveedor puede tener varias cuentas. <span class="tag tag-media">v1.1</span></td></tr>
+<tr><td>PROVEEDOR_CUENTA</td><td>1 : N</td><td>PROVEEDOR_MOVIMIENTO</td><td>Una cuenta acumula compras y pagos. <span class="tag tag-media">v1.1</span></td></tr>
 </tbody>
 </table>
 
@@ -984,7 +1055,10 @@ CREATE TABLE pedido (
   cliente_id    INT NOT NULL REFERENCES cliente(id),
   descripcion   VARCHAR(255) NOT NULL,
   presupuesto   DECIMAL(12,2) NOT NULL DEFAULT 0,
+  flete         DECIMAL(12,2) NOT NULL DEFAULT 0,      -- aparte del presupuesto (RF35)
   fecha_entrega DATE,
+  dias_habiles  INT,                                   -- plazo en dias habiles (RF36)
+  fecha_inicio_conteo DATE,
   estado        ENUM('presupuestado','en_produccion','entregado','cerrado','no_concretado')
                 NOT NULL DEFAULT 'presupuestado'
 );
@@ -1080,21 +1154,42 @@ CREATE TABLE push_seguimiento (
   endpoint VARCHAR(500) NOT NULL UNIQUE, p256dh VARCHAR(255) NOT NULL, auth VARCHAR(255) NOT NULL
 );
 
+-- ══════════ VERSION 1.1 (cuentas por proveedor, RF34) ══════════
+CREATE TABLE proveedor_cuenta (
+  id INT AUTO_INCREMENT PRIMARY KEY, proveedor_id INT NOT NULL REFERENCES proveedor(id),
+  nombre VARCHAR(80) NOT NULL, activo TINYINT(1) NOT NULL DEFAULT 1
+);
+CREATE TABLE proveedor_movimiento (
+  id INT AUTO_INCREMENT PRIMARY KEY, cuenta_id INT NOT NULL REFERENCES proveedor_cuenta(id),
+  fecha DATE NOT NULL, tipo ENUM('cargo','pago') NOT NULL,   -- cargo = compra, pago = pago
+  monto DECIMAL(12,2) NOT NULL, detalle VARCHAR(150), usuario_id INT REFERENCES usuario(id)
+);
+
 -- ══════════ VISTAS (datos derivados, no almacenados) ══════════
 
--- Saldo de cada pedido = presupuesto - suma de pagos
+-- Saldo de cada pedido = (presupuesto + flete) - suma de pagos
 CREATE VIEW v_saldo_pedido AS
-SELECT p.id AS pedido_id, p.cliente_id, p.presupuesto,
+SELECT p.id AS pedido_id, p.cliente_id, p.presupuesto, p.flete,
+       p.presupuesto + p.flete AS total_a_cobrar,
        COALESCE(SUM(pg.monto),0) AS total_pagado,
-       p.presupuesto - COALESCE(SUM(pg.monto),0) AS saldo
+       p.presupuesto + p.flete - COALESCE(SUM(pg.monto),0) AS saldo
 FROM pedido p LEFT JOIN pago pg ON pg.pedido_id = p.id
-GROUP BY p.id, p.cliente_id, p.presupuesto;
+GROUP BY p.id, p.cliente_id, p.presupuesto, p.flete;
 
--- Deuda con cada proveedor = suma (monto - pagado) de sus facturas
+-- Saldo de cada cuenta de proveedor = compras - pagos (positivo: le debes; negativo: a favor)
+CREATE VIEW v_deuda_proveedor_cuenta AS
+SELECT cu.id AS cuenta_id, cu.proveedor_id, cu.nombre AS cuenta,
+       COALESCE(SUM(CASE WHEN m.tipo = 'cargo' THEN m.monto ELSE -m.monto END),0) AS saldo
+FROM proveedor_cuenta cu LEFT JOIN proveedor_movimiento m ON m.cuenta_id = cu.id
+GROUP BY cu.id, cu.proveedor_id, cu.nombre;
+
+-- Deuda con cada proveedor = suma de los saldos de sus cuentas
 CREATE VIEW v_deuda_proveedor AS
 SELECT pr.id AS proveedor_id, pr.nombre,
-       COALESCE(SUM(fp.monto - fp.pagado),0) AS deuda
-FROM proveedor pr LEFT JOIN factura_proveedor fp ON fp.proveedor_id = pr.id
+       COALESCE(SUM(CASE WHEN m.tipo = 'cargo' THEN m.monto ELSE -m.monto END),0) AS deuda
+FROM proveedor pr
+LEFT JOIN proveedor_cuenta cu ON cu.proveedor_id = pr.id AND cu.activo = 1
+LEFT JOIN proveedor_movimiento m ON m.cuenta_id = cu.id
 GROUP BY pr.id, pr.nombre;
 
 -- Alertas de entrega (RF06): pedidos en produccion a 7 dias o menos
@@ -1149,20 +1244,18 @@ WHERE p.estado = 'en_produccion'
 <h2>6. Oferta de Gestión</h2>
 
 <h3 id="s6-1">6.1. GANTT</h3>
-<p class="lede">Cronograma de tareas, responsables, duración estimada y horas de esfuerzo, organizado por las cinco fases del proyecto. El GANTT se lleva en una planilla de cálculo y se actualiza a medida que avanza el proyecto.</p>
+<p class="lede">Cronograma real del proyecto, del 20 de abril al 3 de noviembre de 2026, con defensa final la primera semana de noviembre. Las fechas, responsables y horas de cada tarea están en la planilla <code>Gantt_Espiga.xlsx</code>.</p>
 <table>
-<thead><tr><th>Fase</th><th>Semanas</th><th>Tareas principales</th><th>Entregable</th></tr></thead>
+<thead><tr><th>Fase</th><th>Fechas</th><th>Tareas principales</th><th>Responsable</th></tr></thead>
 <tbody>
-<tr><td><b>1 · Ingeniería de Requerimientos</b></td><td>S1–S5</td><td>Relevamiento del problema, entrevista con Rodrigo, definición de alcance y redacción de la ERS.</td><td>Línea de base aprobada + ERS.</td></tr>
-<tr><td><b>2 · Arquitectura y Diseño de Datos</b></td><td>S6–S11</td><td>Modelo entidad-relación, normalización 3FN, diseño de interfaz y setup del entorno (GitHub, stack).</td><td>Plan de diseño + repositorio.</td></tr>
-<tr><td><b>3 · Construcción Core</b></td><td>S12–S20</td><td>Base de datos, backend, módulos de clientes, proveedores, pedidos, archivos y panel.</td><td>Prototipo funcional (alpha).</td></tr>
-<tr><td><b>4 · Aseguramiento de Calidad</b></td><td>S21–S24</td><td>Pruebas, integración, debugging y optimización.</td><td>Software certificado (beta).</td></tr>
-<tr><td><b>5 · Despliegue y Cierre</b></td><td>S25–S28</td><td>Publicación en Railway, mejoras finales (backup, PDF, estadísticas, calendario), documentación y defensa.</td><td>Proyecto entregado y defendido.</td></tr>
+<tr><td><b>1 · Análisis y mockup</b></td><td>20/04 – 10/05/2026</td><td>Análisis del taller, diagrama entidad-relación y de actividades, mockup navegable y matriz de permisos por rol.</td><td>Valentina Autelli · Mía Yorio (matriz de permisos: Felipe Araujo)</td></tr>
+<tr><td><b>2 · Base de datos y backend</b></td><td>03/08 – 28/08/2026</td><td>Modelo MySQL en 3FN, vistas de saldo y triggers, API REST, autenticación y permisos por rol.</td><td>Felipe Araujo</td></tr>
+<tr><td><b>3 · Frontend conectado</b></td><td>28/08 – 11/09/2026</td><td>Conexión a la API, clientes y pagos, proveedores y pedidos, panel, alertas y usuarios.</td><td>Felipe Araujo</td></tr>
+<tr><td><b>4 · Publicación</b></td><td>31/08 – 25/09/2026</td><td>Repositorio GitHub, base de datos en Railway, deploy y dominio, volumen persistente y pruebas en producción.</td><td>Felipe Araujo</td></tr>
+<tr><td><b>5 · Mejoras, documentación y cierre</b></td><td>07/09 – 03/11/2026</td><td>Mejoras (RF12 a RF38), app instalable, rediseño, documentación, auditoría de cierre y simulación de defensa.</td><td>Felipe Araujo (mejoras) · Valentina Autelli y Mía Yorio (documentación) · Equipo (cierre)</td></tr>
 </tbody>
 </table>
 <div class="note"><b>Planilla de cronograma.</b> El detalle completo (tareas, responsables, fechas reales, % de cumplimiento y estado) se lleva en la planilla de cálculo del equipo, entregada junto a esta documentación como <code>Gantt_Espiga.xlsx</code>, con barras por semana y hitos por fase.</div>
-<div class="todo"><b>Entregable del equipo:</b> reemplazar por el link a la planilla propia (Google Sheets o el Excel entregado), con las fechas y responsables reales.</div>
-
 <h3 id="s6-2">6.2. Infraestructura administrativa <small style="font-weight:normal;color:var(--ink-soft)">Buenas Prácticas UTN p.62</small></h3>
 <p>Organización interna del equipo y herramientas de trabajo. Siguiendo el esquema del libro UTN, el equipo se organiza en un grupo de dirección/gestión y un grupo de desarrollo, adaptado a la escala del proyecto de 7mo.</p>
 <table>
@@ -1177,11 +1270,11 @@ WHERE p.estado = 'en_produccion'
 
 <h4>El equipo</h4>
 <div class="team">
-  <div class="member"><span class="m-photo"></span><b>Felipe Araujo</b><span>Backend / BD / Despliegue</span></div>
-  <div class="member"><span class="m-photo"></span><b>Valentina Autelli</b><span>Frontend / UX-UI</span></div>
+  <div class="member"><span class="m-photo"></span><b>Felipe Araujo</b><span>Backend / BD · Frontend / UX-UI · Despliegue</span></div>
+  <div class="member"><span class="m-photo"></span><b>Valentina Autelli</b><span>Project Manager</span></div>
   <div class="member"><span class="m-photo"></span><b>Mía Yorio</b><span>Documentación / QA</span></div>
 </div>
-<div class="todo"><b>Entregable del equipo:</b> reemplazar cada <code>&lt;span class="m-photo"&gt;</code> por una foto de perfil de estilo profesional (fondo neutro, encuadre de busto, misma proporción). Confirmar el rol principal de cada integrante — en la práctica el trabajo fue compartido de forma flexible.</div>
+<div class="todo"><b>Entregable del equipo:</b> reemplazar cada <code>&lt;span class="m-photo"&gt;</code> por una foto de perfil de estilo profesional (fondo neutro, encuadre de busto, misma proporción).</div>
 
 <table style="margin-top:20px">
 <thead><tr><th>Área</th><th>Herramienta</th></tr></thead>
@@ -1204,11 +1297,11 @@ WHERE p.estado = 'en_produccion'
 <table>
 <thead><tr><th>Ítem</th><th>Detalle</th><th>Costo</th></tr></thead>
 <tbody>
-<tr><td>Hosting del backend + frontend</td><td>Railway (plan usado para el despliegue de producción).</td><td>A cotizar</td></tr>
-<tr><td>Base de datos MySQL</td><td>Servicio de base de datos en Railway.</td><td>A cotizar</td></tr>
-<tr><td>Almacenamiento persistente</td><td>Volumen de Railway para archivos y backups.</td><td>A cotizar</td></tr>
-<tr><td>Dominio propio (opcional)</td><td>Reemplazar el subdominio gratuito por uno propio del taller.</td><td>A cotizar</td></tr>
-<tr><td>Servicio de envío de emails (opcional)</td><td>Necesario para activar la recuperación de contraseña (RF09).</td><td>A cotizar</td></tr>
+<tr><td>Hosting, base de datos y almacenamiento</td><td>Railway: backend + frontend, MySQL y volumen persistente para archivos y backups.</td><td>2,50 USD / mes</td></tr>
+<tr><td>Asistente de desarrollo con IA</td><td>Claude, usado durante el desarrollo y la documentación.</td><td>20,00 USD / mes</td></tr>
+<tr><td>Envío de emails</td><td>Recuperación de clave y backups por mail (Brevo).</td><td>Sin costo</td></tr>
+<tr><td>Dominio propio (opcional)</td><td>No incluido: se usa el subdominio <code>espiga-pcr.up.railway.app</code>.</td><td>No incluido</td></tr>
+<tr><td><b>Total mensual</b></td><td>Costo externo mientras dura el desarrollo.</td><td><b>22,50 USD / mes</b></td></tr>
 </tbody>
 </table>
 <div class="note">El estudio ya cuenta con PC, celulares e internet, por lo que no se cotiza el equipamiento del cliente. El software es todo de código abierto, sin costo de licencia.</div>
@@ -1220,17 +1313,17 @@ WHERE p.estado = 'en_produccion'
 <p class="lede">Presupuesto total del proyecto. Suma el costo de infraestructura (sección 7) más el esfuerzo en <b>horas hombre</b>, diferenciado por categoría profesional y su costo por hora (transparencia en el esfuerzo, según los Lineamientos 2026).</p>
 
 <h3>8.1. Horas hombre por categoría</h3>
-<p>Estimación de esfuerzo por fase y por categoría. Las horas son una estimación del equipo para las 28 semanas del cronograma; el costo por hora se completa con el valor de referencia acordado.</p>
+<p>Estimación de esfuerzo por fase y por categoría. Las horas son una estimación del equipo para las 28 semanas del cronograma; el costo de referencia es de 5 USD por hora hombre.</p>
 <table>
 <thead><tr><th>Categoría</th><th>Tareas</th><th>Horas estim.</th><th>$/hora</th><th>Subtotal</th></tr></thead>
 <tbody>
-<tr><td><b>Análisis y diseño</b></td><td>Relevamiento, ERS, modelo de datos, normalización.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>Backend / Base de datos</b></td><td>API, lógica, vistas, triggers, seguimiento, stock, ítems, push, mails, PDF/QR, seguridad.</td><td>176 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz, API, rediseño, PWA, modo oscuro, Kanban, dashboard, galería.</td><td>168 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>QA / Pruebas</b></td><td>Pruebas, debugging, verificación en producción.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>Documentación</b></td><td>Manual de usuario, técnico, esta carpeta de proyecto.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td><b>Gestión (PM)</b></td><td>Coordinación, relación con el cliente, planificación.</td><td>40 h</td><td>A completar</td><td>Pendiente</td></tr>
-<tr><td colspan="2" style="text-align:right"><b>Total horas</b></td><td><b>508 h</b></td><td></td><td><b>A completar</b></td></tr>
+<tr><td><b>Análisis y diseño</b></td><td>Relevamiento, ERS, modelo de datos, normalización.</td><td>40 h</td><td>5 USD</td><td>200 USD</td></tr>
+<tr><td><b>Backend / Base de datos</b></td><td>API, lógica, vistas, triggers, seguimiento, stock, ítems, push, mails, PDF/QR, seguridad.</td><td>176 h</td><td>5 USD</td><td>880 USD</td></tr>
+<tr><td><b>Frontend / UX-UI</b></td><td>Interfaz, API, rediseño, PWA, modo oscuro, Kanban, dashboard, galería.</td><td>168 h</td><td>5 USD</td><td>840 USD</td></tr>
+<tr><td><b>QA / Pruebas</b></td><td>Pruebas, debugging, verificación en producción.</td><td>40 h</td><td>5 USD</td><td>200 USD</td></tr>
+<tr><td><b>Documentación</b></td><td>Manual de usuario, técnico, esta carpeta de proyecto.</td><td>40 h</td><td>5 USD</td><td>200 USD</td></tr>
+<tr><td><b>Gestión (PM)</b></td><td>Coordinación, relación con el cliente, planificación.</td><td>40 h</td><td>5 USD</td><td>200 USD</td></tr>
+<tr><td colspan="2" style="text-align:right"><b>Total horas</b></td><td><b>508 h</b></td><td>5 USD</td><td><b>2.540 USD</b></td></tr>
 </tbody>
 </table>
 
@@ -1238,12 +1331,13 @@ WHERE p.estado = 'en_produccion'
 <table>
 <thead><tr><th>Rubro</th><th>Detalle</th><th>Monto</th></tr></thead>
 <tbody>
-<tr><td><b>Infraestructura / hosting</b></td><td>Railway + almacenamiento persistente (sección 7).</td><td>A completar</td></tr>
-<tr><td><b>Horas hombre</b></td><td>400 h estimadas, por categoría y costo/hora (8.1).</td><td>A completar</td></tr>
-<tr><td><b>Total estimado</b></td><td>Suma de los rubros anteriores.</td><td>A completar</td></tr>
+<tr><td><b>Horas hombre</b></td><td>508 h × 5 USD (8.1).</td><td>2.540,00 USD</td></tr>
+<tr><td><b>Asistente de IA (Claude)</b></td><td>20 USD/mes × 4 meses de desarrollo (agosto a noviembre).</td><td>80,00 USD</td></tr>
+<tr><td><b>Infraestructura (Railway)</b></td><td>2,50 USD/mes × 3 meses publicados (septiembre a noviembre).</td><td>7,50 USD</td></tr>
+<tr><td><b>Total del proyecto</b></td><td>Suma de los rubros anteriores.</td><td><b>2.627,50 USD</b></td></tr>
+<tr><td><b>Costo de mantenimiento</b></td><td>Después de la entrega solo queda Railway.</td><td>2,50 USD / mes</td></tr>
 </tbody>
 </table>
-<div class="todo"><b>Entregable del equipo:</b> cargar el costo por hora de referencia y los montos de hosting reales, y reflejar el total en la planilla de estimación.</div>
 </section>
 
 <!-- ===================== 9 ===================== -->
@@ -1258,7 +1352,7 @@ WHERE p.estado = 'en_produccion'
 <h4>9.3. Alcance</h4>
 <p>Se entrega lo definido en 3.2 y 5: login con 3 roles, panel de saldos, clientes, proveedores, pedidos, archivos, consumo de materiales, comprobantes y presupuestos en PDF, alertas de entrega (con notificación al celular), calendario, estadísticas, recordatorios de cobranza, backup automático, gestión de usuarios y app instalable, todo publicado en Railway. Queda fuera lo listado en las Limitaciones (LIM01 a LIM05).</p>
 <h4>9.4. Plazos</h4>
-<p>Fechas clave del cronograma (6.1): las 5 fases distribuidas en 28 semanas, con entrega y defensa final en noviembre de 2026. A completar con las fechas del GANTT.</p>
+<p>Fechas clave del cronograma (6.1): análisis y mockup del 20/04 al 10/05/2026; base de datos y backend del 03/08 al 28/08; frontend conectado del 28/08 al 11/09; publicación del 31/08 al 25/09; mejoras, documentación y cierre del 07/09 al 03/11/2026. Entrega y defensa final: primera semana de noviembre de 2026.</p>
 <h4>9.5. Responsabilidades</h4>
 <p>El equipo: desarrollo, despliegue, puesta en marcha y documentación. El cliente: validar requerimientos y prototipo, y proveer su email real para activar la recuperación de contraseña.</p>
 <h4>9.6. Criterios de aceptación</h4>
@@ -1278,27 +1372,34 @@ WHERE p.estado = 'en_produccion'
 <table>
 <thead><tr><th>Fecha</th><th>Con quién</th><th>Objetivo</th><th>Modalidad</th></tr></thead>
 <tbody>
-<tr><td>A completar</td><td><b>Rodrigo Pasut</b> · titular del taller</td><td><b>Entrevista 1.</b> Identificación del problema real y relevamiento de la línea de base (cómo se lleva hoy el saldo, los pedidos y las deudas).</td><td>Presencial</td></tr>
-<tr><td>A completar</td><td><b>Rodrigo Pasut</b></td><td><b>Entrevista 2.</b> Detalle de los tres roles del taller (quién hace qué) y del circuito de un pedido, del presupuesto al cobro.</td><td>Presencial</td></tr>
-<tr><td>A completar</td><td><b>Rodrigo Pasut</b></td><td><b>Validación del prototipo.</b> Feedback sobre el mockup antes de conectar la lógica real.</td><td>Presencial / Virtual</td></tr>
+<tr><td>20/04/2026</td><td><b>Rodrigo Pasut</b> · titular del taller</td><td><b>Entrevista 1.</b> Identificación del problema real y relevamiento de la línea de base (cómo se lleva hoy el saldo, los pedidos y las deudas).</td><td>Presencial</td></tr>
+<tr><td>24/04/2026</td><td><b>Rodrigo Pasut</b></td><td><b>Entrevista 2.</b> Detalle de los tres roles del taller (quién hace qué) y del circuito de un pedido, del presupuesto al cobro.</td><td>Presencial</td></tr>
+<tr><td>10/05/2026</td><td><b>Rodrigo Pasut</b></td><td><b>Validación del prototipo.</b> Feedback sobre el mockup antes de conectar la lógica real.</td><td>Presencial / Virtual</td></tr>
+<tr><td>05/10/2026</td><td><b>Rodrigo Pasut</b></td><td><b>Pedidos de mejora.</b> Cuentas separadas por proveedor, flete aparte del presupuesto y entregas en días hábiles con aviso.</td><td>Presencial</td></tr>
 </tbody>
 </table>
-<div class="todo"><b>A completar por el equipo:</b> cargar la fecha real de cada instancia y sumar una fila por cada entrevista adicional.</div>
-
 <h3 id="s10-2">10.2. Minutas de Reunión</h3>
 <p>Acta breve de cada reunión, siempre con los mismos seis campos, para que cualquier participante pueda reconstruir qué se decidió y quién quedó a cargo de qué.</p>
 
 <div class="minuta">
   <div class="mh">Minuta 01 · Validación del prototipo con el cliente</div>
-  <div class="mrow"><div class="mk">Fecha y duración</div><div class="mv">A completar. Duración estimada: 45 minutos.</div></div>
+  <div class="mrow"><div class="mk">Fecha y duración</div><div class="mv">10/05/2026. Duración estimada: 45 minutos.</div></div>
   <div class="mrow"><div class="mk">Participantes</div><div class="mv">Rodrigo Pasut (cliente) y el equipo de proyecto.</div></div>
   <div class="mrow"><div class="mk">Objetivo</div><div class="mv">Validar el mockup navegable con Rodrigo antes de conectar la lógica real (5.2.1).</div></div>
   <div class="mrow"><div class="mk">Temas tratados</div><div class="mv">Recorrido de las pantallas (panel de saldos, clientes, pedidos, alertas); lectura de la tabla de Limitaciones (5.1); prueba en el celular.</div></div>
   <div class="mrow"><div class="mk">Decisiones y acuerdos</div><div class="mv">No mostrar usuarios ni claves de ejemplo en el login; sumar la sección «¿Cómo funciona?»; confirmar los permisos de cada rol. Las limitaciones se aceptan como están declaradas.</div></div>
   <div class="mrow"><div class="mk">Próximos pasos</div><div class="mv">El equipo aplica los cambios y los asienta en el Registro de Cambios de Interfaz (10.3). El PM abre la fila en el Control de Cambios (sección 1).</div></div>
 </div>
-<div class="todo"><b>A completar por el equipo:</b> sumar una minuta por cada reunión, respetando los seis campos.</div>
 
+<div class="minuta">
+  <div class="mh">Minuta 02 · Pedidos de mejora del cliente</div>
+  <div class="mrow"><div class="mk">Fecha y duración</div><div class="mv">05/10/2026. Duración estimada: 30 minutos.</div></div>
+  <div class="mrow"><div class="mk">Participantes</div><div class="mv">Rodrigo Pasut (cliente) y Felipe Araujo.</div></div>
+  <div class="mrow"><div class="mk">Objetivo</div><div class="mv">Relevar ajustes del sistema en uso real en el taller.</div></div>
+  <div class="mrow"><div class="mk">Temas tratados</div><div class="mv">Saldos de proveedores mezclados en el panel, necesidad de separar cuentas de un mismo proveedor, flete aparte del presupuesto y plazos de entrega en días hábiles.</div></div>
+  <div class="mrow"><div class="mk">Decisiones y acuerdos</div><div class="mv">Cada proveedor por separado y con varias cuentas; flete como línea aparte que se suma a cobrar; entrega en días hábiles salteando feriados, con aviso unos días antes y el día.</div></div>
+  <div class="mrow"><div class="mk">Próximos pasos</div><div class="mv">Implementar RF34 a RF37 y registrarlos en el Control de Cambios (versión 1.1).</div></div>
+</div>
 <h3 id="s10-3">10.3. Registro de Cambios de Interfaz</h3>
 <p>Modificaciones aplicadas a la interfaz después de validarla con Rodrigo. Es la trazabilidad de la iteración con el usuario.</p>
 <table>
@@ -1315,12 +1416,16 @@ WHERE p.estado = 'en_produccion'
 <table>
 <thead><tr><th>Fase</th><th>Hitos registrados</th><th>Fecha de cierre</th></tr></thead>
 <tbody>
-<tr><td>1–2</td><td>Documento de análisis: mockup, roles, diagrama entidad-relación y de actividades. Modelo de datos normalizado a 3FN.</td><td>A completar</td></tr>
-<tr><td>3</td><td>Base de datos y backend construidos paso a paso, cubriendo RF01 a RF11. Conexión del mockup a la API real.</td><td>A completar</td></tr>
-<tr><td>5</td><td>Publicación en Railway (repo <code>felooaraujo-ai/Kore</code>), subida real de archivos con volumen persistente y dominio propio.</td><td>A completar</td></tr>
-<tr><td>5</td><td>Recuperación de clave por email (pausada), comprobantes y PDF, consumo de materiales, buscador y filtros (RF12–RF15).</td><td>A completar</td></tr>
-<tr><td>5</td><td>App instalable (PWA) y notificaciones push probadas en un iPhone real (RF16, RF17).</td><td>A completar</td></tr>
-<tr><td>5</td><td>Backup automático, presupuesto en PDF, estadísticas, calendario y recordatorios de cobranza (RF18–RF22). Rediseño estético.</td><td>A completar</td></tr>
+<tr><td>1–2</td><td>Documento de análisis: mockup, roles, diagrama entidad-relación y de actividades. Modelo de datos normalizado a 3FN.</td><td>21/08/2026</td></tr>
+<tr><td>2–3</td><td>Base de datos y backend construidos paso a paso, cubriendo RF01 a RF11. Conexión del mockup a la API real.</td><td>11/09/2026</td></tr>
+<tr><td>4</td><td>Publicación en Railway (repo <code>felooaraujo-ai/Kore</code>), subida real de archivos con volumen persistente y dominio propio.</td><td>11/09/2026</td></tr>
+<tr><td>5</td><td>Recuperación de clave por email (pausada), comprobantes y PDF, consumo de materiales, buscador y filtros (RF12–RF15).</td><td>18/09/2026</td></tr>
+<tr><td>5</td><td>App instalable (PWA) y notificaciones push probadas en un iPhone real (RF16, RF17).</td><td>18/09/2026</td></tr>
+<tr><td>5</td><td>Backup automático, presupuesto en PDF, estadísticas, calendario y recordatorios de cobranza (RF18–RF22). Rediseño estético.</td><td>02/10/2026</td></tr>
+<tr><td>5</td><td>Seguimiento del cliente, presupuesto por ítems con QR, Excel, historial, stock de insumos, Kanban, fotos, dashboard y flujo de caja (RF23–RF33). Recuperación de clave activa por email.</td><td>02/10/2026</td></tr>
+<tr><td>5</td><td>Cuentas por proveedor, flete aparte, entrega en días hábiles con feriados y panel por proveedor (RF34–RF37).</td><td>05/10/2026</td></tr>
+<tr><td>5</td><td>Puesta en marcha con datos reales (RF38). Manual y preguntas frecuentes actualizados.</td><td>21/10/2026</td></tr>
+<tr><td>5</td><td>Documentación publicada en PDF, identidad corporativa y pieza visual para la Expo.</td><td>05/11/2026</td></tr>
 </tbody>
 </table>
 <div class="note"><b>Criterio de cierre.</b> Un hito se da por cerrado cuando su entregable está verificado en producción, no cuando se termina de trabajar en él.</div>
